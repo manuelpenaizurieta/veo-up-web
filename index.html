@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VEO UP · Contenido mensual para negocios de Valencia</title>
+<meta name="description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 190 €/mes, sin permanencia.">
+<meta name="theme-color" content="#101010">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="VEO UP">
+<meta property="og:title" content="VEO UP · Haz que te vean. Haz que te elijan.">
+<meta property="og:description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 190 €/mes, sin permanencia.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101010'/%3E%3Cpath d='M16 18h9l7 20 7-20h9L37 48h-10z' fill='%2338D66B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout: una sola columna editorial; el precio (190 €) es el objeto que se repite en toda la página. */
+  :root {
+    --black: #101010;
+    --black-2: #191919;
+    --cream: #F7F7F2;
+    --white: #ffffff;
+    --green: #38D66B;
+    --green-ink: #137a37;
+    --grey: #EAECE9;
+    --ink: #101010;
+    --ink-2: #5a5c55;
+    --ink-on-dark: #f7f7f2;
+    --ink-2-on-dark: #9d9f98;
+    --line: #dcded8;
+    --line-dark: #2b2b2b;
+    --font-head: "Sora", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --max: 1320px;
+    --gutter: 20px;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+  @media (min-width: 768px) { :root { --gutter: 40px; } }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--cream); color: var(--ink);
+    font: 400 16px/1.55 var(--font-body);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--cream); }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--font-head); margin: 0; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; }
+  p { margin: 0; }
+  :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 8px; }
+
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+  section { padding-block: 96px; }
+  @media (min-width: 900px) { section { padding-block: 140px; } }
+  section[id] { scroll-margin-top: 72px; }
+
+  .label { font: 600 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .dark .label { color: var(--ink-2-on-dark); }
+  .h2 { font-size: clamp(36px, 6vw, 72px); font-weight: 700; }
+  .lede { font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-2); max-width: 44ch; }
+  .dark { background: var(--black); color: var(--ink-on-dark); }
+  .dark .lede { color: var(--ink-2-on-dark); }
+
+  /* Botones */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 54px; padding: 0 24px; border-radius: 999px; border: 0;
+    font: 600 16px/1 var(--font-body); text-decoration: none; cursor: pointer; white-space: nowrap;
+    transition: transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--green); color: var(--black); }
+  .btn-primary:hover { background: #2fc760; }
+  .btn-dark { background: var(--black); color: var(--white); }
+  .btn-dark:hover { background: #2a2a2a; }
+  .btn .price-tag { padding-left: 12px; margin-left: 2px; border-left: 1px solid rgba(16,16,16,.25); font-weight: 700; }
+  .btn-dark .price-tag { border-left-color: rgba(255,255,255,.25); }
+  .wa-ico { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+  .text-link { font-weight: 600; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; }
+  .text-link::after { content: "→"; transition: transform .2s var(--ease); }
+  .text-link:hover::after { transform: translateX(3px); }
+
+  .pendiente {
+    display: inline-block; font: 600 11px/1 var(--font-body); letter-spacing: .06em; text-transform: uppercase;
+    color: #8a5a00; background: #fff1cc; padding: 5px 8px; border-radius: 6px; vertical-align: 2px;
+  }
+  .prueba { position: relative; }
+  .prueba::after {
+    content: "Imagen de prueba"; position: absolute; top: 10px; left: 10px; z-index: 3;
+    font: 600 10px/1 var(--font-body); letter-spacing: .06em; text-transform: uppercase;
+    color: #8a5a00; background: #fff1cc; padding: 5px 7px; border-radius: 6px;
+  }
+
+  /* Header */
+  /* Header: cápsula flotante tipo producto. Las pestañas son píldoras con icono; la activa va en negro. */
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; padding-top: 10px; }
+  .bar {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+    height: 60px; padding: 0 8px 0 18px; border-radius: 999px;
+    background: rgba(255, 255, 255, .8);
+    backdrop-filter: saturate(1.5) blur(16px); -webkit-backdrop-filter: saturate(1.5) blur(16px);
+    box-shadow: 0 0 0 1px rgba(16,16,16,.07), 0 12px 32px -18px rgba(16,16,16,.3);
+    transition: box-shadow .25s var(--ease), background .25s var(--ease);
+  }
+  .nav.scrolled .bar { background: rgba(255, 255, 255, .94); box-shadow: 0 0 0 1px rgba(16,16,16,.08), 0 16px 40px -16px rgba(16,16,16,.35); }
+  @media (min-width: 900px) { .bar { grid-template-columns: 1fr auto 1fr; } }
+  .nav-links { display: none; gap: 2px; padding: 4px; border-radius: 999px; background: #f0f1ed; box-shadow: inset 0 0 0 1px rgba(16,16,16,.06); }
+  .nav-links a {
+    display: inline-flex; align-items: center; gap: 7px;
+    text-decoration: none; font-size: 15px; font-weight: 600; color: #2a2c27;
+    padding: 9px 16px; border-radius: 999px;
+    transition: background .2s var(--ease), color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .nav-links svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-links a:hover { color: var(--ink); background: var(--white); box-shadow: 0 1px 2px rgba(16,16,16,.08); }
+  .nav-links a.active { color: var(--white); background: var(--black); box-shadow: none; }
+  .nav-links a.active svg { opacity: 1; stroke: var(--green); }
+  .nav-right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+  .nav .btn { min-height: 44px; padding: 0 16px; font-size: 14px; }
+  @media (max-width: 480px) { .nav .price-tag { display: none; } .bar { padding-left: 14px; } }
+  .menu-btn {
+    width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--white); box-shadow: inset 0 0 0 1px var(--line);
+    display: grid; place-content: center; gap: 5px;
+  }
+  .menu-btn span { display: block; width: 16px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .25s var(--ease); }
+  .menu-btn[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+  .mobile-menu { position: absolute; top: 100%; left: 0; right: 0; padding-top: 8px; }
+  .mobile-menu[hidden] { display: none; }
+  .sheet { background: var(--white); border-radius: 24px; padding: 6px 18px 18px; box-shadow: 0 0 0 1px rgba(16,16,16,.07), 0 24px 48px -20px rgba(16,16,16,.35); }
+  .mobile-menu nav { display: grid; margin-bottom: 16px; }
+  .mobile-menu nav a {
+    display: flex; align-items: center; gap: 12px; text-decoration: none; padding: 16px 0;
+    border-bottom: 1px solid var(--line); font: 600 20px/1.1 var(--font-head); letter-spacing: -0.02em;
+  }
+  .mobile-menu nav a::after { content: "→"; margin-left: auto; color: var(--ink-2); font-weight: 400; }
+  .mobile-menu nav svg { width: 20px; height: 20px; fill: none; stroke: var(--green-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  @media (min-width: 900px) {
+    .nav-links { display: flex; }
+    .menu-btn, .mobile-menu { display: none !important; }
+  }
+  .logo { justify-self: start; display: flex; align-items: center; min-height: 44px; text-decoration: none; }
+  /* Logo de Stevan (media/logo-sheet.webp, 2000×667: clara a la izquierda, oscura a la derecha).
+     PENDIENTE: sustituir por SVG o PNG transparente. */
+  .logo-mark { display: block; width: var(--w, 112px); aspect-ratio: 820 / 177; overflow: hidden; }
+  .logo-mark img { width: 243.9%; max-width: none; margin: -29.88% 0 0 -10.98%; mix-blend-mode: multiply; }
+  .logo-mark.on-dark img { margin-left: -133.9%; mix-blend-mode: screen; }
+
+  /* Hero: panel oscuro con la foto a sangre (propuesta de Stevan).
+     La imagen de prueba lleva texto incrustado en su mitad izquierda; el contenedor nunca pasa de
+     proporción 0,85 y el recorte se ancla a la derecha, así ese texto queda fuera. */
+  .hero { padding-block: 8px 0; }
+  .hero-panel {
+    position: relative; overflow: hidden; border-radius: 28px; background: var(--black); color: var(--ink-on-dark);
+    min-height: calc((100vw - 2 * var(--gutter)) / .85);
+    display: flex; align-items: flex-end;
+  }
+  .hero-panel > .hero-media { position: absolute; inset: 0; }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%; }
+  .hero-media::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(16,16,16,.05) 0%, rgba(16,16,16,.8) 38%, var(--black) 58%);
+  }
+  .hero-media.prueba::after { left: auto; right: 14px; top: 14px; }
+  .hero-copy { position: relative; z-index: 2; display: grid; gap: 20px; padding: 120px 22px 28px; max-width: 720px; }
+  @media (max-width: 899px) {
+    .hero-panel { min-height: 0; }
+    /* La foto se ancla a la derecha con proporción máxima 0,85: en tablet ocupa la parte derecha y el
+       resto es negro; así nunca asoma el texto incrustado de la imagen de prueba. */
+    .hero-panel > .hero-media { left: auto; top: 0; bottom: 0; aspect-ratio: .85; max-width: 100%; }
+    .hero-media::before { background:
+      linear-gradient(180deg, rgba(16,16,16,.05) 0%, rgba(16,16,16,.8) 38%, var(--black) 58%),
+      linear-gradient(90deg, var(--black) 0%, transparent 30%); }
+    .hero-kicker { font-size: 13px; }
+  }
+  .hero-kicker { font: 500 14px/1.3 var(--font-body); color: var(--ink-2-on-dark); display: flex; gap: 10px; align-items: center; }
+  .hero-kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(56,214,107,.18); }
+  .hero-title { font-size: clamp(42px, 4.4vw, 64px); font-weight: 800; color: var(--white); letter-spacing: -0.045em; line-height: .98; }
+  .hero-title span { display: block; }
+  .mark { font-style: normal; position: relative; white-space: nowrap; }
+  .mark::after {
+    content: ""; position: absolute; left: -1%; right: -1%; bottom: -.05em; height: .09em;
+    background: var(--green); border-radius: 99px; transform: rotate(-1.5deg) scaleX(0); transform-origin: left;
+    animation: underline .8s .4s var(--ease) forwards;
+  }
+  @keyframes underline { to { transform: rotate(-1.5deg) scaleX(1); } }
+  .hero-sub { font-size: clamp(17px, 1.6vw, 20px); color: #c9cbc4; max-width: 34ch; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+  .hero .text-link { color: var(--white); }
+  .hero-foot { font-size: 13px; color: var(--ink-2-on-dark); }
+  @media (min-width: 900px) {
+    .hero-panel { min-height: min(700px, calc(100svh - 92px)); align-items: center; }
+    .hero-panel > .hero-media { left: auto; aspect-ratio: .85; }
+    .hero-media::before { background: linear-gradient(90deg, var(--black) 0%, rgba(16,16,16,.5) 24%, transparent 56%); }
+    .hero-copy { padding: 64px 64px; }
+  }
+
+  /* Franja de sectores */
+  .sectors { padding-block: 28px; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .sectors .wrap { display: flex; gap: 24px; align-items: center; }
+  .sectors .label { flex-shrink: 0; }
+  .ticker { flex: 1; min-width: 0; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .ticker-track { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+  .ticker-track span { font: 600 clamp(18px, 2vw, 22px)/1 var(--font-head); letter-spacing: -0.02em; padding-right: 40px; white-space: nowrap; }
+  .ticker-track span::after { content: "·"; color: var(--green-ink); padding-left: 40px; }
+  @keyframes ticker { to { transform: translateX(-50%); } }
+  @media (max-width: 640px) { .sectors .label { display: none; } }
+
+  /* Trabajo */
+  .work-head { display: grid; gap: 20px; margin-bottom: 48px; }
+  @media (min-width: 900px) { .work-head { grid-template-columns: 1.2fr .8fr; align-items: end; } }
+  .reels {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 68%; gap: 12px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-bottom: 6px; scrollbar-width: none;
+  }
+  .reels::-webkit-scrollbar { display: none; }
+  @media (min-width: 640px) { .reels { grid-auto-columns: 40%; } }
+  @media (min-width: 1000px) { .reels { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; padding: 0; margin: 0; gap: 16px; } }
+  .reel { margin: 0; scroll-snap-align: start; display: grid; gap: 12px; }
+  .reel img, .reel video { aspect-ratio: 9 / 16; width: 100%; object-fit: cover; border-radius: 18px; }
+  .reel figcaption { display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-2-on-dark); }
+  .reel figcaption b { color: var(--ink-on-dark); font-weight: 600; }
+
+  /* Tu perfil, antes y después: dos móviles con un feed genérico (sin cifras ni nombres reales) */
+  .ba-grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1000px) { .ba-grid { grid-template-columns: .8fr 1.2fr; gap: 64px; } }
+  .ba-copy { display: grid; gap: 18px; }
+  .ba-toggle { display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--grey); justify-self: start; }
+  .ba-toggle button { border: 0; background: none; cursor: pointer; font: 600 14px/1 var(--font-body); color: var(--ink-2); padding: 10px 16px; border-radius: 999px; }
+  .ba-toggle button[aria-pressed="true"] { background: var(--black); color: var(--white); }
+  @media (min-width: 700px) { .ba-toggle { display: none; } }
+  .ba-phones { display: flex; gap: 24px; justify-content: center; align-items: flex-start; }
+  .ba-phone { display: grid; gap: 14px; justify-items: center; }
+  @media (max-width: 699px) { .ba-phone[hidden] { display: none; } }
+  @media (min-width: 700px) { .ba-phone[hidden] { display: grid !important; } }
+  .ba-phone .tagline { font: 600 13px/1 var(--font-body); padding: 8px 12px; border-radius: 999px; background: var(--grey); color: var(--ink-2); }
+  .ba-phone.after .tagline { background: var(--green); color: var(--black); }
+  .ig { width: min(280px, 76vw); border-radius: 40px; background: var(--black); padding: 9px; box-shadow: 0 40px 70px -40px rgba(16,16,16,.55); }
+  .ig-screen { background: var(--white); border-radius: 32px; overflow: hidden; padding: 30px 12px 0; }
+  .ig-head { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; }
+  .ig-av { width: 52px; height: 52px; border-radius: 50%; background: var(--grey); }
+  .after .ig-av { background: conic-gradient(var(--green), #a9f0c0, var(--green)); padding: 2px; }
+  .after .ig-av::after { content: ""; display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--black); border: 2px solid var(--white); }
+  .ig-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .ig-stats i, .ig-bio i { display: block; height: 7px; border-radius: 4px; background: var(--grey); }
+  .ig-stats i:nth-child(odd) { width: 70%; }
+  .ig-name { font: 600 12px/1 var(--font-body); margin: 12px 0 6px; }
+  .ig-bio { display: grid; gap: 5px; margin-bottom: 12px; }
+  .ig-bio i:last-child { width: 60%; }
+  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 0 -12px; }
+  .ig-grid > * { aspect-ratio: 3 / 4; background: #f0f1ee; position: relative; overflow: hidden; }
+  .ig-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .ig-grid .reelmark::after { content: ""; position: absolute; top: 6px; right: 6px; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+  .before .ig-grid .old { background: linear-gradient(135deg, #d9dbd5, #c9ccc4); filter: saturate(.3); }
+  .before .ig-grid .empty { background: #fafaf8; }
+  .ig-note { font-size: 11px; color: var(--ink-2); text-align: center; padding: 10px 0 14px; }
+
+  /* El plan */
+  .plan { display: grid; gap: 56px; }
+  @media (min-width: 1000px) { .plan { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; } }
+  .plan-main { display: grid; gap: 28px; }
+  .bigprice { display: flex; align-items: flex-start; gap: 8px; font-family: var(--font-head); line-height: .85; }
+  .bigprice .n { font-size: clamp(110px, 17vw, 200px); font-weight: 800; letter-spacing: -0.06em; }
+  .bigprice .u { display: grid; gap: 6px; padding-top: .5em; font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; letter-spacing: -0.03em; }
+  .bigprice .u small { font: 500 14px/1.2 var(--font-body); color: var(--ink-2); letter-spacing: 0; }
+  .includes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .includes li { display: flex; justify-content: space-between; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+  .includes li span:last-child { color: var(--ink-2); font-weight: 400; white-space: nowrap; }
+  .plan-cta { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+  .plan-note { font-size: 13px; color: var(--ink-2); }
+
+  /* Tu mes en VEO UP: maqueta de la suscripción, ilustrativa (no son datos de un cliente) */
+  .app {
+    background: var(--black); color: var(--ink-on-dark); border-radius: 28px; padding: 10px;
+    box-shadow: 0 50px 90px -50px rgba(16,16,16,.55);
+  }
+  .app-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 18px; }
+  .app-bar b { font: 600 15px/1 var(--font-head); letter-spacing: -0.01em; }
+  .app-bar small { font-size: 12px; color: var(--ink-2-on-dark); }
+  .app-badge { font: 600 11px/1 var(--font-body); letter-spacing: .06em; text-transform: uppercase; color: var(--black); background: var(--green); padding: 6px 9px; border-radius: 999px; }
+  .app-body { background: var(--black-2); border-radius: 20px; padding: 6px 18px; }
+  .stage { display: grid; grid-template-columns: 22px 1fr auto; gap: 14px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--line-dark); }
+  .stage:last-child { border-bottom: 0; }
+  .stage .dot { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #3a3a3a; display: grid; place-items: center; margin-top: 1px; }
+  .stage.done .dot { background: var(--green); border-color: var(--green); }
+  .stage.done .dot::after { content: ""; width: 9px; height: 5px; border: solid var(--black); border-width: 0 0 2px 2px; transform: rotate(-45deg) translate(1px, -1px); }
+  .stage.now .dot { border-color: var(--green); }
+  .stage.now .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .stage h3 { font: 600 16px/1.3 var(--font-head); letter-spacing: -0.01em; }
+  .stage p { font-size: 14px; color: var(--ink-2-on-dark); margin-top: 3px; }
+  .stage .st { font-size: 12px; color: var(--ink-2-on-dark); white-space: nowrap; padding-top: 2px; }
+  .stage.now .st { color: var(--green); }
+  .app-foot { padding: 16px 16px 10px; font-size: 13px; color: var(--ink-2-on-dark); display: flex; gap: 8px; align-items: center; }
+  .app-foot::before { content: "↻"; color: var(--green); font-size: 16px; }
+
+  /* Siguientes planes */
+  .upgrade { border-top: 1px solid var(--line); }
+  .upgrade-head { display: grid; gap: 14px; margin-bottom: 36px; }
+  /* Escalera de planes: cada peldaño sube un poco más y el último es el más completo.
+     Sin etiqueta de "recomendado": el orden ya dice qué es más. */
+  .ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 960px) { .ladder { grid-template-columns: repeat(3, 1fr); align-items: start; gap: 16px; } }
+  .step {
+    position: relative; display: grid; gap: 16px; align-content: start;
+    background: var(--white); border-radius: 24px; padding: 28px;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  @media (min-width: 960px) {
+    .step.s1 { margin-top: 96px; }
+    .step.s2 { margin-top: 48px; }
+    .step:not(:last-child)::after {
+      content: "→"; position: absolute; right: -15px; top: 40px; z-index: 2;
+      width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--cream); box-shadow: 0 0 0 1px var(--line); font-size: 13px; color: var(--ink-2);
+    }
+  }
+  /* En móvil la escalera es un carrusel: se ve Content entero y asoma Growth */
+  @media (max-width: 959px) {
+    .ladder {
+      grid-auto-flow: column; grid-auto-columns: 84%; align-items: start;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+      padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-block: 4px 8px; scrollbar-width: none;
+    }
+    .ladder::-webkit-scrollbar { display: none; }
+    .step { scroll-snap-align: start; }
+  }
+  @media (min-width: 640px) and (max-width: 959px) { .ladder { grid-auto-columns: 46%; } }
+  .ladder-hint { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+  @media (min-width: 960px) { .ladder-hint { display: none; } }
+  @media (max-width: 639px) { .win .row2 > .card:first-child { display: none; } }
+  .step .verb { font: 600 12px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--green-ink); }
+  .step h3 { font: 700 30px/1 var(--font-head); letter-spacing: -0.035em; }
+  .step .price { font: 800 44px/1 var(--font-head); letter-spacing: -0.045em; }
+  .step .price small { font: 500 15px/1 var(--font-body); letter-spacing: 0; color: var(--ink-2); }
+  .step .for { color: var(--ink-2); }
+  .step ul { list-style: none; margin: 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; font-size: 15px; }
+  .step li { display: grid; grid-template-columns: 16px 1fr; gap: 10px; }
+  .step li::before { content: "✓"; color: var(--green-ink); font-weight: 700; }
+  .step .plus { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+  .step .btn { width: 100%; margin-top: 4px; }
+  .step.s2 { box-shadow: 0 0 0 1.5px var(--green), 0 30px 60px -40px rgba(16,16,16,.3); }
+  .step.s3 { background: var(--black); color: var(--ink-on-dark); box-shadow: 0 40px 80px -40px rgba(16,16,16,.6); }
+  .step.s3 .verb { color: var(--green); }
+  .step.s3 .price small, .step.s3 .for, .step.s3 .plus { color: var(--ink-2-on-dark); }
+  .step.s3 ul { border-top-color: var(--line-dark); }
+  .step.s3 li::before { color: var(--green); }
+  .btn-outline { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+  .btn-outline:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn-light { background: var(--white); color: var(--black); }
+  .extras {
+    margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between;
+    padding: 18px 22px; border-radius: 18px; background: var(--white); box-shadow: 0 0 0 1px var(--line); font-size: 15px; color: var(--ink-2);
+  }
+  .extras b { color: var(--ink); font-weight: 600; }
+
+  /* Cómo empezar (en el cierre) */
+  .start-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; position: relative; z-index: 1; }
+  .start-steps li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #d8dad3; background: rgba(255,255,255,.06); border: 1px solid #2c2c2c; padding: 9px 14px; border-radius: 999px; }
+  .start-steps li b { color: var(--white); font-weight: 600; }
+  .start-steps .arr { background: none; border: 0; padding: 0; color: var(--ink-2-on-dark); }
+
+  /* Panel de Scale: maqueta ilustrativa, sin cifras (regla del proyecto: ningún dato inventado) */
+  .scale-block { display: grid; gap: 40px; margin-top: 72px; align-items: center; }
+  @media (min-width: 1000px) { .scale-block { grid-template-columns: .75fr 1.25fr; gap: 64px; } }
+  .scale-text { display: grid; gap: 16px; }
+  .scale-text h3 { font: 700 clamp(26px, 3vw, 36px)/1.08 var(--font-head); letter-spacing: -0.035em; }
+  .stepper { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; font-weight: 600; }
+  .stepper span { padding: 7px 11px; border-radius: 999px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+  .stepper span:last-child { background: var(--black); color: var(--white); box-shadow: none; }
+  .stepper i { font-style: normal; color: var(--ink-2); }
+  .panel { margin: 0; display: grid; gap: 12px; min-width: 0; }
+  .panel figcaption { font-size: 12px; color: var(--ink-2); }
+  .win { background: var(--black); border-radius: 20px; overflow: hidden; color: var(--ink-on-dark); box-shadow: 0 50px 90px -50px rgba(16,16,16,.6); }
+  .win-top { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line-dark); font-size: 12px; color: var(--ink-2-on-dark); }
+  .win-top .dots { display: flex; gap: 6px; }
+  .win-top .dots i { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+  .win-top .chip { margin-left: auto; font: 600 10px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--black); background: var(--green); padding: 5px 8px; border-radius: 999px; }
+  /* Arquitectura de panel comercial por pestañas: resumen rápido, embudo, ritmo de presupuesto,
+     inversión vs leads por día y tiempos de gestión. Formas sin cifras. */
+  .win-tabs { display: flex; gap: 4px; padding: 10px 12px; border-bottom: 1px solid var(--line-dark); overflow-x: auto; scrollbar-width: none; }
+  .win-tabs::-webkit-scrollbar { display: none; }
+  .win-tabs span { flex-shrink: 0; font-size: 12px; font-weight: 500; color: var(--ink-2-on-dark); padding: 7px 11px; border-radius: 8px; }
+  .win-tabs span.on { background: var(--black-2); color: var(--white); box-shadow: inset 0 -2px 0 var(--green); }
+  .win-main { padding: 14px; display: grid; gap: 10px; min-width: 0; }
+  .card { background: var(--black-2); border-radius: 12px; padding: 12px; min-width: 0; }
+  .win .t { display: block; font-size: 11px; font-weight: 600; color: #d8dad3; }
+  .win .d { display: block; font-size: 10px; color: var(--ink-2-on-dark); margin: 2px 0 10px; }
+  .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (min-width: 640px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
+  .kpis .card { display: grid; gap: 8px; }
+  .kpis small { font-size: 10px; color: var(--ink-2-on-dark); }
+  .sk { display: block; height: 16px; width: 58%; border-radius: 5px; background: linear-gradient(90deg, #262626, #313131, #262626); background-size: 200% 100%; animation: sk 2.4s ease-in-out infinite; }
+  .sk.thin { height: 7px; width: 100%; }
+  .sk.w70 { width: 70%; } .sk.w45 { width: 45%; }
+  @keyframes sk { 50% { background-position: 100% 0; } }
+  .spark { width: 100%; height: 22px; display: block; }
+  .spark path { fill: none; stroke: var(--green); stroke-width: 1.6; vector-effect: non-scaling-stroke; opacity: .8; }
+  .row2 { display: grid; gap: 10px; }
+  @media (min-width: 640px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  .ph { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; padding: 14px 14px 4px; }
+  .ph b { display: block; font: 700 17px/1.1 var(--font-head); letter-spacing: -0.02em; color: var(--white); }
+  .ph .sk { margin-top: 6px; width: 160px; height: 8px; }
+  .period { display: flex; gap: 2px; background: var(--black-2); padding: 3px; border-radius: 9px; }
+  .period span { font-size: 10px; padding: 5px 8px; border-radius: 7px; color: var(--ink-2-on-dark); }
+  .period span.on { background: #2c2c2c; color: var(--white); }
+  .win-tabs span { display: inline-flex; align-items: center; gap: 6px; }
+  .win-tabs svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .glance { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .glance > .t { margin-right: 4px; }
+  .pill { display: inline-grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; background: #202020; border: 1px solid #2a2a2a; border-radius: 10px; padding: 7px 10px; }
+  .pill::before { content: ""; grid-row: span 2; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--green)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--green)) 22%, transparent); }
+  .pill b { font-size: 10px; font-weight: 600; color: #e4e6df; }
+  .pill small { font-size: 9px; color: var(--c, var(--green)); }
+  .kpis .ico { width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 18%, transparent); }
+  .kpis .ico svg { width: 12px; height: 12px; fill: none; stroke: var(--c); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .kpis .head { display: flex; align-items: center; gap: 8px; }
+  .kpis .vs { font-size: 9px; color: var(--ink-2-on-dark); }
+  .brief { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .brief li { display: grid; grid-template-columns: 8px 1fr; gap: 10px; align-items: start; }
+  .brief li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-top: 3px; }
+  .brief li span { display: grid; gap: 5px; }
+  .combo svg { width: 100%; height: 96px; display: block; }
+  .combo .bar { fill: #2e2e2e; }
+  .combo .ln { fill: none; stroke: var(--green); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .combo .grid { stroke: #262626; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .combo .legend { display: flex; gap: 12px; font-size: 10px; color: var(--ink-2-on-dark); margin-top: 8px; }
+  .combo .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #3a3a3a; margin-right: 5px; vertical-align: -1px; }
+  .combo .legend i.g { background: var(--green); height: 2px; vertical-align: 2px; }
+  .status { display: flex; flex-wrap: wrap; gap: 6px; }
+  .status span { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; color: #d8dad3; background: #232323; padding: 6px 9px; border-radius: 99px; }
+  .status span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c, #555); }
+
+  /* Equipo (compacto) */
+  .team { display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 900px) { .team { grid-template-columns: auto 1fr; gap: 48px; } }
+  .faces { display: flex; }
+  .faces .prueba::after { content: "Prueba"; top: auto; bottom: -4px; left: 50%; transform: translateX(-50%); }
+  .faces img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--cream); }
+  .faces > div + div { margin-left: -22px; }
+  .team-text { display: grid; gap: 12px; max-width: 620px; }
+  .team-text h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 700; }
+
+  /* FAQ */
+  .faq-grid { display: grid; gap: 40px; }
+  @media (min-width: 1000px) { .faq-grid { grid-template-columns: .8fr 1.2fr; gap: 80px; } }
+  .faq { border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 22px 0;
+    display: flex; justify-content: space-between; gap: 20px;
+    font: 600 17px/1.35 var(--font-head); letter-spacing: -0.01em;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 400 24px/1 var(--font-body); color: var(--ink-2); transition: transform .2s var(--ease); flex-shrink: 0; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq .a { padding: 0 0 24px; color: var(--ink-2); display: grid; gap: 10px; max-width: 60ch; }
+
+  /* Cierre */
+  .final { padding-block: 0 24px; }
+  .final-box { border-radius: 28px; padding: 72px 28px; display: grid; gap: 28px; justify-items: start; position: relative; overflow: hidden; }
+  @media (min-width: 900px) { .final-box { padding: 110px 80px; } }
+  .final-box h2 { font-size: clamp(40px, 6.4vw, 84px); font-weight: 800; letter-spacing: -0.045em; max-width: 13ch; }
+  .final-box .row { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
+  .final-box .text-link { color: var(--ink-2-on-dark); font-weight: 500; }
+  .final-box .text-link:hover { color: var(--white); }
+
+  footer { padding-block: 64px 120px; font-size: 14px; color: var(--ink-2); }
+  @media (min-width: 900px) { footer { padding-bottom: 40px; } }
+  .foot { display: grid; gap: 36px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 760px) { .foot { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+  .foot-brand { display: grid; gap: 14px; align-content: start; }
+  .foot-col { display: grid; gap: 14px; align-content: start; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .foot a { text-decoration: none; }
+  .foot ul a, .foot-wa { display: inline-flex; align-items: center; min-height: 40px; }
+  .foot ul { gap: 2px; }
+  .foot a:hover { color: var(--ink); }
+  .foot-wa { display: inline-flex; gap: 8px; align-items: center; color: var(--ink); font-weight: 600; user-select: all; white-space: nowrap; }
+  .foot-wa .wa-ico { color: #1faa53; }
+  .socials { display: flex; gap: 10px; }
+  .socials a {
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line);
+    transition: background .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+  }
+  .socials a:hover { transform: translateY(-2px); }
+  /* Colores de marca de cada red */
+  .socials a.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color: #fff; box-shadow: none; }
+  .socials a.tt { background: #000; color: #fff; box-shadow: none; }
+  .socials a.tt svg { filter: drop-shadow(-1.5px -1.5px 0 #25f4ee) drop-shadow(1.5px 1.5px 0 #fe2c55); }
+  .socials a.yt { background: #ff0000; color: #fff; box-shadow: none; }
+  .socials svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .socials svg.solid { fill: currentColor; stroke: none; }
+  .foot-bottom { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; padding-top: 20px; font-size: 13px; }
+
+  /* Barra fija en móvil y WhatsApp flotante en escritorio */
+  .mobile-cta {
+    position: fixed; z-index: 60;
+    left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--black); color: var(--white); padding: 8px 8px 8px 20px; border-radius: 999px;
+    box-shadow: 0 16px 40px rgba(16,16,16,.35);
+    transform: translateY(150%); transition: transform .35s var(--ease);
+  }
+  .mobile-cta.show { transform: none; }
+  .mobile-cta span { font-size: 13px; line-height: 1.2; }
+  .mobile-cta span b { display: block; font: 700 17px/1.1 var(--font-head); letter-spacing: -0.02em; }
+  .mobile-cta .btn { min-height: 46px; padding: 0 20px; font-size: 15px; }
+  .wa-float {
+    position: fixed; z-index: 60; display: none; place-items: center;
+    right: calc(24px + env(safe-area-inset-right, 0px)); bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    width: 58px; height: 58px; border-radius: 50%; background: var(--green); color: var(--black);
+    box-shadow: 0 12px 30px rgba(16,16,16,.25); transition: transform .2s var(--ease);
+  }
+  .wa-float:hover { transform: scale(1.06); }
+  .wa-float .wa-ico { width: 28px; height: 28px; }
+  @media (min-width: 900px) { .mobile-cta { display: none; } .wa-float { display: grid; } }
+
+  /* ── Círculo de oro (Pequeños gigantes) ── */
+  .why-top { display: grid; gap: 24px; align-items: end; margin-bottom: 64px; }
+  @media (min-width: 1000px) { .why-top { grid-template-columns: 1.3fr .7fr; gap: 64px; margin-bottom: 88px; } }
+  .why-top .h2 { max-width: 16ch; margin-top: 18px; }
+  .why-top .big { font: 700 clamp(20px, 2vw, 24px)/1.3 var(--font-head); letter-spacing: -0.02em; color: var(--green-ink); }
+
+  /* Círculo de oro interactivo: el anillo activo se pone verde y su frase aparece en grande */
+  .gc-module {
+    display: grid; gap: 40px; align-items: center;
+    background: var(--white); border-radius: 32px; padding: 32px 24px;
+    box-shadow: 0 0 0 1px var(--line), 0 40px 80px -60px rgba(16,16,16,.35);
+  }
+  @media (min-width: 900px) { .gc-module { grid-template-columns: .9fr 1.1fr; gap: 64px; padding: 56px; } }
+  .gc { width: min(420px, 82vw); justify-self: center; overflow: visible; }
+  .gc .ring { cursor: pointer; transition: fill .5s var(--ease), stroke .5s var(--ease); stroke: var(--line); stroke-width: 1.5; }
+  .gc .r-que { fill: #f3f4f0; }
+  .gc .r-como { fill: #e6e8e2; }
+  .gc .r-porque { fill: var(--black); stroke: none; }
+  .gc .ring.on { fill: var(--green); stroke: var(--green); }
+  .gc text { font: 700 14px/1 var(--font-head); letter-spacing: .12em; fill: var(--ink-2); text-anchor: middle; pointer-events: none; transition: fill .4s var(--ease); }
+  .gc text.t-porque { fill: var(--white); }
+  .gc text.on { fill: var(--black); }
+  .gc .pulse { fill: none; stroke: var(--green); stroke-width: 2; opacity: 0; pointer-events: none; }
+  .gc-panel { display: grid; gap: 24px; align-content: center; min-width: 0; }
+  .gc-tabs { display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px; background: #f0f1ed; box-shadow: inset 0 0 0 1px rgba(16,16,16,.06); justify-self: start; }
+  .gc-tabs button { border: 0; background: none; cursor: pointer; font: 600 14px/1 var(--font-body); color: #2a2c27; padding: 11px 16px; border-radius: 999px; min-height: 44px; transition: background .2s var(--ease), color .2s var(--ease); }
+  .gc-tabs button[aria-selected="true"] { background: var(--black); color: var(--white); }
+  .gc-stage { position: relative; min-height: 13em; }
+  @media (min-width: 900px) { .gc-stage { min-height: 11em; } }
+  .gc-say { display: grid; gap: 14px; }
+  .gc-say[hidden] { display: none; }
+  .gc-say .k { font: 600 12px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
+  .gc-say h3 { font: 700 clamp(30px, 3.6vw, 48px)/1.05 var(--font-head); letter-spacing: -0.04em; max-width: 15ch; }
+  .gc-say p { color: var(--ink-2); max-width: 42ch; font-size: 17px; }
+  .gc-say:not([hidden]) { animation: rise .6s var(--ease) both; }
+  .gc-progress { height: 3px; border-radius: 3px; background: var(--grey); overflow: hidden; }
+  .gc-progress i { display: block; height: 100%; width: 0; background: var(--green); }
+  .gc-progress.run i { animation: fill 4.5s linear forwards; }
+  @keyframes fill { to { width: 100%; } }
+
+  /* ── Producción móvil (dentro de la franja oscura de trabajo) ── */
+  .mobile-prod { display: grid; gap: 48px; align-items: center; margin-top: 120px; }
+  @media (min-width: 1000px) { .mobile-prod { grid-template-columns: 1.15fr .85fr; gap: 80px; } }
+  .mp-copy { display: grid; gap: 22px; }
+  .mp-copy h3 { font: 700 clamp(32px, 4.6vw, 58px)/1.02 var(--font-head); letter-spacing: -0.04em; max-width: 16ch; }
+  .kit { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .kit li { font: 500 13px/1 var(--font-body); color: #e2e4dd; padding: 9px 13px; border-radius: 999px; border: 1px solid #333; background: rgba(255,255,255,.04); }
+  .mp-claim { font: 700 clamp(20px, 2.4vw, 28px)/1.2 var(--font-head); letter-spacing: -0.02em; color: var(--green); }
+  .cam { position: relative; width: min(300px, 78vw); justify-self: center; aspect-ratio: 9 / 16; border-radius: 36px; overflow: hidden; border: 8px solid #222; box-shadow: 0 50px 90px -40px rgba(0,0,0,.9); }
+  .cam img, .cam video { width: 100%; height: 100%; object-fit: cover; }
+  .cam-ui { position: absolute; inset: 0; z-index: 2; pointer-events: none; font: 600 11px/1 var(--font-body); color: #fff; }
+  .cam-ui .top { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  .cam-ui .rec { display: inline-flex; gap: 6px; align-items: center; background: rgba(0,0,0,.45); padding: 6px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+  .cam-ui .rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+  .cam-ui .fmt { background: rgba(0,0,0,.45); padding: 6px 8px; border-radius: 6px; }
+  .cam-ui .thirds { position: absolute; inset: 0; background:
+      linear-gradient(90deg, transparent calc(33.33% - .5px), rgba(255,255,255,.28) 33.33%, transparent calc(33.33% + .5px), transparent calc(66.66% - .5px), rgba(255,255,255,.28) 66.66%, transparent calc(66.66% + .5px)),
+      linear-gradient(180deg, transparent calc(33.33% - .5px), rgba(255,255,255,.28) 33.33%, transparent calc(33.33% + .5px), transparent calc(66.66% - .5px), rgba(255,255,255,.28) 66.66%, transparent calc(66.66% + .5px)); }
+  .cam-ui .focus { position: absolute; left: 50%; top: 46%; width: 70px; height: 70px; transform: translate(-50%, -50%); border: 1.5px solid #f5d33b; border-radius: 4px; }
+  .cam-ui .bottom { position: absolute; bottom: 16px; left: 0; right: 0; display: flex; justify-content: center; }
+  .cam-ui .shutter { width: 46px; height: 46px; border-radius: 50%; border: 3px solid #fff; display: grid; place-items: center; }
+  .cam-ui .shutter::after { content: ""; width: 18px; height: 18px; border-radius: 4px; background: #ff3b30; }
+  .cam.prueba::after { left: auto; right: 14px; top: 46px; }
+  .mp-flow { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 8px 6px; align-items: center; font: 600 13px/1 var(--font-body); color: var(--ink-2-on-dark); }
+  .mp-flow span { color: #e2e4dd; }
+  .mp-flow i { font-style: normal; color: #555; }
+  .mp-flow span:last-of-type { color: var(--green); }
+
+  /* Etiqueta del plan Growth */
+  .step .badge {
+    position: absolute; top: -14px; left: 26px;
+    font: 700 11px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase;
+    background: var(--green); color: var(--black); padding: 8px 12px; border-radius: 999px;
+    box-shadow: 0 8px 20px -8px rgba(56,214,107,.6);
+  }
+
+  /* Avisos internos (Pendiente, Imagen de prueba): solo se ven abriendo la web con #revision */
+  html:not(.rev) .rev-only { display: none !important; }
+  html:not(.rev) .prueba::after { display: none; }
+
+  /* Panel de Scale: cifras de ejemplo */
+  .kpis .num { font: 700 22px/1 var(--font-head); letter-spacing: -0.02em; color: var(--white); }
+  .kpis .vs em { font-style: normal; font-weight: 600; color: var(--green); }
+  .kpis { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 639px) {
+    .kpis .card { padding: 10px; gap: 6px; }
+    .kpis .ico { display: none; }
+    .kpis .head small { font-size: 9.5px; }
+    .kpis .num { font-size: 17px; }
+    .kpis .vs { font-size: 8.5px; }
+  }
+  .kpis .grp { grid-column: 1 / -1; font: 600 10px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2-on-dark); margin-top: 4px; }
+  .brief li span { display: block; color: #d8dad3; font-size: 12px; line-height: 1.45; }
+  .brief li b { color: var(--white); font-weight: 600; }
+
+  /* Perfil de Instagram en el antes/después */
+  .ig-stats { align-items: center; }
+  .ig-stats span { display: grid; gap: 2px; text-align: center; font-size: 9px; color: var(--ink-2); }
+  .ig-stats b { font: 700 13px/1.1 var(--font-head); color: var(--ink); }
+
+  /* ── Header integrado en el hero ──
+     Arriba del todo va transparente sobre el negro del hero, con el logo en blanco. Al bajar se
+     convierte en la cápsula blanca. En escritorio ocupa el mismo ancho que el hero. */
+  .bar { height: 68px; padding: 0 10px 0 22px; }
+  .nav-links a { font-size: 16px; padding: 10px 18px; }
+  .nav .btn { min-height: 48px; padding: 0 20px; font-size: 15px; }
+  .nav .logo .logo-mark { --w: 128px; }
+  .logo .logo-dark { display: none; }
+  .hero { margin-top: -78px; }
+  .hero-copy { padding-top: 160px; }
+  @media (min-width: 900px) {
+    .nav .wrap { max-width: none; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+    .hero-copy { padding-top: 120px; }
+  }
+  .nav.on-hero .bar { background: rgba(16,16,16,.28); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .nav.on-hero .logo .logo-light { display: none; }
+  .nav.on-hero .logo .logo-dark { display: block; }
+  .nav.on-hero .nav-links { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .nav.on-hero .nav-links a { color: #f2f3ee; }
+  .nav.on-hero .nav-links a:hover { background: rgba(255,255,255,.14); color: var(--white); box-shadow: none; }
+  .nav.on-hero .menu-btn { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+  .nav.on-hero .menu-btn span { background: var(--white); }
+  body::before { background: var(--cream); }
+
+  /* Titular del hero más grande en pantallas anchas */
+  @media (min-width: 1400px) {
+    .hero-title { font-size: clamp(64px, 4.6vw, 92px); }
+    .hero .hero-sub { font-size: 21px; max-width: 38ch; }
+    .hero .hero-copy { max-width: calc(940px + max(0px, (100vw - var(--max)) / 2)); }
+  }
+
+  /* ── Nivel 2: ancho, movimiento y textura ── */
+
+  /* Hero y cierre de borde a borde en escritorio (8 px de aire); el texto sigue alineado al contenedor */
+  @media (min-width: 900px) {
+    .hero .wrap, .final .wrap { max-width: none; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+    .hero-copy { padding-left: calc(max(0px, (100vw - var(--max)) / 2) + 56px); max-width: calc(760px + max(0px, (100vw - var(--max)) / 2)); }
+    .final-box { padding-left: calc(max(0px, (100vw - var(--max)) / 2) + 72px); }
+    .hero-panel { min-height: min(760px, calc(100svh - 92px)); }
+  }
+
+  /* Entrada del hero: el texto sube en cascada y la foto hace un zoom lento */
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+  .hero-copy > * { animation: rise .9s var(--ease) both; }
+  .hero-copy > :nth-child(1) { animation-delay: .05s; }
+  .hero-copy > :nth-child(2) { animation-delay: .15s; }
+  .hero-copy > :nth-child(3) { animation-delay: .3s; }
+  .hero-copy > :nth-child(4) { animation-delay: .42s; }
+  .hero-copy > :nth-child(5) { animation-delay: .52s; }
+  .hero-media img { animation: settle 2.4s var(--ease) both; }
+
+  /* "Tu mes con VEO UP": las etapas se marcan una tras otra al entrar en pantalla */
+  @keyframes pop { 0% { transform: scale(.3); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  @keyframes fadeUp { from { opacity: .25; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .reveal.in .app .stage .dot { animation: pop .55s var(--ease) both; animation-delay: calc(.25s + var(--i) * .45s); }
+  .reveal.in .app .stage > div, .reveal.in .app .stage .st { animation: fadeUp .6s var(--ease) both; animation-delay: calc(.2s + var(--i) * .45s); }
+
+  /* Grano sutil en las superficies oscuras */
+  .hero-panel::after, #trabajo::before {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: .09; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #trabajo { position: relative; }
+
+  /* Reels: se levantan al pasar el ratón */
+  .reel { transition: transform .45s var(--ease); }
+  .reel img { transition: box-shadow .45s var(--ease), filter .45s var(--ease); }
+  @media (hover: hover) {
+    .reel:hover { transform: translateY(-8px); }
+    .reel:hover img { box-shadow: 0 30px 50px -24px rgba(0,0,0,.8); filter: saturate(1.1); }
+  }
+
+  /* Antes / después con deslizador sobre un solo móvil */
+  .ba-compare { position: relative; display: grid; gap: 16px; justify-items: center; }
+  .ba-compare .ig { position: relative; }
+  .ig-inner { position: relative; border-radius: 32px; overflow: hidden; }
+  .ig-inner .ig-screen { border-radius: 0; }
+  /* Bucle constante solo con CSS (sin JavaScript ni arrastre): funciona igual en cualquier móvil.
+     Va de "antes" a "con VEO UP" y vuelve, con una pausa en cada extremo. */
+  .ig-inner .ig-screen.after { position: absolute; inset: 0; clip-path: inset(0 0 0 88%); animation: baClip 7s ease-in-out infinite; }
+  .ba-handle { position: absolute; top: 0; bottom: 0; left: 88%; width: 2px; margin-left: -1px; background: var(--green); z-index: 2; pointer-events: none; animation: baHandle 7s ease-in-out infinite; }
+  @keyframes baClip { 0%, 12% { clip-path: inset(0 0 0 88%); } 45%, 62% { clip-path: inset(0 0 0 6%); } 95%, 100% { clip-path: inset(0 0 0 88%); } }
+  @keyframes baHandle { 0%, 12% { left: 88%; } 45%, 62% { left: 6%; } 95%, 100% { left: 88%; } }
+  .ba-compare .ba-handle::after { content: none; }
+  .ba-handle::after {
+    display: none;
+    content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--green); color: var(--black); font-size: 16px; font-weight: 700; box-shadow: 0 6px 16px rgba(0,0,0,.3);
+  }
+  .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 3; }
+  .ba-range:focus-visible + .ba-labels { outline: 3px solid var(--green); outline-offset: 4px; border-radius: 999px; }
+  .ba-labels { display: flex; gap: 8px; }
+  .ba-labels span { font: 600 13px/1 var(--font-body); padding: 8px 12px; border-radius: 999px; background: var(--grey); color: var(--ink-2); }
+  .ba-labels span:last-child { background: var(--green); color: var(--black); }
+  .ba-hint { font-size: 13px; color: var(--ink-2); }
+
+  /* Entrada suave: parte de un estado visible, nunca de opacidad 0 */
+  .reveal { transform: translateY(16px); transition: transform .8s var(--ease); }
+  .reveal.in { transform: none; }
+  /* Decisión de Manu (2026-11-11): las animaciones funcionan siempre, también con "Reducir movimiento"
+     activado en el móvil. Solo se desactiva el desplazamiento suave al pulsar enlaces. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-14.3 4.9M4 12a8 8 0 0 1 14.3-4.9"/><path d="M18.5 3v4.2h-4.2M5.5 21v-4.2h4.2"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M4 18 10 12l4 4 6-7"/><path d="M15 9h5v5"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></symbol>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap">
+   <div class="bar">
+    <a href="#top" class="logo" aria-label="VEO UP, inicio"><span class="logo-mark logo-light"><img src="media/logo-sheet.webp" alt="VEO UP"></span><span class="logo-mark on-dark logo-dark" aria-hidden="true"><img src="media/logo-sheet.webp" alt=""></span></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#trabajo"><svg aria-hidden="true"><use href="#i-play"/></svg>Trabajo</a>
+      <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Suscripción</a>
+      <a href="#planes"><svg aria-hidden="true"><use href="#i-up"/></svg>Planes</a>
+      <a href="#faq"><svg aria-hidden="true"><use href="#i-help"/></svg>Preguntas</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary" data-wa="start" href="#">Empezar <span class="price-tag">190 €/mes</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
+   </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="wrap">
+     <div class="sheet">
+      <nav aria-label="Principal (móvil)">
+        <a href="#trabajo"><svg aria-hidden="true"><use href="#i-play"/></svg>Trabajo</a>
+        <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Suscripción</a>
+        <a href="#planes"><svg aria-hidden="true"><use href="#i-up"/></svg>Planes</a>
+        <a href="#faq"><svg aria-hidden="true"><use href="#i-help"/></svg>Preguntas</a>
+      </nav>
+      <a class="btn btn-primary" style="width:100%" data-wa="start" href="#">Empezar por 190 €/mes <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+     </div>
+    </div>
+  </div>
+</header>
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-panel">
+      <div class="hero-media prueba"><img src="media/prueba/hero.webp" alt="Grabando contenido con el móvil en una cafetería" fetchpriority="high"></div>
+      <div class="hero-copy">
+        <p class="hero-kicker">Suscripción de contenido para negocios de Valencia</p>
+        <h1 class="hero-title"><span>Haz que te vean.</span> <span>Haz que te <em class="mark">elijan</em>.</span></h1>
+        <p class="hero-sub">Tu negocio tiene mucho que ofrecer. Cada mes planificamos, grabamos y editamos tu contenido.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" data-wa="start" href="#">Empezar por 190 €/mes <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+          <a class="text-link" href="#plan">Qué incluye</a>
+        </div>
+        <p class="hero-foot">Sin permanencia</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sectors" aria-label="Sectores">
+  <div class="wrap">
+    <span class="label">Para pequeños gigantes como</span>
+    <div class="ticker">
+      <div class="ticker-track" aria-hidden="true">
+        <span>Cafeterías</span><span>Brunch</span><span>Restaurantes</span><span>Healthy food</span><span>Barberías</span><span>Peluquerías</span><span>Estética</span><span>Gimnasios</span><span>Yoga y pilates</span><span>Retail</span><span>Inmobiliarias</span>
+        <span>Cafeterías</span><span>Brunch</span><span>Restaurantes</span><span>Healthy food</span><span>Barberías</span><span>Peluquerías</span><span>Estética</span><span>Gimnasios</span><span>Yoga y pilates</span><span>Retail</span><span>Inmobiliarias</span>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="porque">
+  <div class="wrap">
+    <div class="why-top reveal">
+      <div>
+        <span class="label">Pequeños gigantes</span>
+        <h2 class="h2">No vendemos visibilidad. Hacemos visible el valor.</h2>
+      </div>
+      <p class="big">Valencia está llena de negocios pequeños en tamaño y gigantes en lo que han construido.</p>
+    </div>
+
+    <div class="gc-module reveal" id="gc">
+      <svg class="gc" viewBox="0 0 400 400" aria-hidden="true">
+        <circle class="ring r-que" data-gc="que" cx="200" cy="200" r="192"/>
+        <circle class="ring r-como" data-gc="como" cx="200" cy="200" r="130"/>
+        <circle class="ring r-porque on" data-gc="porque" cx="200" cy="200" r="68"/>
+        <circle class="pulse" cx="200" cy="200" r="68"/>
+        <text class="t-que" x="200" y="40">QUÉ</text>
+        <text class="t-como" x="200" y="102">CÓMO</text>
+        <text class="t-porque on" x="200" y="205">POR QUÉ</text>
+      </svg>
+      <div class="gc-panel">
+        <div class="gc-tabs" role="tablist" aria-label="Círculo de oro">
+          <button type="button" role="tab" id="gc-tab-porque" aria-controls="gc-porque" aria-selected="true" data-gc="porque">Por qué</button>
+          <button type="button" role="tab" id="gc-tab-como" aria-controls="gc-como" aria-selected="false" tabindex="-1" data-gc="como">Cómo</button>
+          <button type="button" role="tab" id="gc-tab-que" aria-controls="gc-que" aria-selected="false" tabindex="-1" data-gc="que">Qué</button>
+        </div>
+        <div class="gc-stage">
+          <div class="gc-say" id="gc-porque" role="tabpanel" aria-labelledby="gc-tab-porque">
+            <span class="k">Por qué existimos</span>
+            <h3>El talento no debería ser invisible.</h3>
+            <p>Los negocios que más valor aportan no siempre son los que más se ven. Eso puede cambiar.</p>
+          </div>
+          <div class="gc-say" id="gc-como" role="tabpanel" aria-labelledby="gc-tab-como" hidden>
+            <span class="k">Cómo lo hacemos</span>
+            <h3>Hacemos visible el valor que ya existe.</h3>
+            <p>Encontramos lo que hace único a tu negocio y lo convertimos en contenido que lo cuenta.</p>
+          </div>
+          <div class="gc-say" id="gc-que" role="tabpanel" aria-labelledby="gc-tab-que" hidden>
+            <span class="k">Qué hacemos</span>
+            <h3>Contenido, anuncios y sistemas para que te elijan.</h3>
+            <p>Cada mes, con una suscripción sencilla. Empiezas con contenido y subes cuando quieras.</p>
+          </div>
+        </div>
+        <div class="gc-progress" aria-hidden="true"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dark" id="trabajo">
+  <div class="wrap">
+    <div class="work-head reveal">
+      <h2 class="h2">No te lo contamos. Te lo enseñamos.</h2>
+      <p class="lede">Vídeos verticales pensados para redes, para negocios como el tuyo.</p>
+    </div>
+    <div class="reels reveal">
+      <figure class="reel prueba"><video src="media/prueba/reel-healthy.mp4" poster="media/prueba/poster-healthy.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: healthy food"></video><figcaption><b>Healthy food</b></figcaption></figure>
+      <figure class="reel prueba"><video src="media/prueba/reel-restaurante-10s.mp4" poster="media/prueba/poster-restaurante.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: restaurante"></video><figcaption><b>Restaurante</b></figcaption></figure>
+      <figure class="reel prueba"><video src="media/prueba/reel-estetica.mp4" poster="media/prueba/poster-estetica.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: centro de estética"></video><figcaption><b>Estética</b></figcaption></figure>
+      <figure class="reel prueba"><video src="media/prueba/reel-gimnasio.mp4" poster="media/prueba/poster-gimnasio.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: gimnasio"></video><figcaption><b>Gimnasio</b></figcaption></figure>
+    </div>
+
+    <div class="mobile-prod">
+      <div class="mp-copy reveal">
+        <span class="label">Producción móvil</span>
+        <h3>No necesitamos una gran producción para crear grandes resultados.</h3>
+        <p class="lede">Grabamos con móviles de última generación y control profesional. Menos infraestructura, más velocidad y más contenido cada mes.</p>
+        <ul class="kit" aria-label="Con qué trabajamos">
+          <li>iPhone Pro</li><li>Blackmagic Camera</li><li>ProRes / Log</li><li>Audio profesional</li><li>DaVinci Resolve</li><li>Dirección creativa</li>
+        </ul>
+        <p class="mp-claim">La calidad no debería ser un privilegio.</p>
+      </div>
+      <div class="cam prueba reveal" role="img" aria-label="Grabación con móvil: pantalla de cámara en modo ProRes Log">
+        <video src="media/prueba/reel-restaurante-10s.mp4" poster="media/prueba/poster-restaurante.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <div class="cam-ui" aria-hidden="true">
+          <span class="thirds"></span><span class="focus"></span>
+          <div class="top"><span class="rec" id="camRec">00:00:00</span><span class="fmt">ProRes · Log</span></div>
+          <div class="bottom"><span class="shutter"></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="mp-flow reveal" aria-label="Proceso de producción">
+      <span>Idea</span><i>→</i><span>Gancho</span><i>→</i><span>Encuadre</span><i>→</i><span>Luz</span><i>→</i><span>Sonido</span><i>→</i><span>Captura</span><i>→</i><span>Color</span><i>→</i><span>Edición</span><i>→</i><span>Publicación</span><i>→</i><span>Medición</span>
+    </p>
+  </div>
+</section>
+<section id="perfil">
+  <div class="wrap ba-grid">
+    <div class="ba-copy reveal">
+      <span class="label">Tu perfil</span>
+      <h2 class="h2">Antes y después de VEO UP.</h2>
+      <p class="lede">Sin publicar a ratos ni fotos sueltas: contenido nuevo cada mes, con una imagen coherente que se nota en tu perfil.</p>
+    </div>
+    <div class="ba-compare reveal" id="baCompare" style="--x:50%">
+        <div class="ig prueba" role="img" aria-label="Comparación del perfil: antes, con pocas publicaciones e irregulares; con VEO UP, contenido nuevo cada mes con una línea visual coherente">
+         <div class="ig-inner">
+          <div class="ig-screen before">
+            <div class="ig-head"><span class="ig-av"></span><span class="ig-stats"><span><b>23</b>publicaciones</span><span><b>412</b>seguidores</span><span><b>180</b>seguidos</span></span></div>
+            <p class="ig-name">tu_negocio</p>
+            <div class="ig-bio"><i></i><i></i></div>
+            <div class="ig-grid"><span class="old"></span><span class="old"></span><span class="empty"></span><span class="old"></span><span class="empty"></span><span class="empty"></span></div>
+            <p class="ig-note">Publicaciones irregulares</p>
+          </div>
+          <div class="ig-screen after">
+            <div class="ig-head"><span class="ig-av"></span><span class="ig-stats"><span><b>96</b>publicaciones</span><span><b>3.482</b>seguidores</span><span><b>214</b>seguidos</span></span></div>
+            <p class="ig-name">tu_negocio</p>
+            <div class="ig-bio"><i></i><i></i></div>
+            <div class="ig-grid">
+              <span class="reelmark"><img src="media/prueba/restaurante.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/healthy.webp" alt="" loading="lazy" style="object-position:50% 30%"></span>
+              <span class="reelmark"><img src="media/prueba/beauty.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/gimnasio.webp" alt="" loading="lazy" style="object-position:50% 20%"></span>
+              <span class="reelmark"><img src="media/prueba/healthy.webp" alt="" loading="lazy" style="object-position:50% 80%"></span>
+              <span><img src="media/prueba/restaurante.webp" alt="" loading="lazy" style="object-position:50% 85%"></span>
+            </div>
+            <p class="ig-note">Contenido nuevo cada mes</p>
+          </div>
+          <span class="ba-handle" aria-hidden="true"></span>
+         </div>
+        </div>
+        <div class="ba-labels"><span>Con VEO UP</span></div>
+    </div>
+  </div>
+</section>
+<section id="plan">
+  <div class="wrap plan">
+    <div class="plan-main reveal">
+      <span class="label">VEO UP Content · suscripción mensual</span>
+      <div class="bigprice" aria-label="190 euros al mes">
+        <span class="n">190</span>
+        <span class="u">€/mes <small>Sin permanencia</small></span>
+      </div>
+      <ul class="includes">
+        <li><span>Vídeos principales</span><span>3 × 45–60 s</span></li>
+        <li><span>Short videos</span><span>3 × 15 s</span></li>
+        <li><span>Content Day mensual</span><span>90–120 min</span></li>
+        <li><span>Ideas, planificación y edición</span><span>Incluido</span></li>
+        <li><span>Cambios por pieza</span><span>1 ronda</span></li>
+      </ul>
+      <div class="plan-cta">
+        <a class="btn btn-dark" data-wa="content" href="#">Quiero mi suscripción <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+        <span class="plan-note rev-only"><span class="pendiente">Pendiente</span> ¿IVA incluido?</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="app" role="img" aria-label="Tu mes con VEO UP: plan y Content Day hechos, edición en curso, entrega próxima">
+        <div class="app-bar">
+          <div><b>Tu mes con VEO UP</b><br><small>Este mes</small></div>
+          <span class="app-badge">Activa</span>
+        </div>
+        <div class="app-body">
+          <div class="stage done" style="--i:0"><span class="dot"></span><div><h3>Plan del mes</h3><p>Te proponemos temas, hooks y CTAs. Tú lo apruebas.</p></div><span class="st">Aprobado</span></div>
+          <div class="stage done" style="--i:1"><span class="dot"></span><div><h3>Content Day</h3><p>Una sesión de 90–120 min y grabamos todo el mes.</p></div><span class="st">Grabado</span></div>
+          <div class="stage now" style="--i:2"><span class="dot"></span><div><h3>Edición</h3><p>Montamos cada pieza. Tienes una ronda de cambios.</p></div><span class="st">En curso</span></div>
+          <div class="stage" style="--i:3"><span class="dot"></span><div><h3>Content Drop</h3><p>3 vídeos + 3 shorts listos para publicar.</p></div><span class="st">Próximo</span></div>
+        </div>
+        <p class="app-foot">Al mes siguiente, vuelta a empezar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="upgrade" id="planes" style="padding-top:0;border-top:0">
+  <div class="wrap">
+    <div class="upgrade-head reveal">
+      <span class="label">Planes</span>
+      <h2 style="font-size:clamp(32px,4.4vw,56px);font-weight:700">Empieza con contenido. Sube cuando quieras.</h2>
+      <p class="lede">Tres planes mensuales. Cada uno suma al anterior.</p>
+    </div>
+    <ol class="ladder reveal">
+      <li class="step s1">
+        <span class="verb">Crear</span>
+        <h3>Content</h3>
+        <p class="price">190 € <small>/mes</small></p>
+        <p class="for">Contenido profesional para tu negocio, cada mes.</p>
+        <ul>
+          <li>3 vídeos + 3 shorts</li>
+          <li>1 Content Day al mes</li>
+          <li>Ideas, grabación y edición</li>
+          <li>Sin permanencia</li>
+        </ul>
+        <a class="btn btn-outline" data-wa="content" href="#">Empezar con Content</a>
+      </li>
+      <li class="step s2">
+        <span class="badge">Más vendido</span>
+        <span class="verb">Conseguir clientes</span>
+        <h3>Growth</h3>
+        <p class="price">490 € <small>/mes</small></p>
+        <p class="for">Tu contenido, convertido en anuncios que traen clientes.</p>
+        <ul>
+          <li>4 vídeos + 8 shorts + 1 vídeo premium</li>
+          <li>Estrategia mensual de contenido</li>
+          <li>Campañas en Meta Ads, gestionadas y optimizadas</li>
+          <li>Informe mensual</li>
+        </ul>
+        <a class="btn btn-dark" data-wa="growth" href="#">Quiero Growth</a>
+      </li>
+      <li class="step s3">
+        <span class="verb">Construir el sistema</span>
+        <h3>Scale</h3>
+        <p class="price">890 € <small>/mes</small></p>
+        <p class="for">Un sistema completo que capta, sigue y cierra cada cliente.</p>
+        <span class="plus">Todo lo de Growth, ampliado, más:</span>
+        <ul>
+          <li>6 vídeos + 12 shorts + 2 vídeos premium</li>
+          <li>Landing y automatización de leads</li>
+          <li>Seguimiento de cada lead, del anuncio a la venta</li>
+          <li>Conexión con tu CRM, si ya usas uno</li>
+          <li>Panel de resultados</li>
+          <li>Growth Review mensual y soporte prioritario</li>
+        </ul>
+        <a class="btn btn-light" data-wa="scale" href="#">Quiero Scale</a>
+      </li>
+    </ol>
+    <p class="ladder-hint">Desliza para ver Growth y Scale →</p>
+    <div class="extras reveal">
+      <span><b>Extras, cuando los necesites:</b> Content Day adicional · producciones especiales. Se presupuestan aparte.</span>
+      <a class="text-link" data-wa="extras" href="#">Consultar</a>
+    </div>
+
+    <div class="scale-block">
+      <div class="scale-text reveal">
+        <span class="label">Incluido en Scale</span>
+        <h3>Tu negocio, en un solo panel.</h3>
+        <p class="lede">Anuncios, leads, citas y ventas en el mismo sitio. Cada persona que llega desde tus anuncios entra en tu panel y la seguimos hasta que se convierte en cliente.</p>
+        <div class="stepper" aria-label="Etapas de seguimiento"><span>Nuevo</span><i>→</i><span>Contactado</span><i>→</i><span>Cita</span><i>→</i><span>Cliente</span></div>
+      </div>
+      <figure class="panel reveal">
+        <div class="win" role="img" aria-label="Maqueta del panel de Scale: indicadores, evolución de leads y seguimiento por etapas, sin datos reales">
+          <div class="win-top"><span class="dots"><i></i><i></i><i></i></span><span>Panel VEO UP · Tu negocio</span><span class="chip">Scale</span></div>
+          <div class="ph">
+            <div><b>Así va tu negocio</b><small style="display:block;margin-top:6px;font-size:11px;color:var(--ink-2-on-dark)">Últimos 28 días</small></div>
+            <div class="period"><span>Hoy</span><span>7 días</span><span class="on">28 días</span><span>Este mes</span></div>
+          </div>
+          <div class="win-tabs">
+            <span class="on"><svg><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Resumen</span>
+            <span><svg><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram</span>
+            <span><svg><path d="M4 18 10 12l4 4 6-7"/></svg>Meta Ads</span>
+            <span><svg><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 4.5a3.5 3.5 0 0 1 0 7M21 20c0-2.6-1.6-4.8-4-5.6"/></svg>Leads</span>
+            <span><svg><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg>Ventas</span>
+            <span><svg><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Web</span>
+            <span><svg><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></svg>Contenido</span>
+          </div>
+          <div class="win-main">
+            <div class="glance">
+              <span class="t">De un vistazo</span>
+              <span class="pill"><b>Ritmo del presupuesto</b><small>En línea</small></span>
+              <span class="pill"><b>Coste por lead</b><small>Bajando</small></span>
+              <span class="pill"><b>Anuncios → seguimiento</b><small>Funcionando</small></span>
+            </div>
+            <div class="kpis">
+              <span class="grp">Instagram</span>
+              <div class="card"><span class="head"><span class="ico" style="--c:#e1306c"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><small>Seguidores</small></span><b class="num">3.482</b><span class="vs"><em>+214</em> este mes</span></div>
+              <div class="card"><span class="head"><span class="ico" style="--c:#6aa8ff"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></span><small>Alcance</small></span><b class="num">28.400</b><span class="vs"><em>+38 %</em> vs. mes anterior</span></div>
+              <div class="card"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></svg></span><small>Reproducciones</small></span><b class="num">41.900</b><span class="vs"><em>+52 %</em> vs. mes anterior</span></div>
+              <span class="grp">Captación</span>
+              <div class="card"><span class="head"><span class="ico" style="--c:#6aa8ff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><small>Leads</small></span><b class="num">46</b><span class="vs"><em>+12</em> vs. mes anterior</span></div>
+              <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3 5 1.2 5 3.2-2.2 3.3-5 3.3-5-1.2-5-3"/></svg></span><small>Coste por lead</small></span><b class="num">6,52 €</b><span class="vs"><em>−18 %</em> vs. mes anterior</span></div>
+              <div class="card"><span class="head"><span class="ico" style="--c:#c48bff"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><small>Citas</small></span><b class="num">12</b><span class="vs"><em>+5</em> vs. mes anterior</span></div>
+            </div>
+            <div class="row2">
+              <div class="card">
+                <span class="t">En pocas palabras</span><span class="d">Lo esencial del mes</span>
+                <ul class="brief">
+                  <li><span>El reel del Content Day fue <b>el más visto del mes</b>: 12.300 reproducciones.</span></li>
+                  <li><span><b>46 personas</b> pidieron información y <b>12 ya tienen cita</b>.</span></li>
+                  <li><span>Con 300 € en anuncios, el coste por lead <b>bajó un 18 %</b>.</span></li>
+                </ul>
+              </div>
+            <div class="card combo">
+              <span class="t">Inversión y leads por día</span><span class="d">Barras: inversión en Meta. Línea: leads que entran.</span>
+              <svg viewBox="0 0 280 96" preserveAspectRatio="none" aria-hidden="true">
+                <line class="grid" x1="0" y1="32" x2="280" y2="32"/><line class="grid" x1="0" y1="64" x2="280" y2="64"/>
+                <rect class="bar" x="4" y="52" width="12" height="44" rx="2"/><rect class="bar" x="24" y="46" width="12" height="50" rx="2"/>
+                <rect class="bar" x="44" y="56" width="12" height="40" rx="2"/><rect class="bar" x="64" y="44" width="12" height="52" rx="2"/>
+                <rect class="bar" x="84" y="48" width="12" height="48" rx="2"/><rect class="bar" x="104" y="40" width="12" height="56" rx="2"/>
+                <rect class="bar" x="124" y="50" width="12" height="46" rx="2"/><rect class="bar" x="144" y="42" width="12" height="54" rx="2"/>
+                <rect class="bar" x="164" y="38" width="12" height="58" rx="2"/><rect class="bar" x="184" y="46" width="12" height="50" rx="2"/>
+                <rect class="bar" x="204" y="40" width="12" height="56" rx="2"/><rect class="bar" x="224" y="36" width="12" height="60" rx="2"/>
+                <rect class="bar" x="244" y="42" width="12" height="54" rx="2"/><rect class="bar" x="264" y="38" width="12" height="58" rx="2"/>
+                <path class="ln" d="M10 70 L30 62 L50 66 L70 54 L90 58 L110 46 L130 52 L150 42 L170 36 L190 44 L210 34 L230 28 L250 32 L270 24"/>
+              </svg>
+              <div class="legend"><span><i></i>Inversión</span><span><i class="g"></i>Leads</span></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+<section style="background:var(--grey)">
+  <div class="wrap team reveal">
+    <div class="faces">
+      <div class="prueba"><img src="media/prueba/equipo-1.webp" alt="Imagen de prueba del equipo" loading="lazy"></div>
+      <div class="prueba"><img src="media/prueba/equipo-2.webp" alt="Imagen de prueba del equipo" loading="lazy"></div>
+    </div>
+    <div class="team-text">
+      <h2>Somos Manu y Stevan. Hacemos contenido para negocios de Valencia.</h2>
+      <p class="lede">Primero Valencia: un negocio cada vez, un barrio cada vez. Hablamos contigo por WhatsApp, grabamos y te entregamos el contenido listo cada mes. <span class="rev-only"><span class="pendiente">Pendiente</span> bio corta de cada uno.</span></p>
+    </div>
+  </div>
+</section>
+<section id="faq">
+  <div class="wrap faq-grid">
+    <div class="reveal" style="display:grid;gap:18px;align-content:start">
+      <h2 class="h2">Preguntas.</h2>
+      <p class="lede">¿Otra duda? <a class="text-link" data-wa="doubt" href="#" style="color:var(--ink)">Escríbenos por WhatsApp</a></p>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>¿Qué incluye el plan de 190 €?</summary>
+        <div class="a"><p>Cada mes: 3 vídeos de 45–60 segundos, 3 shorts de unos 15 segundos y un Content Day de 90–120 minutos. Nos encargamos de las ideas, la grabación y la edición, y te lo damos listo para publicar, con una ronda de cambios por pieza.</p></div>
+      </details>
+      <details>
+        <summary>¿Hay permanencia?</summary>
+        <div class="a"><p>No. Es una suscripción mensual sin permanencia.</p></div>
+      </details>
+      <details class="rev-only">
+        <summary>¿Puedo cancelar? ¿Puedo contratar solo un mes?</summary>
+        <div class="a"><p><span class="pendiente">Pendiente</span> Cómo se cancela, con cuánta antelación y si hay alguna condición para contratar un solo mes.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuánto dura el Content Day?</summary>
+        <div class="a"><p>Entre 90 y 120 minutos, una vez al mes, en uno de los horarios que liberamos.</p><p class="rev-only"><span class="pendiente">Pendiente</span> Confirmar si siempre es en el negocio y qué zona de Valencia cubrís.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuándo recibo el contenido?</summary>
+        <div class="a"><p>Después del Content Day editamos, revisas y te entregamos tu Content Drop listo para publicar.</p><p class="rev-only"><span class="pendiente">Pendiente</span> Plazo concreto en días.</p></div>
+      </details>
+      <details class="rev-only">
+        <summary>¿El presupuesto de Meta Ads está incluido en Growth y Scale?</summary>
+        <div class="a"><p><span class="pendiente">Pendiente</span> Confirmar si la inversión en anuncios va aparte y si hay un mínimo recomendado.</p></div>
+      </details>
+      <details>
+        <summary>¿Qué pasa después de contratar?</summary>
+        <div class="a"><p>Te damos la bienvenida, rellenas un onboarding de unos 10 minutos sobre tu negocio y reservas tu Content Day. Te enviamos el plan del mes para aprobarlo, grabamos, editamos y te entregamos el contenido. Después revisamos qué funcionó para el mes siguiente.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="final" id="empezar">
+  <div class="wrap">
+    <div class="final-box dark reveal">
+      <span class="logo-mark on-dark" style="--w:150px"><img src="media/logo-sheet.webp" alt="VEO UP"></span>
+      <h2>Tu negocio ya existe. Ahora hagamos que se vea.</h2>
+      <ol class="start-steps" aria-label="Cómo empezar">
+        <li><b>Nos escribes</b> por WhatsApp</li><li class="arr" aria-hidden="true">→</li>
+        <li><b>Onboarding</b> de 10 minutos</li><li class="arr" aria-hidden="true">→</li>
+        <li><b>Reservas</b> tu Content Day</li>
+      </ol>
+      <div class="row">
+        <a class="btn btn-primary" data-wa="start" href="#">Empezar por 190 €/mes <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+        <a class="text-link" data-wa="doubt" href="#">Tengo una duda</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <span class="logo-mark" style="--w:130px"><img src="media/logo-sheet.webp" alt="VEO UP"></span>
+      <p>Contenido mensual para negocios de Valencia.<br>Content · Growth · Digital</p>
+    </div>
+    <div class="foot-col">
+      <span class="label">Contacto</span>
+      <a class="foot-wa" data-wa="doubt" href="#"><svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg>+34 611 21 60 83</a>
+      <span>Valencia · España</span>
+    </div>
+    <div class="foot-col">
+      <span class="label">Síguenos</span>
+      <div class="socials">
+        <a class="ig" href="#" aria-disabled="true" aria-label="Instagram (pendiente)" title="Instagram · URL pendiente"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <a class="tt" href="#" aria-disabled="true" aria-label="TikTok (pendiente)" title="TikTok · URL pendiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
+        <a class="yt" href="#" aria-disabled="true" aria-label="YouTube (pendiente)" title="YouTube · URL pendiente"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+      </div>
+      <span class="pendiente rev-only" style="justify-self:start">URLs pendientes</span>
+    </div>
+    <div class="foot-col">
+      <span class="label">Legal</span>
+      <ul>
+        <li><a href="#" aria-disabled="true">Aviso legal</a></li>
+        <li><a href="#" aria-disabled="true">Privacidad</a></li>
+        <li><a href="#" aria-disabled="true">Cookies</a></li>
+        <li><a href="#" aria-disabled="true">Condiciones de la suscripción</a></li>
+      </ul>
+      <span class="pendiente rev-only" style="justify-self:start">Revisión legal</span>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 VEO UP</span>
+    <span>Haz que te vean. Haz que te elijan.</span>
+  </div>
+</footer>
+<div class="mobile-cta" id="mobileCta" aria-hidden="true">
+  <span><b>190 €/mes</b>Sin permanencia</span>
+  <a class="btn btn-primary" data-wa="start" href="#" tabindex="-1">Empezar <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+</div>
+<a class="wa-float" data-wa="doubt" href="#" aria-label="Escríbenos por WhatsApp"><svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+
+<script>
+  // Modo revisión: con #revision en la URL se ven los avisos internos (Pendiente, Imagen de prueba).
+  const revMode = () => { if (location.hash === "#revision") document.documentElement.classList.add("rev"); };
+  revMode(); addEventListener("hashchange", revMode);
+
+  // WhatsApp: destino de todos los CTA mientras no haya checkout (decisión de Stevan, 2026-11-09).
+  const WA_NUMBER = "34611216083";
+  const WA_MESSAGES = {
+    start:   "Hola, vengo de la web de VEO UP y quiero empezar.",
+    content: "Hola, vengo de la web de VEO UP y quiero empezar con el plan CONTENT.",
+    growth:  "Hola, vengo de la web de VEO UP y me interesa el plan GROWTH.",
+    scale:   "Hola, vengo de la web de VEO UP y me interesa el plan SCALE.",
+    doubt:   "Hola, vengo de la web de VEO UP y tengo una duda.",
+    extras:  "Hola, vengo de la web de VEO UP y quiero consultar un extra."
+  };
+  document.querySelectorAll("[data-wa]").forEach(a => {
+    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_MESSAGES[a.dataset.wa] || WA_MESSAGES.start);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  document.querySelectorAll('a[aria-disabled="true"]').forEach(a => a.addEventListener("click", e => e.preventDefault()));
+
+  // Antes / después: el bucle es solo CSS (keyframes baClip / baHandle); no necesita JavaScript.
+
+  // Círculo de oro: recorre Por qué → Cómo → Qué solo mientras se ve; pulsar un anillo o una pestaña
+  // lo fija ahí y el recorrido sigue desde ese punto.
+  const gc = document.getElementById("gc");
+  if (gc) {
+    const order = ["porque", "como", "que"];
+    const tabs = [...gc.querySelectorAll('[role="tab"]')];
+    const progress = gc.querySelector(".gc-progress");
+    const motionOK = true; // decisión de Manu: siempre en movimiento
+    let cur = 0, timer = 0, visible = false, hovering = false;
+    const show = i => {
+      cur = (i + order.length) % order.length;
+      const k = order[cur];
+      tabs.forEach(t => { const on = t.dataset.gc === k; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; });
+      order.forEach(o => { document.getElementById("gc-" + o).hidden = o !== k; });
+      gc.querySelectorAll(".ring").forEach(r => r.classList.toggle("on", r.dataset.gc === k));
+      gc.querySelectorAll("text").forEach(t => t.classList.toggle("on", t.classList.contains("t-" + k)));
+    };
+    const schedule = () => {
+      clearTimeout(timer);
+      progress.classList.remove("run"); void progress.offsetWidth;
+      if (!motionOK || !visible || hovering) return;
+      progress.classList.add("run");
+      timer = setTimeout(() => { show(cur + 1); schedule(); }, 4500);
+    };
+    const pick = k => { show(order.indexOf(k)); schedule(); };
+    tabs.forEach(t => t.addEventListener("click", () => pick(t.dataset.gc)));
+    gc.querySelectorAll(".ring").forEach(r => r.addEventListener("click", () => pick(r.dataset.gc)));
+    gc.querySelector('[role="tablist"]').addEventListener("keydown", e => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      show(cur + (e.key === "ArrowRight" ? 1 : -1)); tabs[cur].focus(); schedule();
+    });
+    gc.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") { hovering = true; schedule(); } });
+    gc.addEventListener("pointerleave", () => { hovering = false; schedule(); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: .4 }).observe(gc);
+    }
+  }
+
+  // Cronómetro de la cámara de "Producción móvil": corre solo mientras se ve.
+  const camRec = document.getElementById("camRec");
+  if (camRec && "IntersectionObserver" in window) {
+    let camT = 0, camTimer = 0;
+    const fmt = s => [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map(n => String(n).padStart(2, "0")).join(":");
+    new IntersectionObserver(([e]) => {
+      clearInterval(camTimer);
+      if (e.isIntersecting) camTimer = setInterval(() => { camRec.textContent = fmt(++camT); }, 1000);
+    }).observe(camRec);
+  }
+
+  // Menú móvil.
+  const menuBtn = document.querySelector(".menu-btn");
+  const menu = document.getElementById("mobileMenu");
+  const setMenu = open => {
+    menu.hidden = !open;
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+  };
+  menuBtn.addEventListener("click", () => setMenu(menu.hidden));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("keydown", e => { if (e.key === "Escape" && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+
+  // Header, barra fija móvil y enlace activo.
+  const nav = document.querySelector(".nav");
+  const mobileCta = document.getElementById("mobileCta");
+  const hero = document.querySelector(".hero");
+  const finalBox = document.getElementById("empezar");
+  const links = [...document.querySelectorAll(".nav-links a")];
+  let heroOut = false, finalIn = false;
+  const syncCta = () => {
+    const show = heroOut && !finalIn;
+    mobileCta.classList.toggle("show", show);
+    mobileCta.setAttribute("aria-hidden", String(!show));
+    mobileCta.querySelector("a").tabIndex = show ? 0 : -1;
+  };
+  const markLink = id => links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+  // El header va "sobre el hero" (transparente, logo blanco) mientras el hero ocupa su zona.
+  const syncNav = () => {
+    nav.classList.toggle("scrolled", scrollY > 8);
+    nav.classList.toggle("on-hero", hero.getBoundingClientRect().bottom > 90 && menu.hidden);
+  };
+  addEventListener("scroll", syncNav, { passive: true });
+  menuBtn.addEventListener("click", syncNav);
+  syncNav();
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; syncCta(); if (e.isIntersecting) markLink(""); }).observe(hero);
+    new IntersectionObserver(([e]) => { finalIn = e.isIntersecting; syncCta(); }).observe(finalBox);
+    const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) markLink(e.target.id); }), { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach(s => spy.observe(s));
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    const vio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: .5 });
+    document.querySelectorAll(".reel video").forEach(v => vio.observe(v));
+  } else {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+  }
+</script>
+</body>
+</html>
