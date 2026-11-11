@@ -444,14 +444,23 @@
   .status span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c, #555); }
 
   /* Equipo (compacto) */
-  .team { display: grid; gap: 28px; align-items: center; }
-  @media (min-width: 900px) { .team { grid-template-columns: auto 1fr; gap: 48px; } }
-  .faces { display: flex; }
-  .faces .prueba::after { content: "Prueba"; top: auto; bottom: -4px; left: 50%; transform: translateX(-50%); }
-  .faces img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--cream); }
-  .faces > div + div { margin-left: -22px; }
-  .team-text { display: grid; gap: 12px; max-width: 620px; }
+  .team { display: grid; gap: 36px; }
+  .team-text { display: grid; gap: 12px; max-width: 680px; }
   .team-text h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 700; }
+  .people { display: grid; gap: 20px; }
+  @media (min-width: 1100px) { .people { grid-template-columns: 1fr 1fr; } }
+  .person { background: var(--cream); border-radius: 24px; padding: 18px; display: grid; gap: 18px; align-content: start; }
+  @media (min-width: 520px) { .person { grid-template-columns: 168px 1fr; padding: 20px; } }
+  .person .pic { aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; background: #E6E2D8; max-width: 240px; }
+  .person .pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
+  .person .pic.blank { display: flex; align-items: center; justify-content: center; background: var(--black); color: var(--cream); font: 700 56px/1 "Sora", sans-serif; }
+  .person .pic.blank span { color: var(--green); }
+  .person-body { display: grid; gap: 10px; align-content: start; }
+  .person h3 { font-size: 24px; font-weight: 700; }
+  .person .role { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #5b5f5a; }
+  .person p { font-size: 15.5px; line-height: 1.55; color: #3a3d39; }
+  .person .sign { font-family: "Sora", sans-serif; font-weight: 600; color: var(--black); font-size: 15px; }
+  .person .sign::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 8px; vertical-align: 2px; }
 
   /* FAQ */
   .faq-grid { display: grid; gap: 40px; }
@@ -1130,13 +1139,30 @@
 </section>
 <section style="background:var(--grey)">
   <div class="wrap team reveal">
-    <div class="faces">
-      <div class="prueba"><img src="media/prueba/equipo-1.webp" alt="Imagen de prueba del equipo" loading="lazy"></div>
-      <div class="prueba"><img src="media/prueba/equipo-2.webp" alt="Imagen de prueba del equipo" loading="lazy"></div>
-    </div>
     <div class="team-text">
       <h2>Somos Manu y Stevan. Hacemos contenido para negocios de Valencia.</h2>
-      <p class="lede">Primero Valencia: un negocio cada vez, un barrio cada vez. Hablamos contigo por WhatsApp, grabamos y te entregamos el contenido listo cada mes. <span class="rev-only"><span class="pendiente">Pendiente</span> bio corta de cada uno.</span></p>
+      <p class="lede">Primero Valencia: un negocio cada vez, un barrio cada vez. Hablamos contigo por WhatsApp, grabamos y te entregamos el contenido listo cada mes.</p>
+    </div>
+    <div class="people">
+      <article class="person">
+        <div class="pic"><img src="media/equipo/manu.webp" alt="Manu, de VEO UP" width="640" height="640" loading="lazy"></div>
+        <div class="person-body">
+          <h3>Manu</h3>
+          <div class="role">Estrategia, datos y automatización</div>
+          <p>Me aseguro de que lo que grabamos te traiga clientes. Decido contigo qué contamos, a quién y para qué.</p>
+          <p>Conecto tus redes, tus anuncios y tu web para saber de dónde llega cada cliente, y te lo enseño en un panel claro: qué te está dando negocio y qué no. Uso IA para quitarnos el trabajo repetitivo.</p>
+          <div class="sign">Que el contenido se convierta en ventas.</div>
+        </div>
+      </article>
+      <article class="person">
+        <div class="pic blank" aria-hidden="true">S<span>.</span></div>
+        <div class="person-body">
+          <h3>Stevan</h3>
+          <div class="role">Socio fundador</div>
+          <p>Diseñó cómo funciona VEO UP: los planes, el Content Day y la forma de trabajar cada mes contigo.</p>
+          <p class="rev-only"><span class="pendiente">Pendiente</span> foto y bio de Stevan.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
