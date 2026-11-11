@@ -15,12 +15,19 @@
   // Medición: Google Tag Manager SOLO se carga si el visitante acepta las cookies (banner al pie).
   // Hasta entonces los eventos se guardan en dataLayer y no salen del navegador.
   window.GTM_ID = "GTM-MJM75GLF"; // contenedor "www.veoup.es" (cuenta GTM "VEO UP"); GA4: G-CRT9DTC4P2
+  // Los eventos esperan en una cola hasta que GTM arranca: "gtm.js" tiene que ser lo primero del dataLayer
+  // o GTM no lanza sus disparadores de inicio (y no se carga la etiqueta de Google).
   window.dataLayer = window.dataLayer || [];
-  window.track = function (event, params) { window.dataLayer.push(Object.assign({ event: event }, params || {})); };
+  var veoQueue = [];
+  window.track = function (event, params) {
+    var e = Object.assign({ event: event }, params || {});
+    if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
+  };
   window.loadGTM = function () {
     if (!window.GTM_ID || window.__gtmLoaded) return;
     window.__gtmLoaded = true;
     window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
     var s = document.createElement("script"); s.async = true;
     s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
     document.head.appendChild(s);
