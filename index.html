@@ -213,6 +213,8 @@
   .hero-kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(56,214,107,.18); }
   .hero-title { font-size: clamp(42px, 4.4vw, 64px); font-weight: 800; color: var(--white); letter-spacing: -0.045em; line-height: .98; }
   .hero-title span { display: block; }
+  /* Móvil: cada frase del claim en una sola línea (2 líneas en total, no 4). El tamaño se ajusta al ancho. */
+  @media (max-width: 600px) { .hero-title { font-size: clamp(28px, calc(12.2vw - 10px), 42px); } }
   .mark { font-style: normal; position: relative; white-space: nowrap; }
   .mark::after {
     content: ""; position: absolute; left: -1%; right: -1%; bottom: -.05em; height: .09em;
