@@ -1334,8 +1334,18 @@
     doubt:   "Hola, vengo de la web de VEO UP y tengo una duda.",
     extras:  "Hola, vengo de la web de VEO UP y quiero consultar un extra."
   };
+  // Origen de la visita: si llega desde el QR (/start pone utm_source=qr), se recuerda durante la visita y los
+  // mensajes de WhatsApp terminan con "(QR)" o "(QR · campaña)". Así se sabe en el propio WhatsApp qué
+  // conversaciones vienen del QR, sin cookies ni herramientas externas.
+  let waTag = "";
+  try {
+    const q = new URLSearchParams(location.search);
+    if (q.get("utm_source")) sessionStorage.setItem("veoup-src", q.get("utm_source") + "|" + (q.get("utm_campaign") || ""));
+    const [src, camp] = (sessionStorage.getItem("veoup-src") || "").split("|");
+    if (src === "qr") waTag = camp && camp !== "puerta-fria" ? " (QR · " + camp + ")" : " (QR)";
+  } catch (e) {}
   document.querySelectorAll("[data-wa]").forEach(a => {
-    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_MESSAGES[a.dataset.wa] || WA_MESSAGES.start);
+    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent((WA_MESSAGES[a.dataset.wa] || WA_MESSAGES.start) + waTag);
     a.target = "_blank";
     a.rel = "noopener";
   });
