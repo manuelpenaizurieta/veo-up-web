@@ -11,6 +11,22 @@
   // Dirección principal: www.veoup.es (decisión de Manu, 2026-11-11). Si se entra sin www, se redirige.
   if (location.hostname === "veoup.es") location.replace("https://www.veoup.es" + location.pathname + location.search + location.hash);
 </script>
+<script>
+  // Medición: Google Tag Manager SOLO se carga si el visitante acepta las cookies (banner al pie).
+  // Hasta entonces los eventos se guardan en dataLayer y no salen del navegador.
+  window.GTM_ID = "GTM-MJM75GLF"; // contenedor "www.veoup.es" (cuenta GTM "VEO UP"); GA4: G-CRT9DTC4P2
+  window.dataLayer = window.dataLayer || [];
+  window.track = function (event, params) { window.dataLayer.push(Object.assign({ event: event }, params || {})); };
+  window.loadGTM = function () {
+    if (!window.GTM_ID || window.__gtmLoaded) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
+    document.head.appendChild(s);
+  };
+  try { if (localStorage.getItem("veoup-consent") === "si") window.loadGTM(); } catch (e) {}
+</script>
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -572,6 +588,23 @@
   .wa-nudge-title { font: 700 20px/1.15 var(--font-head); letter-spacing: -0.02em; }
   .wa-nudge-text { font-size: 14.5px; line-height: 1.45; color: #3a3d39; padding-right: 8px; }
   .wa-nudge .btn { margin-top: 6px; min-height: 46px; font-size: 15px; justify-content: center; }
+
+  /* Banner de cookies: Aceptar y Rechazar igual de visibles; mientras está abierto se ocultan las otras capas */
+  .consent {
+    position: fixed; z-index: 70; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: grid; gap: 12px; background: var(--white); color: var(--black); border-radius: 20px; padding: 16px;
+    box-shadow: 0 20px 50px rgba(16,16,16,.25), 0 0 0 1px rgba(16,16,16,.06);
+    opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .3s var(--ease), transform .35s var(--ease);
+  }
+  .consent.show { opacity: 1; transform: none; pointer-events: auto; }
+  .consent p { font-size: 14px; line-height: 1.45; color: #3a3d39; }
+  .consent p b { color: var(--black); }
+  .consent-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .consent .btn { min-height: 44px; font-size: 14px; justify-content: center; }
+  .consent .btn-ghost { background: var(--grey); color: var(--black); }
+  .consent .btn-ghost:hover { background: #dfe2de; }
+  @media (min-width: 900px) { .consent { left: 24px; right: auto; bottom: 24px; width: 380px; } }
+  html.consent-open .mobile-cta, html.consent-open .wa-nudge { visibility: hidden; }
 
   /* ── Círculo de oro (Pequeños gigantes) ── */
   .why-top { display: grid; gap: 24px; align-items: end; margin-bottom: 64px; }
@@ -1294,6 +1327,7 @@
         <li><a href="#" aria-disabled="true">Aviso legal</a></li>
         <li><a href="#" aria-disabled="true">Privacidad</a></li>
         <li><a href="#" aria-disabled="true">Cookies</a></li>
+        <li><a href="#" id="cookieSettings">Configurar cookies</a></li>
         <li><a href="#" aria-disabled="true">Condiciones de la suscripción</a></li>
       </ul>
       <span class="pendiente rev-only" style="justify-self:start">Revisión legal</span>
@@ -1309,6 +1343,13 @@
   <a class="btn btn-primary" data-wa="start" href="#" tabindex="-1">Empezar <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
 </div>
 <a class="wa-float" data-wa="doubt" href="#" aria-label="Escríbenos por WhatsApp"><svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+<div class="consent" id="consent" role="dialog" aria-label="Cookies" aria-hidden="true">
+  <p><b>¿Nos dejas medir?</b> Usamos cookies de analítica para saber qué funciona en la web. Solo si aceptas.</p>
+  <div class="consent-btns">
+    <button type="button" class="btn btn-ghost" data-consent="no">Rechazar</button>
+    <button type="button" class="btn btn-dark" data-consent="si">Aceptar</button>
+  </div>
+</div>
 <div class="wa-nudge" id="waNudge" role="dialog" aria-label="¿Tienes dudas?" aria-hidden="true">
   <button class="wa-nudge-x" type="button" aria-label="Cerrar">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -1344,7 +1385,14 @@
     const [src, camp] = (sessionStorage.getItem("veoup-src") || "").split("|");
     if (src === "qr") waTag = camp && camp !== "puerta-fria" ? " (QR · " + camp + ")" : " (QR)";
   } catch (e) {}
+  const waOrigin = waTag ? "qr" : "web";
   document.querySelectorAll("[data-wa]").forEach(a => {
+    // Medición: cada clic a WhatsApp es un evento "wa_click" con el plan, el origen y la zona de la web.
+    a.addEventListener("click", () => {
+      const zone = a.closest("section, header, footer, .wa-nudge, .mobile-cta, .wa-float");
+      track("wa_click", { wa_plan: a.dataset.wa, wa_origin: waOrigin,
+        wa_zone: zone ? (zone.id || zone.className.split(" ")[0]) : "otro" });
+    });
     a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent((WA_MESSAGES[a.dataset.wa] || WA_MESSAGES.start) + waTag);
     a.target = "_blank";
     a.rel = "noopener";
@@ -1354,6 +1402,32 @@
   // Franja de sectores: duplica cada fila (copia oculta a lectores) para que el bucle no tenga cortes.
   document.querySelectorAll(".sectors .ticker-track").forEach(t => {
     [...t.children].forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); t.appendChild(d); });
+  });
+
+  // Banner de cookies: sale si aún no hay decisión. "Configurar cookies" (pie) lo vuelve a abrir.
+  const consent = document.getElementById("consent");
+  if (consent) {
+    const open = () => { consent.classList.add("show"); consent.setAttribute("aria-hidden", "false"); document.documentElement.classList.add("consent-open"); };
+    const close = () => { consent.classList.remove("show"); consent.setAttribute("aria-hidden", "true"); document.documentElement.classList.remove("consent-open"); };
+    let choice = null;
+    try { choice = localStorage.getItem("veoup-consent"); } catch (e) {}
+    if (!choice) setTimeout(open, 600);
+    consent.querySelectorAll("[data-consent]").forEach(b => b.addEventListener("click", () => {
+      const v = b.dataset.consent;
+      try { localStorage.setItem("veoup-consent", v); } catch (e) {}
+      close();
+      if (v === "si") window.loadGTM();
+      else if (window.__gtmLoaded) location.reload(); // retirar el consentimiento: recargar sin GTM
+    }));
+    const cs = document.getElementById("cookieSettings");
+    if (cs) cs.addEventListener("click", e => { e.preventDefault(); open(); });
+  }
+
+  // Más eventos: LinkedIn y reproducción de reels.
+  document.querySelectorAll(".person .li").forEach(a => a.addEventListener("click", () => track("linkedin_click", { person: "manu" })));
+  document.querySelectorAll("video").forEach(v => {
+    let sent = false;
+    v.addEventListener("click", () => { if (!sent) { sent = true; track("reel_interaction", { reel: (v.currentSrc || "").split("/").pop() }); } });
   });
 
   // Burbuja "¿Tienes dudas?": sale una sola vez, al pasar el 35 % de la página. Si se cierra (X o Esc)
@@ -1374,8 +1448,9 @@
       if (depth < 0.35) return;
       removeEventListener("scroll", onScroll);
       nudge.classList.add("show"); nudge.setAttribute("aria-hidden", "false"); btn.tabIndex = 0;
+      track("nudge_view");
     };
-    nudge.querySelector(".wa-nudge-x").addEventListener("click", hide);
+    nudge.querySelector(".wa-nudge-x").addEventListener("click", () => { hide(); track("nudge_close"); });
     btn.addEventListener("click", hide);
     addEventListener("keydown", e => { if (e.key === "Escape" && nudge.classList.contains("show")) hide(); });
     if (!off) addEventListener("scroll", onScroll, { passive: true });
