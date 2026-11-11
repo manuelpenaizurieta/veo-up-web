@@ -1209,7 +1209,7 @@
     </div>
   </div>
 </section>
-<section style="background:var(--grey)">
+<section id="equipo" style="background:var(--grey)">
   <div class="wrap team reveal">
     <div class="team-text">
       <h2>Somos Manu y Stevan. Hacemos contenido para negocios de Valencia.</h2>
@@ -1386,12 +1386,22 @@
     if (src === "qr") waTag = camp && camp !== "puerta-fria" ? " (QR · " + camp + ")" : " (QR)";
   } catch (e) {}
   const waOrigin = waTag ? "qr" : "web";
+  // Zona de la web donde está un elemento (para saber desde dónde hacen clic).
+  const zoneOf = el => {
+    if (el.closest(".wa-nudge")) return "burbuja_dudas";
+    if (el.closest(".mobile-cta")) return "barra_movil";
+    if (el.closest(".wa-float")) return "boton_flotante";
+    if (el.closest("header")) return "menu";
+    if (el.closest("footer")) return "pie";
+    const s = el.closest("section");
+    if (!s) return "otro";
+    return s.id || (s.classList.contains("hero") ? "hero" : "otro");
+  };
   document.querySelectorAll("[data-wa]").forEach(a => {
-    // Medición: cada clic a WhatsApp es un evento "wa_click" con el plan, el origen y la zona de la web.
+    // Medición: cada clic a WhatsApp es "wa_click" con plan, origen (qr/web), zona y texto del botón.
     a.addEventListener("click", () => {
-      const zone = a.closest("section, header, footer, .wa-nudge, .mobile-cta, .wa-float");
-      track("wa_click", { wa_plan: a.dataset.wa, wa_origin: waOrigin,
-        wa_zone: zone ? (zone.id || zone.className.split(" ")[0]) : "otro" });
+      track("wa_click", { wa_plan: a.dataset.wa, wa_origin: waOrigin, wa_zone: zoneOf(a),
+        wa_label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 60) });
     });
     a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent((WA_MESSAGES[a.dataset.wa] || WA_MESSAGES.start) + waTag);
     a.target = "_blank";
@@ -1422,6 +1432,31 @@
     const cs = document.getElementById("cookieSettings");
     if (cs) cs.addEventListener("click", e => { e.preventDefault(); open(); });
   }
+
+  // Embudo de lectura: qué secciones llegan a verse (una vez cada una) y profundidad de scroll.
+  if ("IntersectionObserver" in window) {
+    const seen = new Set();
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const name = zoneOf(e.target);
+      io.unobserve(e.target);
+      if (seen.has(name)) return;
+      seen.add(name); track("section_view", { section: name });
+    }), { threshold: 0.35 });
+    document.querySelectorAll("section, footer").forEach(s => io.observe(s));
+  }
+  const depths = [25, 50, 75, 100], hit = new Set();
+  addEventListener("scroll", () => {
+    const p = (scrollY + innerHeight) / document.documentElement.scrollHeight * 100;
+    depths.forEach(d => { if (p >= d - 1 && !hit.has(d)) { hit.add(d); track("scroll_depth", { percent: d }); } });
+  }, { passive: true });
+
+  // Preguntas frecuentes abiertas y clics del menú.
+  document.querySelectorAll("#faq details").forEach(d => d.addEventListener("toggle", () => {
+    if (d.open) track("faq_open", { question: (d.querySelector("summary")?.textContent || "").trim().slice(0, 80) });
+  }));
+  document.querySelectorAll(".nav-links a, header a[href^='#']").forEach(a => a.addEventListener("click", () =>
+    track("nav_click", { target: a.getAttribute("href") })));
 
   // Más eventos: LinkedIn y reproducción de reels.
   document.querySelectorAll(".person .li").forEach(a => a.addEventListener("click", () => track("linkedin_click", { person: "manu" })));
