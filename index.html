@@ -663,7 +663,7 @@
   .gc-say:not([hidden]) { animation: rise .6s var(--ease) both; }
   .gc-progress { height: 3px; border-radius: 3px; background: var(--grey); overflow: hidden; }
   .gc-progress i { display: block; height: 100%; width: 0; background: var(--green); }
-  .gc-progress.run i { animation: fill 4.5s linear forwards; }
+  .gc-progress.run i { animation: fill 7s linear forwards; }
   @keyframes fill { to { width: 100%; } }
 
   /* Círculo de oro, versión oscura: halo verde, anillos luminosos y un punto en órbita */
@@ -1550,7 +1550,7 @@
       progress.classList.remove("run"); void progress.offsetWidth;
       if (!motionOK || !visible || hovering) return;
       progress.classList.add("run");
-      timer = setTimeout(() => { show(cur + 1); schedule(); }, 4500);
+      timer = setTimeout(() => { show(cur + 1); schedule(); }, 7000);
     };
     const pick = k => { show(order.indexOf(k)); schedule(); };
     tabs.forEach(t => t.addEventListener("click", () => pick(t.dataset.gc)));
