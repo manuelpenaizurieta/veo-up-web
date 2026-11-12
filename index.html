@@ -541,6 +541,8 @@
   .final-box h2 { font-size: clamp(40px, 6.4vw, 84px); font-weight: 800; letter-spacing: -0.045em; max-width: 13ch; }
   .final-box .row { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
   .final-box .text-link { color: var(--ink-2-on-dark); font-weight: 500; }
+  .final-box .alt-form { position: relative; z-index: 1; font-size: 15px; color: var(--ink-2-on-dark); margin-top: -8px; }
+  .final-box .alt-form a { color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
   .final-box .text-link:hover { color: var(--white); }
 
   footer { padding-block: 64px 120px; font-size: 14px; color: var(--ink-2); }
@@ -1327,6 +1329,7 @@
         <a class="btn btn-primary" data-wa="start" href="#">Empezar por 190 €/mes <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
         <a class="text-link" data-wa="doubt" href="#">Tengo una duda</a>
       </div>
+      <p class="alt-form">¿Prefieres no escribir? <a href="/formulario/" data-form-link>Cuéntanos de tu negocio aquí (5 min)</a></p>
     </div>
   </div>
 </section>
@@ -1499,6 +1502,8 @@
   }));
   document.querySelectorAll(".nav-links a, header a[href^='#']").forEach(a => a.addEventListener("click", () =>
     track("nav_click", { target: a.getAttribute("href") })));
+  // Enlace secundario al formulario (sección final): se mide como nav_click con target "formulario".
+  document.querySelectorAll("[data-form-link]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "formulario" })));
 
   // Más eventos: LinkedIn y reproducción de reels.
   document.querySelectorAll(".person .li").forEach(a => a.addEventListener("click", () => track("linkedin_click", { person: "manu" })));
