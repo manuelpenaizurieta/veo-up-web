@@ -23,8 +23,17 @@
     var e = Object.assign({ event: event }, params || {});
     if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
   };
+  // Modo interno (Manu y Stevan): abrir la web una vez con ?interno=1 marca ese dispositivo y desde entonces
+  // no se carga la medición. ?interno=0 lo desactiva. Se guarda en el navegador de ese dispositivo.
+  try {
+    var qi = new URLSearchParams(location.search).get("interno");
+    if (qi === "1") localStorage.setItem("veoup-interno", "1");
+    if (qi === "0") localStorage.removeItem("veoup-interno");
+    window.__veoInterno = localStorage.getItem("veoup-interno") === "1";
+    window.__veoInternoAviso = qi === "1" ? "on" : qi === "0" ? "off" : "";
+  } catch (e) { window.__veoInterno = false; }
   window.loadGTM = function () {
-    if (!window.GTM_ID || window.__gtmLoaded) return;
+    if (!window.GTM_ID || window.__gtmLoaded || window.__veoInterno) return;
     window.__gtmLoaded = true;
     window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
     veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
@@ -1425,8 +1434,20 @@
     [...t.children].forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); t.appendChild(d); });
   });
 
+  // Aviso del modo interno (solo al activarlo o desactivarlo con ?interno=1 / ?interno=0).
+  if (window.__veoInternoAviso) {
+    const n = document.createElement("div");
+    n.textContent = window.__veoInternoAviso === "on"
+      ? "Modo interno activado: tus visitas en este dispositivo ya no se miden."
+      : "Modo interno desactivado: este dispositivo vuelve a medirse.";
+    n.style.cssText = "position:fixed;z-index:80;top:16px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);background:#101010;color:#F7F7F2;padding:12px 18px;border-radius:14px;font:600 14px/1.4 Inter,sans-serif;box-shadow:0 12px 30px rgba(0,0,0,.3);text-align:center";
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 5000);
+  }
+
   // Banner de cookies: sale si aún no hay decisión. "Configurar cookies" (pie) lo vuelve a abrir.
-  const consent = document.getElementById("consent");
+  // En modo interno no se muestra (no se mide nada en ese dispositivo).
+  const consent = window.__veoInterno ? null : document.getElementById("consent");
   if (consent) {
     const open = () => { consent.classList.add("show"); consent.setAttribute("aria-hidden", "false"); document.documentElement.classList.add("consent-open"); };
     const close = () => { consent.classList.remove("show"); consent.setAttribute("aria-hidden", "true"); document.documentElement.classList.remove("consent-open"); };
