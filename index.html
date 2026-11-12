@@ -502,6 +502,13 @@
   .pic-col { display: grid; grid-template-rows: auto auto; align-content: start; gap: 14px; align-self: start; width: 100%; max-width: 240px; }
   .person .li { justify-self: center; align-self: start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: #0A66C2; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: transform .2s, background .2s; }
   .person .li:hover { background: #004182; transform: translateY(-1px); }
+  /* Escritorio: la foto ocupa todo el alto de la tarjeta (sin hueco bajo LinkedIn) */
+  @media (min-width: 520px) {
+    .pic-col { align-self: stretch; grid-template-rows: 1fr auto; max-width: none; }
+    .pic-col .pic { aspect-ratio: auto; min-height: 210px; max-width: none; position: relative; }
+    .pic-col .pic img { position: absolute; inset: 0; }
+    .person > .pic.blank { align-self: stretch; aspect-ratio: auto; min-height: 210px; max-width: none; }
+  }
   .person-body { display: grid; gap: 10px; align-content: start; }
   .person h3 { font-size: 24px; font-weight: 700; }
   .person .role { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
