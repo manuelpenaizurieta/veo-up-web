@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /start/
+Disallow: /formulario/
 
 Sitemap: https://www.veoup.es/sitemap.xml
