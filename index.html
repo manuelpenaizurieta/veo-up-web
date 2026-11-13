@@ -1781,11 +1781,16 @@
       const a = e.target.closest('a[href^="#"]');
       if (!a || a.getAttribute("href").length < 2) return;
       const href = a.getAttribute("href");
-      if (href === "#top") { e.preventDefault(); lenis.scrollTo(0, { duration: 1.2 }); return; }  // logo → inicio
+      if (href === "#top") {  // logo → inicio, y la dirección vuelve a veoup.es sin "#trabajo" ni similares
+        e.preventDefault(); lenis.scrollTo(0, { duration: 1.2 });
+        try { history.replaceState(null, "", location.pathname + location.search); } catch (x) {}
+        return;
+      }
       const t = document.querySelector(href);
       if (!t) return;
       e.preventDefault();
       lenis.scrollTo(t, { offset: -80, duration: 1.2 });
+      try { history.replaceState(null, "", href); } catch (x) {}
     });
   });
 </script>
