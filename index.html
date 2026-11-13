@@ -525,7 +525,8 @@
   .combo svg { width: 100%; height: 96px; display: block; }
   /* Extra opcional dentro de la tarjeta de Scale */
   .addon { display: grid; gap: 6px; margin: 4px 0 18px; padding: 14px 16px; border-radius: 16px; border: 1px dashed rgba(56,214,107,.55); background: rgba(56,214,107,.07); }
-  .addon-top { display: flex; align-items: center; gap: 10px; }
+  .addon-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; min-width: 0; }
+  .step > * { min-width: 0; }
   .addon-top b { font: 700 16px/1.1 var(--font-head); letter-spacing: -0.02em; }
   .addon-tag { font: 700 10px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--black); background: var(--green); padding: 5px 8px; border-radius: 999px; }
   .addon-price { margin-left: auto; font: 700 18px/1 var(--font-head); color: var(--green); white-space: nowrap; }

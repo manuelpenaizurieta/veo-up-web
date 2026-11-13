@@ -53,11 +53,13 @@
   :root { --black: #101010; --cream: #F7F7F2; --green: #38D66B; --grey: #EAECE9; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--cream); color: var(--black); font: 16px/1.5 Inter, system-ui, sans-serif; }
-  .top { background: #0A0A0C; padding: 18px 16px; display: flex; justify-content: center; }
-  .top a { display: inline-flex; }
-  .top img { height: 30px; width: auto; display: block; }
-  main { max-width: 680px; margin: 0 auto; padding: 28px 16px 48px; }
+  .top { max-width: 680px; margin: 0 auto; padding: 16px 16px 0; }
+  .back { font-size: 14px; font-weight: 600; color: #5a5d59; text-decoration: none; }
+  .back:hover { color: var(--black); }
+  main { max-width: 680px; margin: 0 auto; padding: 12px 16px 48px; }
   iframe { width: 100%; border: 0; min-height: 520px; display: block; }
+  /* Mientras sale el aviso de cookies, hueco abajo para que no tape el botón del formulario */
+  html.consent-open main { padding-bottom: 240px; }
   .help { margin-top: 24px; font-size: 14px; color: #5a5d59; text-align: center; }
   .help a { color: var(--black); font-weight: 600; }
   .consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60; background: #fff; border-radius: 18px;
@@ -74,7 +76,8 @@
 </style>
 </head>
 <body>
-<header class="top"><a href="/" aria-label="VEO UP, inicio"><img src="logo.webp" alt="VEO UP" width="360" height="77"></a></header>
+<!-- La portada del formulario de Tally ya lleva el logo: aquí solo un enlace discreto de vuelta a la web -->
+<header class="top"><a href="/" class="back">← Volver a veoup.es</a></header>
 <main>
   <iframe id="tally" data-tally-src="https://tally.so/embed/Yj0JvN?alignLeft=1&amp;transparentBackground=1&amp;dynamicHeight=1"
     loading="eager" title="Empecemos con tu contenido · VEO UP"></iframe>
@@ -116,12 +119,12 @@
   if (consent) {
     var choice = null;
     try { choice = localStorage.getItem("veoup-consent"); } catch (e) {}
-    if (!choice) setTimeout(function () { consent.classList.add("show"); consent.setAttribute("aria-hidden", "false"); }, 600);
+    if (!choice) setTimeout(function () { consent.classList.add("show"); consent.setAttribute("aria-hidden", "false"); document.documentElement.classList.add("consent-open"); }, 600);
     consent.querySelectorAll("[data-consent]").forEach(function (b) {
       b.addEventListener("click", function () {
         var v = b.dataset.consent;
         try { localStorage.setItem("veoup-consent", v); } catch (e) {}
-        consent.classList.remove("show"); consent.setAttribute("aria-hidden", "true");
+        consent.classList.remove("show"); consent.setAttribute("aria-hidden", "true"); document.documentElement.classList.remove("consent-open");
         if (v === "si") window.loadGTM();
       });
     });
