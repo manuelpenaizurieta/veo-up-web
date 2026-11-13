@@ -498,6 +498,34 @@
   .brief li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-top: 3px; }
   .brief li span { display: grid; gap: 5px; }
   .combo svg { width: 100%; height: 96px; display: block; }
+  .kpis .card.hl { background: color-mix(in srgb, var(--green) 14%, var(--black-2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 40%, transparent); }
+  .kpis .card.hl .num { color: var(--green); }
+  /* Embudo: las barras crecen al entrar en pantalla */
+  .funnel ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .funnel li { position: relative; display: flex; align-items: center; gap: 8px; height: 24px; padding: 0 8px; font-size: 10.5px; color: #d8dad3; isolation: isolate; }
+  .funnel li::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: 6px; z-index: -1;
+    background: linear-gradient(90deg, #35503d, #2a3b30); transform-origin: left; transform: scaleX(0); transition: transform 1.1s var(--ease); }
+  .funnel li.win-row::before { background: linear-gradient(90deg, var(--green), #2fb95b); }
+  .funnel li.win-row span, .funnel li.win-row b { color: var(--black); }
+  .funnel li:nth-child(2)::before { transition-delay: .1s; } .funnel li:nth-child(3)::before { transition-delay: .2s; }
+  .funnel li:nth-child(4)::before { transition-delay: .3s; } .funnel li:nth-child(5)::before { transition-delay: .4s; }
+  .reveal.in .funnel li::before { transform: scaleX(1); }
+  .funnel li b { font-weight: 700; color: var(--white); }
+  .funnel li em { margin-left: auto; font-style: normal; font-size: 9.5px; color: var(--ink-2-on-dark); }
+  .funnel li.win-row em { color: #e9e9e9; }
+  /* Donut: origen de los leads */
+  .dn { display: grid; grid-template-columns: 108px 1fr; gap: 14px; align-items: center; }
+  .dn svg { width: 108px; height: 108px; transform: rotate(-90deg); }
+  .dn .ring { fill: none; stroke: #262626; stroke-width: 5; }
+  .dn .seg { fill: none; stroke-width: 5; transition: stroke-dasharray 1.2s var(--ease); }
+  .dn .s1 { stroke: var(--green); } .dn .s2 { stroke: #e1306c; } .dn .s3 { stroke: #6aa8ff; } .dn .s4 { stroke: #f4b400; }
+  .dn text { transform: rotate(90deg); transform-origin: 21px 21px; text-anchor: middle; fill: var(--white); }
+  .dn .big { font: 700 9px var(--font-head); } .dn .sm { font-size: 3.6px; fill: var(--ink-2-on-dark); }
+  .dn ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: 11px; color: #d8dad3; }
+  .dn li { display: flex; align-items: center; gap: 8px; }
+  .dn li i { width: 8px; height: 8px; border-radius: 3px; }
+  .dn li i.s1 { background: var(--green); } .dn li i.s2 { background: #e1306c; } .dn li i.s3 { background: #6aa8ff; } .dn li i.s4 { background: #f4b400; }
+  .dn li b { margin-left: auto; color: var(--white); }
   .combo .bar { fill: #2e2e2e; }
   .combo .ln { fill: none; stroke: var(--green); stroke-width: 2; vector-effect: non-scaling-stroke; }
   .combo .grid { stroke: #262626; stroke-width: 1; vector-effect: non-scaling-stroke; }
@@ -619,7 +647,7 @@
   .wa-float .wa-ico { width: 28px; height: 28px; }
   @media (min-width: 900px) { .mobile-cta { display: none; } .wa-float { display: grid; } }
 
-  /* Burbuja "¿Tienes dudas?": aparece una vez al hacer scroll; se cierra con la X */
+  /* Burbuja "¿Tienes dudas?": una vez, tras 40 s y media página; se cierra con la X o sola a los 12 s */
   .wa-nudge {
     position: fixed; z-index: 61; display: grid; gap: 8px;
     left: 12px; right: 12px; bottom: calc(90px + env(safe-area-inset-bottom, 0px));
@@ -1186,6 +1214,7 @@
         <span class="plus">Todo lo de Growth, ampliado, más:</span>
         <ul>
           <li>6 vídeos + 12 shorts + 2 vídeos premium</li>
+          <li>Opcional: Google Ads, para que te encuentren quienes ya te buscan <b>+300 €/mes</b> <span class="pendiente rev-only">Pendiente</span></li>
           <li>Landing y automatización de leads</li>
           <li>Seguimiento de cada lead, del anuncio a la venta</li>
           <li>Conexión con tu CRM, si ya usas uno</li>
@@ -1219,6 +1248,7 @@
             <span class="on"><svg><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Resumen</span>
             <span><svg><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram</span>
             <span><svg><path d="M4 18 10 12l4 4 6-7"/></svg>Meta Ads</span>
+            <span><svg><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>Google Ads</span>
             <span><svg><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 4.5a3.5 3.5 0 0 1 0 7M21 20c0-2.6-1.6-4.8-4-5.6"/></svg>Leads</span>
             <span><svg><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg>Ventas</span>
             <span><svg><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Web</span>
@@ -1240,6 +1270,10 @@
               <div class="card"><span class="head"><span class="ico" style="--c:#6aa8ff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><small>Leads</small></span><b class="num">46</b><span class="vs"><em>+12</em> vs. mes anterior</span></div>
               <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3 5 1.2 5 3.2-2.2 3.3-5 3.3-5-1.2-5-3"/></svg></span><small>Coste por lead</small></span><b class="num">6,52 €</b><span class="vs"><em>−18 %</em> vs. mes anterior</span></div>
               <div class="card"><span class="head"><span class="ico" style="--c:#c48bff"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><small>Citas</small></span><b class="num">12</b><span class="vs"><em>+5</em> vs. mes anterior</span></div>
+              <span class="grp">Ventas</span>
+              <div class="card"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><small>Clientes nuevos</small></span><b class="num">5</b><span class="vs"><em>42 %</em> de las citas</span></div>
+              <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg></span><small>Ingresos atribuidos</small></span><b class="num">2.150 €</b><span class="vs"><em>+31 %</em> vs. mes anterior</span></div>
+              <div class="card hl"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><path d="M4 18 10 12l4 4 6-7M15 7h5v5"/></svg></span><small>Retorno de anuncios</small></span><b class="num">7,2×</b><span class="vs">por cada € invertido</span></div>
             </div>
             <div class="row2">
               <div class="card">
@@ -1251,7 +1285,7 @@
                 </ul>
               </div>
             <div class="card combo">
-              <span class="t">Inversión y leads por día</span><span class="d">Barras: inversión en Meta. Línea: leads que entran.</span>
+              <span class="t">Inversión y leads por día</span><span class="d">Barras: inversión en Meta y Google. Línea: leads que entran.</span>
               <svg viewBox="0 0 280 96" preserveAspectRatio="none" aria-hidden="true">
                 <line class="grid" x1="0" y1="32" x2="280" y2="32"/><line class="grid" x1="0" y1="64" x2="280" y2="64"/>
                 <rect class="bar" x="4" y="52" width="12" height="44" rx="2"/><rect class="bar" x="24" y="46" width="12" height="50" rx="2"/>
@@ -1265,6 +1299,37 @@
               </svg>
               <div class="legend"><span><i></i>Inversión</span><span><i class="g"></i>Leads</span></div>
             </div>
+            </div>
+            <div class="row2">
+              <div class="card funnel">
+                <span class="t">Del anuncio al cliente</span><span class="d">Embudo de los últimos 28 días</span>
+                <ol>
+                  <li style="--w:100%"><span>Alcance</span><b>28.400</b></li>
+                  <li style="--w:84%"><span>Visitas al perfil y web</span><b>1.920</b><em>6,8 %</em></li>
+                  <li style="--w:68%"><span>Leads</span><b>46</b><em>2,4 %</em></li>
+                  <li style="--w:54%"><span>Citas</span><b>12</b><em>26 %</em></li>
+                  <li style="--w:42%" class="win-row"><span>Clientes</span><b>5</b><em>42 %</em></li>
+                </ol>
+              </div>
+              <div class="card donut">
+                <span class="t">De dónde vienen tus leads</span><span class="d">46 leads este mes</span>
+                <div class="dn">
+                  <svg viewBox="0 0 42 42" aria-hidden="true">
+                    <circle cx="21" cy="21" r="15.915" class="ring"/>
+                    <circle cx="21" cy="21" r="15.915" class="seg s1" stroke-dasharray="47.8 52.2" stroke-dashoffset="25"/>
+                    <circle cx="21" cy="21" r="15.915" class="seg s4" stroke-dasharray="23.9 76.1" stroke-dashoffset="-22.8"/>
+                    <circle cx="21" cy="21" r="15.915" class="seg s2" stroke-dasharray="19.6 80.4" stroke-dashoffset="-46.7"/>
+                    <circle cx="21" cy="21" r="15.915" class="seg s3" stroke-dasharray="8.7 91.3" stroke-dashoffset="-66.3"/>
+                    <text x="21" y="21.5" class="big">46</text><text x="21" y="27" class="sm">leads</text>
+                  </svg>
+                  <ul>
+                    <li><i class="s1"></i>Meta Ads<b>22</b></li>
+                    <li><i class="s4"></i>Google Ads<b>11</b></li>
+                    <li><i class="s2"></i>Instagram<b>9</b></li>
+                    <li><i class="s3"></i>Web y QR<b>4</b></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1339,7 +1404,7 @@
         <div class="a"><p>Después del Content Day editamos, revisas y te entregamos tu Content Drop listo para publicar.</p><p class="rev-only"><span class="pendiente">Pendiente</span> Plazo concreto en días.</p></div>
       </details>
       <details class="rev-only">
-        <summary>¿El presupuesto de Meta Ads está incluido en Growth y Scale?</summary>
+        <summary>¿El presupuesto de anuncios (Meta y Google) está incluido en Growth y Scale?</summary>
         <div class="a"><p><span class="pendiente">Pendiente</span> Confirmar si la inversión en anuncios va aparte y si hay un mínimo recomendado.</p></div>
       </details>
       <details>
@@ -1559,13 +1624,19 @@
       nudge.classList.remove("show"); nudge.setAttribute("aria-hidden", "true"); btn.tabIndex = -1;
       off = true; try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
     };
+    // Solo para quien está leyendo de verdad: lleva 40 s en la página y ha pasado la mitad.
+    // Si no la toca, se va sola a los 12 s para no tapar contenido.
+    const t0 = Date.now();
     const onScroll = () => {
       if (off) return removeEventListener("scroll", onScroll);
       const depth = (scrollY + innerHeight) / document.documentElement.scrollHeight;
-      if (depth < 0.35) return;
+      if (depth < 0.5 || Date.now() - t0 < 40000) return;
       removeEventListener("scroll", onScroll);
       nudge.classList.add("show"); nudge.setAttribute("aria-hidden", "false"); btn.tabIndex = 0;
       track("nudge_view");
+      const auto = setTimeout(() => { nudge.classList.remove("show"); nudge.setAttribute("aria-hidden", "true"); btn.tabIndex = -1; }, 12000);
+      nudge.addEventListener("pointerenter", () => clearTimeout(auto), { once: true });
+      nudge.addEventListener("focusin", () => clearTimeout(auto), { once: true });
     };
     nudge.querySelector(".wa-nudge-x").addEventListener("click", () => { hide(); track("nudge_close"); });
     btn.addEventListener("click", hide);
