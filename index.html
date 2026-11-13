@@ -653,6 +653,10 @@
   .socials a.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color: #fff; box-shadow: none; }
   .socials a.tt { background: #000; color: #fff; box-shadow: none; }
   .socials a.tt svg { filter: drop-shadow(-1.5px -1.5px 0 #25f4ee) drop-shadow(1.5px 1.5px 0 #fe2c55); }
+  .team-social { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 15px; color: #3a3d39; }
+  .team-social b { color: var(--black); }
+  .team-social > span { flex: 1 1 160px; min-width: 0; }
+  .team-social .socials { flex: none; }
   .foot-col .handle { font-size: 13px; opacity: .7; }
   .socials a.yt { background: #ff0000; color: #fff; box-shadow: none; }
   .socials svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -1432,6 +1436,13 @@
     <div class="team-text">
       <h2>Somos Manu y Stevan. Hacemos contenido para negocios de Valencia.</h2>
       <p class="lede">Primero Valencia: un negocio cada vez, un barrio cada vez. Hablamos contigo por WhatsApp, grabamos y te entregamos el contenido listo cada mes.</p>
+      <div class="team-social">
+        <div class="socials">
+          <a class="ig" data-social="instagram" data-where="equipo" href="https://www.instagram.com/veoup.es/" target="_blank" rel="noopener" aria-label="Instagram de VEO UP (@veoup.es)" title="@veoup.es en Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+          <a class="tt" data-social="tiktok" data-where="equipo" href="https://www.tiktok.com/@veoup.es" target="_blank" rel="noopener" aria-label="TikTok de VEO UP (@veoup.es)" title="@veoup.es en TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
+        </div>
+        <span>Mira lo que grabamos en <b>@veoup.es</b></span>
+      </div>
     </div>
     <div class="people">
       <article class="person">
@@ -1700,7 +1711,7 @@
   document.querySelectorAll("[data-form-link]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "formulario" })));
 
   // Más eventos: LinkedIn y reproducción de reels.
-  document.querySelectorAll("[data-social]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "social_" + a.dataset.social })));
+  document.querySelectorAll("[data-social]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "social_" + a.dataset.social + (a.dataset.where ? "_" + a.dataset.where : "") })));
   document.querySelectorAll(".person .li").forEach(a => a.addEventListener("click", () => track("linkedin_click", { person: "manu" })));
   document.querySelectorAll("video").forEach(v => {
     let sent = false;
