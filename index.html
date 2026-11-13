@@ -725,7 +725,7 @@
   .gc-progress { background: rgba(255,255,255,.1); }
 
   /* ── Producción móvil (dentro de la franja oscura de trabajo) ── */
-  .mobile-prod { display: grid; gap: 48px; align-items: center; margin-top: 120px; }
+  .mobile-prod { display: grid; gap: 48px; align-items: center; }
   @media (min-width: 1000px) { .mobile-prod { grid-template-columns: 1.15fr .85fr; gap: 80px; } }
   .mp-copy { display: grid; gap: 22px; }
   .mp-copy h3 { font: 700 clamp(32px, 4.6vw, 58px)/1.02 var(--font-head); letter-spacing: -0.04em; max-width: 16ch; }
@@ -969,11 +969,11 @@
     </div>
   </div>
 </section>
-<section class="sectors" aria-label="Sectores">
+<section class="sectors" id="trabajo" aria-label="Trabajo y sectores">
   <div class="wrap">
     <div class="sectors-head">
-      <h2>Para <em>pequeños gigantes</em> de Valencia</h2>
-      <p>Negocios con algo que enseñar. Si es el tuyo, se tiene que ver.</p>
+      <h2>No te lo contamos. <em>Te lo enseñamos.</em></h2>
+      <p>Vídeos verticales para <strong>pequeños gigantes</strong> de Valencia: negocios con algo que enseñar.</p>
     </div>
     <div class="bento">
       <div class="tile t-big"><video src="media/prueba/sector-restaurantes.mp4" poster="media/prueba/poster-sector-restaurantes.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
@@ -1041,19 +1041,8 @@
     </div>
   </div>
 </section>
-<section class="dark" id="trabajo">
+<section class="dark" id="produccion">
   <div class="wrap">
-    <div class="work-head reveal">
-      <h2 class="h2">No te lo contamos. Te lo enseñamos.</h2>
-      <p class="lede">Vídeos verticales pensados para redes, para negocios como el tuyo.</p>
-    </div>
-    <div class="reels reveal">
-      <figure class="reel prueba"><video src="media/prueba/reel-healthy.mp4" poster="media/prueba/poster-healthy.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: healthy food"></video><figcaption><b>Healthy food</b></figcaption></figure>
-      <figure class="reel prueba"><video src="media/prueba/reel-restaurante-10s.mp4" poster="media/prueba/poster-restaurante.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: restaurante"></video><figcaption><b>Restaurante</b></figcaption></figure>
-      <figure class="reel prueba"><video src="media/prueba/reel-estetica.mp4" poster="media/prueba/poster-estetica.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: centro de estética"></video><figcaption><b>Estética</b></figcaption></figure>
-      <figure class="reel prueba"><video src="media/prueba/reel-gimnasio.mp4" poster="media/prueba/poster-gimnasio.webp" autoplay muted loop playsinline preload="metadata" aria-label="Reel de muestra: gimnasio"></video><figcaption><b>Gimnasio</b></figcaption></figure>
-    </div>
-
     <div class="mobile-prod">
       <div class="mp-copy reveal">
         <span class="label">Producción móvil</span>
