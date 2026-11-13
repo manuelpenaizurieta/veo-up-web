@@ -416,7 +416,13 @@
   .step li::before { content: "✓"; color: var(--green-ink); font-weight: 700; }
   .step .plus { font-size: 13px; font-weight: 600; color: var(--ink-2); }
   .step .btn { width: 100%; margin-top: 4px; }
-  .step.s2 { box-shadow: 0 0 0 1.5px var(--green), 0 30px 60px -40px rgba(16,16,16,.3); }
+  /* Tres colores de la marca: Content blanco, Growth verde (el destacado), Scale negro */
+  .step.s2 { background: var(--green); color: var(--black); box-shadow: 0 30px 60px -36px rgba(19,122,55,.55); }
+  .step.s2 .verb { color: var(--black); opacity: .7; }
+  .step.s2 .price small, .step.s2 .for, .step.s2 .plus { color: rgba(16,16,16,.72); }
+  .step.s2 ul { border-top-color: rgba(16,16,16,.18); }
+  .step.s2 li::before { color: var(--black); }
+  .step.s2 .badge { background: var(--black); color: var(--green); box-shadow: 0 8px 20px -8px rgba(16,16,16,.5); }
   .step.s3 { background: var(--black); color: var(--ink-on-dark); box-shadow: 0 40px 80px -40px rgba(16,16,16,.6); }
   .step.s3 .verb { color: var(--green); }
   .step.s3 .price small, .step.s3 .for, .step.s3 .plus { color: var(--ink-2-on-dark); }
@@ -498,6 +504,14 @@
   .brief li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-top: 3px; }
   .brief li span { display: grid; gap: 5px; }
   .combo svg { width: 100%; height: 96px; display: block; }
+  /* Extra opcional dentro de la tarjeta de Scale */
+  .addon { display: grid; gap: 6px; margin: 4px 0 18px; padding: 14px 16px; border-radius: 16px; border: 1px dashed rgba(56,214,107,.55); background: rgba(56,214,107,.07); }
+  .addon-top { display: flex; align-items: center; gap: 10px; }
+  .addon-top b { font: 700 16px/1.1 var(--font-head); letter-spacing: -0.02em; }
+  .addon-tag { font: 700 10px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--black); background: var(--green); padding: 5px 8px; border-radius: 999px; }
+  .addon-price { margin-left: auto; font: 700 18px/1 var(--font-head); color: var(--green); white-space: nowrap; }
+  .addon-price small { font: 500 12px var(--font-body); color: inherit; opacity: .8; }
+  .addon-txt { font-size: 13.5px; line-height: 1.4; opacity: .8; }
   .kpis .card.hl { background: color-mix(in srgb, var(--green) 14%, var(--black-2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 40%, transparent); }
   .kpis .card.hl .num { color: var(--green); }
   /* Embudo: las barras crecen al entrar en pantalla */
@@ -1214,13 +1228,17 @@
         <span class="plus">Todo lo de Growth, ampliado, más:</span>
         <ul>
           <li>6 vídeos + 12 shorts + 2 vídeos premium</li>
-          <li>Opcional: Google Ads, para que te encuentren quienes ya te buscan <b>+300 €/mes</b> <span class="pendiente rev-only">Pendiente</span></li>
+          <li>Campañas en Meta Ads con estrategia de captación y creatividades</li>
           <li>Landing y automatización de leads</li>
           <li>Seguimiento de cada lead, del anuncio a la venta</li>
           <li>Conexión con tu CRM, si ya usas uno</li>
           <li>Panel de resultados</li>
           <li>Growth Review mensual y soporte prioritario</li>
         </ul>
+        <div class="addon">
+          <span class="addon-top"><span class="addon-tag">Opcional</span><b>Google Ads</b><span class="addon-price">+300 €<small>/mes</small></span></span>
+          <span class="addon-txt">Para que te encuentren quienes ya te buscan en Google. <span class="pendiente rev-only">Pendiente</span></span>
+        </div>
         <a class="btn btn-light" data-wa="scale" href="#">Quiero Scale</a>
       </li>
     </ol>
