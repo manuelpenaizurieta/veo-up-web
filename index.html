@@ -251,31 +251,35 @@
   .sectors-head h2 { font: 700 clamp(30px, 4.4vw, 56px)/1 var(--font-head); letter-spacing: -0.045em; max-width: 13ch; }
   .sectors-head h2 em { font-style: normal; color: var(--green-ink); }
   .sectors-head p { font-size: clamp(15px, 1.3vw, 17px); color: #5f635e; max-width: 30ch; }
-  .bento { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-  @media (min-width: 900px) { .bento { grid-template-columns: 1.25fr 1fr 1fr; grid-template-rows: repeat(2, minmax(280px, 31vh)); } .bento .t-big { grid-row: span 2; } }
-  .tile { position: relative; border-radius: 22px; overflow: hidden; min-height: 280px; background: var(--black); color: var(--cream); isolation: isolate; }
-  .tile video, .tile > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transform: scale(1.03); transition: transform 1.2s var(--ease); }
-  .tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(16,16,16,0) 35%, rgba(16,16,16,.88)); }
-  .tile:hover video { transform: scale(1.1); }
-  .tile-in { position: absolute; left: 18px; right: 18px; bottom: 18px; display: grid; gap: 10px; }
-  .tile h3 { font: 700 clamp(22px, 2.3vw, 34px)/1 var(--font-head); letter-spacing: -0.04em; }
-  .tile ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tile li { font: 600 12.5px/1 var(--font-body); padding: 7px 10px; border-radius: 999px; background: rgba(247,247,242,.16); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-  .tile.cta { background: var(--green); color: var(--black); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; }
+  .bento { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 900px) { .bento { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  /* Bloques verticales (los vídeos son 9:16): solo se recortan un poco los lados, nunca las caras. */
+  .tile { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3 / 4.4; background: var(--black); color: var(--cream); isolation: isolate; }
+  .tile video, .tile > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; z-index: -2; transform: scale(1.02); transition: transform 1.2s var(--ease); }
+  .tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(16,16,16,0) 55%, rgba(16,16,16,.9)); }
+  .tile:hover video { transform: scale(1.07); }
+  .tile-in { position: absolute; left: 16px; right: 16px; bottom: 16px; display: grid; gap: 8px; }
+  .tile h3 { font: 700 clamp(21px, 1.9vw, 28px)/1.05 var(--font-head); letter-spacing: -0.035em; }
+  .tile ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+  .tile li { font: 600 11.5px/1 var(--font-body); padding: 6px 9px; border-radius: 999px; background: rgba(247,247,242,.16); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  /* Bloque verde: franja ancha debajo de los cuatro vídeos */
+  .tile.cta { grid-column: 1 / -1; aspect-ratio: auto; background: var(--green); color: var(--black); text-decoration: none;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; padding: 22px 26px; }
   .tile.cta::after { display: none; }
-  .tile.cta h3 { font-size: clamp(26px, 2.8vw, 40px); }
-  .tile.cta li { background: rgba(16,16,16,.08); -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .tile.cta .go { display: inline-flex; align-items: center; gap: 8px; font: 700 16px/1 var(--font-head); margin-top: 14px; }
-  .tile.cta .go .wa-ico { width: 20px; height: 20px; }
-  .tile.cta:hover .go { text-decoration: underline; text-underline-offset: 4px; }
-  @media (max-width: 899px) { .bento .t-big, .bento .cta { grid-column: span 2; } .tile { min-height: 300px; } .tile.cta { min-height: 0; gap: 18px; } }
-  /* En móvil: carrusel horizontal con imán, para no alargar la página. */
+  .tile.cta h3 { font-size: clamp(22px, 2.2vw, 32px); }
+  .tile.cta h3 br { display: none; }
+  .tile.cta > div:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+  .tile.cta li { background: rgba(16,16,16,.08); -webkit-backdrop-filter: none; backdrop-filter: none; font-size: 12.5px; }
+  .tile.cta .go { display: inline-flex; align-items: center; gap: 8px; font: 700 16px/1 var(--font-head); padding: 13px 18px; border-radius: 999px; background: var(--black); color: var(--cream); white-space: nowrap; }
+  .tile.cta .go .wa-ico { width: 18px; height: 18px; }
+  .tile.cta:hover .go { background: #000; }
+  /* En móvil: carrusel horizontal con imán, para no alargar la página. El bloque verde va debajo. */
   @media (max-width: 520px) {
-    .bento { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory;
+    .bento { grid-template-columns: repeat(4, 74%); overflow-x: auto; scroll-snap-type: x mandatory;
       scroll-padding-inline: var(--gutter); padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-bottom: 6px; scrollbar-width: none; }
     .bento::-webkit-scrollbar { display: none; }
-    .bento .t-big, .bento .cta { grid-column: auto; }
-    .tile { min-height: 420px; scroll-snap-align: start; }
+    .tile { scroll-snap-align: start; }
+    .tile.cta { grid-column: 1 / -1; position: sticky; left: 0; width: calc(100vw - 2 * var(--gutter)); flex-direction: column; align-items: flex-start; }
   }
 
   /* Trabajo */
@@ -981,7 +985,7 @@
       <div class="tile"><video src="media/prueba/reel-gimnasio.mp4" poster="media/prueba/poster-gimnasio.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
         <div class="tile-in"><h3>Deporte</h3><ul><li>Gimnasios</li><li>CrossFit</li><li>Boxeo</li><li>Yoga</li><li>Pilates</li><li>Baile</li><li>Fisio</li></ul></div></div>
       <a class="tile cta" data-wa="start" href="#">
-        <div><h3>¿Comercio local?<br>También.</h3></div>
+        <div><h3>¿Comercio local? También.</h3></div>
         <div><ul><li>Tiendas de barrio</li><li>Moda</li><li>Floristerías</li><li>Inmobiliarias</li></ul>
         <span class="go">¿Y el tuyo? Escríbenos <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></span></div>
       </a>
