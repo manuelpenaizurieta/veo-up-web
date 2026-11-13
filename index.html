@@ -45,6 +45,23 @@
 </script>
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="iNJFu4hXHDTr0DPLWedU6ZnDF2p5fcCTewOAyJ30mwA" />
+<meta property="og:image" content="https://www.veoup.es/media/og-veoup.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VEO UP: Haz que te vean. Haz que te elijan. Desde 190 €/mes.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.veoup.es/media/og-veoup.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"VEO UP","url":"https://www.veoup.es/",
+ "image":"https://www.veoup.es/media/og-veoup.jpg","telephone":"+34611216083",
+ "description":"Suscripción de contenido para negocios de Valencia: planificamos, grabamos y editamos tu contenido cada mes.",
+ "areaServed":{"@type":"City","name":"Valencia"},"address":{"@type":"PostalAddress","addressLocality":"Valencia","addressCountry":"ES"},
+ "priceRange":"190 € – 890 € al mes",
+ "makesOffer":[
+  {"@type":"Offer","name":"Content","price":"190","priceCurrency":"EUR","description":"3 vídeos + 3 shorts al mes, 1 Content Day"},
+  {"@type":"Offer","name":"Growth","price":"490","priceCurrency":"EUR","description":"4 vídeos + 8 shorts + 1 vídeo premium, Meta Ads e informe mensual"},
+  {"@type":"Offer","name":"Scale","price":"890","priceCurrency":"EUR","description":"6 vídeos + 12 shorts + 2 premium, Meta Ads, landing, automatización de leads y panel"}]}
+</script>
 <meta property="og:url" content="https://www.veoup.es/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -139,7 +156,9 @@
 
   /* Header */
   /* Header: cápsula flotante tipo producto. Las pestañas son píldoras con icono; la activa va en negro. */
-  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; padding-top: 10px; }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; padding-top: 10px; transition: transform .35s var(--ease); }
+  /* Móvil: el menú se esconde al bajar y vuelve al subir, para no tapar contenido junto a la barra de abajo */
+  @media (max-width: 959px) { .nav.nav-up { transform: translateY(calc(-100% - 12px)); } }
   .bar {
     display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
     height: 60px; padding: 0 8px 0 18px; border-radius: 999px;
@@ -397,7 +416,7 @@
     .ladder {
       grid-auto-flow: column; grid-auto-columns: 84%; align-items: start;
       overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
-      padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-block: 4px 8px; scrollbar-width: none;
+      padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-block: 22px 8px; scrollbar-width: none;  /* 22px: deja sitio a la etiqueta "Más vendido" */
     }
     .ladder::-webkit-scrollbar { display: none; }
     .step { scroll-snap-align: start; }
@@ -770,7 +789,7 @@
   .mobile-prod { display: grid; gap: 48px; align-items: center; }
   @media (min-width: 1000px) { .mobile-prod { grid-template-columns: 1.15fr .85fr; gap: 80px; } }
   .mp-copy { display: grid; gap: 22px; }
-  .mp-copy h3 { font: 700 clamp(32px, 4.6vw, 58px)/1.02 var(--font-head); letter-spacing: -0.04em; max-width: 16ch; }
+  .mp-copy h2, .mp-copy h3 { font: 700 clamp(32px, 4.6vw, 58px)/1.02 var(--font-head); letter-spacing: -0.04em; max-width: 16ch; }
   .kit { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .kit li { font: 500 13px/1 var(--font-body); color: #e2e4dd; padding: 9px 13px; border-radius: 999px; border: 1px solid #333; background: rgba(255,255,255,.04); }
   .mp-claim { font: 700 clamp(20px, 2.4vw, 28px)/1.2 var(--font-head); letter-spacing: -0.02em; color: var(--green); }
@@ -803,6 +822,47 @@
     box-shadow: 0 8px 20px -8px rgba(56,214,107,.6);
   }
 
+  /* Comparación: Agencia / Freelance / VEO UP */
+  .compare-sec { padding-block: clamp(56px, 8vw, 104px); }
+  .cmp-head { display: grid; gap: 14px; margin-bottom: clamp(24px, 3vw, 40px); }
+  .cmp { display: grid; border-radius: 22px; overflow: hidden; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+  .cmp-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1.2fr; }
+  .cmp-row > span { padding: 16px 18px; font-size: 15px; line-height: 1.35; border-top: 1px solid var(--line); color: #5f635e; display: flex; align-items: center; }
+  .cmp-row > span[role="rowheader"] { font: 600 15px/1.3 var(--font-head); color: var(--black); }
+  .cmp-cols > span { border-top: 0; font: 600 12px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: #8a8e88; }
+  .cmp-row > .me { background: var(--black); color: var(--cream); font-weight: 600; border-top-color: #2a2a2a; }
+  .cmp-row > .me::before { content: "✓"; color: var(--green); margin-right: 8px; font-weight: 700; }
+  .cmp-cols > .me { color: var(--green); }
+  .cmp-cols > .me::before { content: none; }
+  @media (max-width: 760px) {
+    .cmp-row { grid-template-columns: 1fr 1fr; }
+    .cmp-row > span[role="rowheader"] { grid-column: 1 / -1; padding-bottom: 4px; border-top: 1px solid var(--line); }
+    .cmp-row > span:nth-child(3) { display: none; }  /* en móvil: agencia frente a VEO UP (sin freelance) */
+    .cmp-row > span:nth-child(2), .cmp-row > .me { border-top: 0; font-size: 14px; }
+    .cmp-cols > span[role="columnheader"]:first-child { display: none; }
+  }
+
+  /* Cómo funciona: tres datos clave en fila */
+  .plan-main .h2 { margin: 6px 0 14px; font-size: clamp(32px, 3.6vw, 50px); }
+  .facts { list-style: none; margin: 22px 0 22px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .facts li { display: grid; gap: 4px; padding: 14px; border-radius: 16px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+  .facts b { font: 700 clamp(16px, 1.6vw, 20px)/1.1 var(--font-head); letter-spacing: -0.02em; }
+  .facts span { font-size: 13px; color: #5f635e; line-height: 1.3; }
+  @media (max-width: 560px) {
+    .facts { grid-template-columns: 1fr; gap: 6px; }
+    .facts li { grid-template-columns: auto 1fr; align-items: baseline; gap: 10px; padding: 12px 14px; }
+  }
+  /* Panel de Scale en móvil: lo esencial (KPI, embudo y origen); se ocultan el resumen y el gráfico diario */
+  @media (max-width: 640px) {
+    .win .glance, .win .r-brief, .kpis > :nth-child(-n+4) { display: none; }  /* también el bloque de Instagram */
+  }
+  /* Equipo: bio corta a la vista y el resto en "Leer más" */
+  .more summary { cursor: pointer; list-style: none; font-weight: 600; font-size: 14px; color: var(--black); display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary::after { content: "+"; font-size: 16px; color: var(--green-ink); }
+  .more[open] summary::after { content: "–"; }
+  .more[open] summary { margin-bottom: 10px; }
+  .more p + p { margin-top: 10px; }
   /* Avisos internos (Pendiente, Imagen de prueba): solo se ven abriendo la web con #revision */
   html:not(.rev) .rev-only { display: none !important; }
   html:not(.rev) .prueba::after { display: none; }
@@ -968,7 +1028,7 @@
     <a href="#top" class="logo" aria-label="VEO UP, inicio"><span class="logo-mark logo-light"><img src="media/logo-sheet.webp" alt="VEO UP"></span><span class="logo-mark on-dark logo-dark" aria-hidden="true"><img src="media/logo-sheet.webp" alt=""></span></a>
     <nav class="nav-links" aria-label="Principal">
       <a href="#trabajo"><svg aria-hidden="true"><use href="#i-play"/></svg>Trabajo</a>
-      <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Suscripción</a>
+      <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Cómo funciona</a>
       <a href="#planes"><svg aria-hidden="true"><use href="#i-up"/></svg>Planes</a>
       <a href="#faq"><svg aria-hidden="true"><use href="#i-help"/></svg>Preguntas</a>
     </nav>
@@ -983,7 +1043,7 @@
      <div class="sheet">
       <nav aria-label="Principal (móvil)">
         <a href="#trabajo"><svg aria-hidden="true"><use href="#i-play"/></svg>Trabajo</a>
-        <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Suscripción</a>
+        <a href="#plan"><svg aria-hidden="true"><use href="#i-cycle"/></svg>Cómo funciona</a>
         <a href="#planes"><svg aria-hidden="true"><use href="#i-up"/></svg>Planes</a>
         <a href="#faq"><svg aria-hidden="true"><use href="#i-help"/></svg>Preguntas</a>
       </nav>
@@ -1004,7 +1064,7 @@
         <p class="hero-sub">Tu negocio tiene mucho que ofrecer. Cada mes planificamos, grabamos y editamos tu contenido.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" data-wa="start" href="#">Empezar <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
-          <a class="text-link" href="#plan">Qué incluye</a>
+          <a class="text-link" href="#plan">Cómo funciona</a>
         </div>
         <p class="hero-foot">Sin permanencia</p>
       </div>
@@ -1022,9 +1082,9 @@
         <div class="tile-in"><h3>Restaurantes y bares</h3><ul><li>Restaurantes</li><li>Bares</li><li>Vinotecas</li></ul></div></div>
       <div class="tile"><video src="media/prueba/sector-cafes.mp4" poster="media/prueba/poster-sector-cafes.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
         <div class="tile-in"><h3>Cafés y healthy</h3><ul><li>Cafeterías</li><li>Brunch</li><li>Healthy food</li><li>Panaderías</li><li>Heladerías</li></ul></div></div>
-      <div class="tile"><video src="media/prueba/reel-estetica.mp4" poster="media/prueba/poster-estetica.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <div class="tile"><video src="media/prueba/sector-belleza.mp4" poster="media/prueba/poster-sector-belleza.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
         <div class="tile-in"><h3>Belleza y bienestar</h3><ul><li>Peluquerías</li><li>Barberías</li><li>Estética</li><li>Wellness</li><li>Estudios de tatuaje</li></ul></div></div>
-      <div class="tile"><video src="media/prueba/reel-gimnasio.mp4" poster="media/prueba/poster-gimnasio.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <div class="tile"><video src="media/prueba/sector-deporte.mp4" poster="media/prueba/poster-sector-deporte.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
         <div class="tile-in"><h3>Deporte</h3><ul><li>Gimnasios</li><li>CrossFit</li><li>Boxeo</li><li>Yoga</li><li>Pilates</li><li>Academias de baile</li><li>Fisioterapia</li></ul></div></div>
       <a class="tile cta" data-wa="start" href="#">
         <div><h3>¿Comercio local? También.</h3></div>
@@ -1088,7 +1148,7 @@
     <div class="mobile-prod">
       <div class="mp-copy reveal">
         <span class="label">Producción móvil</span>
-        <h3>No necesitamos una gran producción para crear grandes resultados.</h3>
+        <h2>No necesitamos una gran producción para crear grandes resultados.</h2>
         <p class="lede">Grabamos con móviles de última generación y control profesional. Menos infraestructura, más velocidad y más contenido cada mes.</p>
         <ul class="kit" aria-label="Con qué trabajamos">
           <li>iPhone Pro</li><li>Blackmagic Camera</li><li>ProRes / Log</li><li>Audio profesional</li><li>DaVinci Resolve</li><li>Dirección creativa</li>
@@ -1096,7 +1156,7 @@
         <p class="mp-claim">La calidad no debería ser un privilegio.</p>
       </div>
       <div class="cam prueba reveal" role="img" aria-label="Grabación con móvil: pantalla de cámara en modo ProRes Log">
-        <video src="media/prueba/reel-restaurante-10s.mp4" poster="media/prueba/poster-restaurante.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <video src="media/prueba/cam-clip.mp4" poster="media/prueba/poster-cam.webp" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
         <div class="cam-ui" aria-hidden="true">
           <span class="thirds"></span><span class="focus"></span>
           <div class="top"><span class="rec" id="camRec">00:00:00</span><span class="fmt">ProRes · Log</span></div>
@@ -1131,12 +1191,12 @@
             <p class="ig-name">tu_negocio</p>
             <div class="ig-bio"><i></i><i></i></div>
             <div class="ig-grid">
-              <span class="reelmark"><img src="media/prueba/restaurante.webp" alt="" loading="lazy"></span>
-              <span><img src="media/prueba/healthy.webp" alt="" loading="lazy" style="object-position:50% 30%"></span>
-              <span class="reelmark"><img src="media/prueba/beauty.webp" alt="" loading="lazy"></span>
-              <span><img src="media/prueba/gimnasio.webp" alt="" loading="lazy" style="object-position:50% 20%"></span>
-              <span class="reelmark"><img src="media/prueba/healthy.webp" alt="" loading="lazy" style="object-position:50% 80%"></span>
-              <span><img src="media/prueba/restaurante.webp" alt="" loading="lazy" style="object-position:50% 85%"></span>
+              <span class="reelmark"><img src="media/prueba/feed-cafe-1.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/feed-cafe-2.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/feed-cafe-3.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/feed-cafe-5.webp" alt="" loading="lazy"></span>
+              <span class="reelmark"><img src="media/prueba/feed-cafe-6.webp" alt="" loading="lazy"></span>
+              <span><img src="media/prueba/feed-cafe-4.webp" alt="" loading="lazy"></span>
             </div>
             <p class="ig-note">Contenido nuevo cada mes</p>
           </div>
@@ -1150,22 +1210,15 @@
 <section id="plan">
   <div class="wrap plan">
     <div class="plan-main reveal">
-      <span class="label">VEO UP Content · suscripción mensual</span>
-      <div class="bigprice" aria-label="190 euros al mes">
-        <span class="n">190</span>
-        <span class="u">€/mes <small>Sin permanencia</small></span>
-      </div>
-      <ul class="includes">
-        <li><span>Vídeos principales</span><span>3 × 45–60 s</span></li>
-        <li><span>Short videos</span><span>3 × 15 s</span></li>
-        <li><span>Content Day mensual</span><span>90–120 min</span></li>
-        <li><span>Ideas, planificación y edición</span><span>Incluido</span></li>
-        <li><span>Cambios por pieza</span><span>1 ronda</span></li>
+      <span class="label">Cómo funciona</span>
+      <h2 class="h2">Una sesión de grabación. Un mes de contenido.</h2>
+      <p class="lede">Cada mes repetimos el mismo ciclo. Tú apruebas el plan, nos dedicas un rato el día de grabación y recibes los vídeos listos para publicar.</p>
+      <ul class="facts">
+        <li><b>90–120 min</b><span>Content Day al mes</span></li>
+        <li><b>1 ronda</b><span>de cambios por pieza</span></li>
+        <li><b>Sin permanencia</b><span>en todos los planes</span></li>
       </ul>
-      <div class="plan-cta">
-        <a class="btn btn-dark" data-wa="content" href="#">Quiero mi suscripción <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
-        <span class="plan-note rev-only"><span class="pendiente">Pendiente</span> ¿IVA incluido?</span>
-      </div>
+      <a class="text-link" href="#planes">Ver planes y precios</a>
     </div>
 
     <div class="reveal">
@@ -1182,6 +1235,22 @@
         </div>
         <p class="app-foot">Al mes siguiente, vuelta a empezar.</p>
       </div>
+    </div>
+  </div>
+</section>
+<section class="compare-sec" aria-label="Comparación">
+  <div class="wrap">
+    <div class="cmp-head reveal">
+      <span class="label">Por qué VEO UP</span>
+      <h2 class="h2">Ni agencia tradicional. Ni videógrafo suelto.</h2>
+    </div>
+    <div class="cmp reveal" role="table" aria-label="Agencia tradicional, videógrafo freelance y VEO UP">
+      <div class="cmp-row cmp-cols" role="row"><span role="columnheader"></span><span role="columnheader">Agencia tradicional</span><span role="columnheader">Videógrafo freelance</span><span role="columnheader" class="me">VEO UP</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Contenido</span><span role="cell">Mucho proceso y reuniones</span><span role="cell">Por proyecto, cuando se encarga</span><span role="cell" class="me">Nuevo cada mes, con un Content Day</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Estrategia</span><span role="cell">Sí, con su coste</span><span role="cell">Normalmente no</span><span role="cell" class="me">Plan del mes con ideas y guion</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Precio</span><span role="cell">Cuotas altas</span><span role="cell">Variable en cada encargo</span><span role="cell" class="me">Desde 190 €/mes, cuota fija</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Compromiso</span><span role="cell">Suele haber permanencia</span><span role="cell">Sin seguimiento</span><span role="cell" class="me">Sin permanencia</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Anuncios y resultados</span><span role="cell">Otro servicio aparte</span><span role="cell">No</span><span role="cell" class="me">En Growth y Scale, medidos</span></div>
     </div>
   </div>
 </section>
@@ -1293,7 +1362,7 @@
               <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg></span><small>Ingresos atribuidos</small></span><b class="num">2.150 €</b><span class="vs"><em>+31 %</em> vs. mes anterior</span></div>
               <div class="card hl"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><path d="M4 18 10 12l4 4 6-7M15 7h5v5"/></svg></span><small>Retorno de anuncios</small></span><b class="num">7,2×</b><span class="vs">por cada € invertido</span></div>
             </div>
-            <div class="row2">
+            <div class="row2 r-brief">
               <div class="card">
                 <span class="t">En pocas palabras</span><span class="d">Lo esencial del mes</span>
                 <ul class="brief">
@@ -1374,8 +1443,10 @@
           <h3>Manu</h3>
           <div class="role"><b>Cofundador</b><span class="tag">Estrategia, datos y automatización</span></div>
           <p>Me aseguro de que lo que grabamos <strong>te traiga clientes</strong>. Decido contigo qué contamos, a quién y para qué.</p>
+          <details class="more" data-bio="manu"><summary>Leer más</summary>
           <p>Conecto <strong>tus redes, tus anuncios, tu web y tu CRM</strong> para seguir a cada cliente desde el primer contacto hasta la venta. Con IA automatizo procesos y análisis, y te lo enseño todo en <strong>un panel a tu medida</strong>: qué te está trayendo negocio y qué no.</p>
           <p>Junto a Stevan convierto esa visión en <strong>un sistema que funciona</strong>: diseño la marca y la web, y uno contenido, datos y tecnología para que cada vídeo trabaje para tu negocio.</p>
+          </details>
           <div class="sign">Que te vean. Que te elijan. Que te compren.</div>
         </div>
       </article>
@@ -1385,8 +1456,10 @@
           <h3>Stevan</h3>
           <div class="role"><b>Cofundador</b><span class="tag">Marca, contenido y crecimiento</span></div>
           <p>VEO UP empezó como una idea: <strong>hacer visible el valor que ya existe</strong>. Le di nombre, dirección y una visión.</p>
+          <details class="more" data-bio="stevan"><summary>Leer más</summary>
           <p>Hoy lidero la <strong>dirección de marca</strong>, la <strong>estrategia creativa y de contenido</strong>, y estoy detrás de la <strong>producción audiovisual</strong> de VEO UP y de nuestros clientes.</p>
           <p>Junto a Manu estamos convirtiendo esa idea en <strong>un sistema de crecimiento para los negocios</strong>: donde el contenido, la creatividad y la tecnología se encuentran para ayudarles a <strong>crear, conectar y crecer</strong>.</p>
+          </details>
           <div class="sign">No vendemos visibilidad. Hacemos visible el valor.</div>
           <p class="rev-only"><span class="pendiente">Pendiente</span> foto de Stevan.</p>
         </div>
@@ -1747,8 +1820,19 @@
     nav.classList.toggle("on-hero", hero.getBoundingClientRect().bottom > 90 && menu.hidden);
   };
   addEventListener("scroll", syncNav, { passive: true });
+  // Menú que se esconde al bajar y reaparece al subir (solo afecta en móvil, ver CSS .nav-up).
+  let lastY = scrollY;
+  addEventListener("scroll", () => {
+    const y = scrollY, d = y - lastY;
+    if (Math.abs(d) < 6) return;
+    nav.classList.toggle("nav-up", d > 0 && y > 260 && menu.hidden);
+    lastY = y;
+  }, { passive: true });
   menuBtn.addEventListener("click", syncNav);
   syncNav();
+
+  // Medición: quién abre la bio del equipo (reutiliza nav_click, ya permitido en GTM).
+  document.querySelectorAll("details.more").forEach(d => d.addEventListener("toggle", () => { if (d.open) track("nav_click", { target: "bio_" + d.dataset.bio }); }));
 
   // Parte los titulares en palabras (sin tocar <em>, <br> ni el texto para lectores de pantalla).
   document.querySelectorAll("main h2:not(.sectors h2)").forEach(h => {
