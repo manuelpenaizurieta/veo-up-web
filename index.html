@@ -54,6 +54,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"VEO UP","url":"https://www.veoup.es/",
  "image":"https://www.veoup.es/media/og-veoup.jpg","telephone":"+34611216083",
+ "sameAs":["https://www.instagram.com/veoup.es/","https://www.tiktok.com/@veoup.es"],
  "description":"Suscripción de contenido para negocios de Valencia: planificamos, grabamos y editamos tu contenido cada mes.",
  "areaServed":{"@type":"City","name":"Valencia"},"address":{"@type":"PostalAddress","addressLocality":"Valencia","addressCountry":"ES"},
  "priceRange":"190 € – 890 € al mes",
@@ -652,6 +653,7 @@
   .socials a.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color: #fff; box-shadow: none; }
   .socials a.tt { background: #000; color: #fff; box-shadow: none; }
   .socials a.tt svg { filter: drop-shadow(-1.5px -1.5px 0 #25f4ee) drop-shadow(1.5px 1.5px 0 #fe2c55); }
+  .foot-col .handle { font-size: 13px; opacity: .7; }
   .socials a.yt { background: #ff0000; color: #fff; box-shadow: none; }
   .socials svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .socials svg.solid { fill: currentColor; stroke: none; }
@@ -1540,10 +1542,10 @@
     <div class="foot-col">
       <span class="label">Síguenos</span>
       <div class="socials">
-        <a class="ig" href="#" aria-disabled="true" aria-label="Instagram (pendiente)" title="Instagram · URL pendiente"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
-        <a class="tt" href="#" aria-disabled="true" aria-label="TikTok (pendiente)" title="TikTok · URL pendiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
+        <a class="ig" data-social="instagram" href="https://www.instagram.com/veoup.es/" target="_blank" rel="noopener" aria-label="Instagram de VEO UP (@veoup.es)" title="@veoup.es en Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <a class="tt" data-social="tiktok" href="https://www.tiktok.com/@veoup.es" target="_blank" rel="noopener" aria-label="TikTok de VEO UP (@veoup.es)" title="@veoup.es en TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
       </div>
-      <span class="pendiente rev-only" style="justify-self:start">URLs pendientes</span>
+      <span class="handle">@veoup.es</span>
     </div>
     <div class="foot-col">
       <span class="label">Legal</span>
@@ -1698,6 +1700,7 @@
   document.querySelectorAll("[data-form-link]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "formulario" })));
 
   // Más eventos: LinkedIn y reproducción de reels.
+  document.querySelectorAll("[data-social]").forEach(a => a.addEventListener("click", () => track("nav_click", { target: "social_" + a.dataset.social })));
   document.querySelectorAll(".person .li").forEach(a => a.addEventListener("click", () => track("linkedin_click", { person: "manu" })));
   document.querySelectorAll("video").forEach(v => {
     let sent = false;
