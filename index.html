@@ -1906,7 +1906,8 @@
     const t = href === "#top" ? null : document.querySelector(href);
     if (href !== "#top" && !t) return;
     e.preventDefault();
-    const L = window.__lenis;
+    // En pantallas táctiles Lenis no anima el scroll de la ventana: ahí, scroll nativo.
+    const L = matchMedia("(pointer: fine)").matches ? window.__lenis : null;
     if (!t) L ? L.scrollTo(0, { duration: 1.2 }) : scrollTo({ top: 0, behavior: "smooth" });
     else if (L) L.scrollTo(t, { offset: -80, duration: 1.2 });
     else scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: "smooth" });
