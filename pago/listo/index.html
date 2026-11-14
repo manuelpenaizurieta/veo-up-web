@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/media/icons/apple-touch-icon.png">
+<title>Suscripción activada · VEO UP</title>
+<meta name="theme-color" content="#F7F7F2">
+<!-- Vuelta de Stripe Checkout: /pago/listo/?s=cs_...  Comprueba el pago con el script «VEO UP · Pagos»
+     (accion=verificar) y solo entonces muestra el botón para reservar el Content Day. -->
+<script>
+  window.PAGOS_URL = "https://script.google.com/macros/s/AKfycbxJiuLP9dBSeJyOOU-HBN6FaSbENUi63OnrqpXnS40Et7CWuGS_tX3CZ9_5qboIol6R/exec";   // misma URL /exec que en /pago
+  window.RESERVA_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ03F1mncSp85nxFG4HH37knRtbAJTxR30vqGMRUbu-e03DDGPWOVRzpmzbWxE3tiW-y1_gQlDCN";
+  window.GTM_ID = "GTM-MJM75GLF";
+  window.dataLayer = window.dataLayer || [];
+  var veoQueue = [];
+  window.track = function (event, params) {
+    var e = Object.assign({ event: event }, params || {});
+    if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
+  };
+  try { window.__veoInterno = localStorage.getItem("veoup-interno") === "1"; } catch (e) { window.__veoInterno = false; }
+  window.loadGTM = function () {
+    if (!window.GTM_ID || window.__gtmLoaded || window.__veoInterno) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
+    document.head.appendChild(s);
+  };
+  try { if (localStorage.getItem("veoup-consent") === "si") window.loadGTM(); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #101010; --cream: #F7F7F2; --green: #38D66B; --grey: #EAECE9; --muted: #5a5d59; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--cream); color: var(--black); font: 16px/1.5 Inter, system-ui, sans-serif; display: flex; flex-direction: column; }
+  .top { max-width: 560px; width: 100%; margin: 0 auto; padding: 20px 16px 0; }
+  .top img { display: block; width: 112px; height: auto; }
+  main { flex: 1; width: 100%; max-width: 560px; margin: 0 auto; padding: 40px 16px 48px; }
+  .check { width: 56px; height: 56px; border-radius: 50%; background: var(--green); display: grid; place-items: center; animation: pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+  .check svg { width: 28px; height: 28px; fill: none; stroke: var(--black); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .spin { width: 40px; height: 40px; border-radius: 50%; border: 4px solid var(--grey); border-top-color: var(--black); animation: g 1s linear infinite; }
+  @keyframes g { to { transform: rotate(360deg); } }
+  @keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+  h1 { font: 700 clamp(30px, 7vw, 40px)/1.1 Sora, Inter, sans-serif; letter-spacing: -.02em; margin: 24px 0 12px; }
+  .lede { font-size: 18px; color: #3a3d39; margin: 0 0 28px; }
+  .card { background: #fff; border-radius: 24px; padding: 24px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 40px rgba(16,16,16,.06); }
+  .card h2 { font: 700 20px/1.25 Sora, Inter, sans-serif; margin: 0 0 6px; }
+  .card p { margin: 0 0 20px; color: #3a3d39; }
+  .card ul { margin: 0 0 20px; padding-left: 18px; color: #3a3d39; font-size: 15px; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; border-radius: 999px;
+    background: var(--green); color: var(--black); font: 700 17px Inter, sans-serif; text-decoration: none; box-shadow: 0 8px 24px rgba(56,214,107,.35); }
+  .btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .help { margin: 28px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
+  .help a { color: var(--black); font-weight: 600; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="top"><a href="/" aria-label="VEO UP, ir a la web"><img src="/media/firma-logo.png" width="176" height="52" alt="VEO UP"></a></header>
+<main>
+  <div id="cargando"><div class="spin" aria-hidden="true"></div><h1>Confirmando tu pago…</h1><p class="lede">Un momento.</p></div>
+
+  <div id="ok" hidden>
+    <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h1 id="titulo">¡Bienvenido a VEO UP!</h1>
+    <p class="lede">Tu suscripción <b id="plan"></b> está activa. Te llegará la factura por email.</p>
+    <section class="card">
+      <h2>Reserva tu Content Day</h2>
+      <p>Elige el día y la hora para grabar en tu negocio.</p>
+      <ul>
+        <li>Con al menos <b>48 horas</b> de antelación.</li>
+        <li>De lunes a viernes. La sesión dura hasta 2 horas.</li>
+      </ul>
+      <a class="btn" id="reservar" href="#" target="_blank" rel="noopener">Reservar Content Day
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+  </div>
+
+  <div id="ko" hidden>
+    <h1>No hemos podido confirmar el pago</h1>
+    <p class="lede">Si has pagado, no te preocupes: lo revisamos y te escribimos por email con el enlace para reservar tu Content Day.</p>
+  </div>
+
+  <p class="help">¿Necesitas ayuda? <a href="https://wa.me/34611216083?text=Hola%2C%20acabo%20de%20activar%20mi%20plan%20de%20VEO%20UP." target="_blank" rel="noopener" id="wa">Escríbenos por WhatsApp</a></p>
+</main>
+<script>
+  var NOMBRES = { content: "Content", growth: "Growth", scale: "Scale" };
+  var s = new URLSearchParams(location.search).get("s") || "";
+  function mostrar(id) { ["cargando", "ok", "ko"].forEach(function (x) { document.getElementById(x).hidden = x !== id; }); }
+  if (!window.PAGOS_URL || !/^cs_[A-Za-z0-9_]+$/.test(s)) mostrar("ko");
+  else fetch(window.PAGOS_URL + "?accion=verificar&s=" + encodeURIComponent(s)).then(function (r) { return r.json(); }).then(function (d) {
+    if (!d || !d.ok || !d.pagado) { mostrar("ko"); return; }
+    if (d.nombre) document.getElementById("titulo").textContent = "¡Bienvenido a VEO UP, " + String(d.nombre).slice(0, 30) + "!";
+    document.getElementById("plan").textContent = NOMBRES[d.plan] || "";
+    document.getElementById("reservar").href = window.RESERVA_URL;
+    mostrar("ok");
+    track("purchase_ok", { plan: d.plan || "" });
+  }).catch(function () { mostrar("ko"); });
+  document.getElementById("reservar").addEventListener("click", function () { track("booking_click", { zona: "pago_listo" }); });
+  document.getElementById("wa").addEventListener("click", function () { track("wa_click", { wa_plan: "doubt", wa_zone: "pago_listo" }); });
+</script>
+</body>
+</html>
