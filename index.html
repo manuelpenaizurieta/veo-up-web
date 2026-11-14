@@ -891,11 +891,27 @@
   .win .glance, .win .r-brief, .kpis > :nth-child(-n+4), .win .donut,
   .win-tabs span:nth-child(n+5) { display: none; }
   .win .row2:has(.funnel) { grid-template-columns: 1fr; }
+  /* Bloque de Scale como tarjeta (Manu, 2026-11-15): texto protagonista a la izquierda y el panel
+     asomando a la derecha, recortado por abajo y por el borde, como vista previa del producto. */
+  .scale-block { margin-top: 88px; gap: 0; background: var(--white); border-radius: 32px; overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--line), 0 30px 60px -40px rgba(16,16,16,.25); align-items: stretch; }
+  .scale-text { padding: 32px 24px 28px; gap: 18px; align-content: center; }
+  .scale-text h3 { font-size: clamp(30px, 3.4vw, 46px); }
+  .scale-text .lede { max-width: 30em; }
+  .scale-feats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 12px; }
+  .scale-feats li { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; font-size: 16px; line-height: 1.45; color: var(--ink); }
+  .scale-feats li::before { content: ""; width: 24px; height: 24px; border-radius: 50%; margin-top: 0;
+    background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101010' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat; }
+  .scale-block .panel { position: relative; overflow: hidden; display: block; max-height: 380px; padding: 28px 0 0 24px;
+    background: radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--green) 22%, transparent), transparent 60%), var(--grey); }
+  .scale-block .win { min-width: 520px; border-radius: 16px 0 0 0; box-shadow: -20px 30px 60px -30px rgba(16,16,16,.45); }
+  .scale-block .panel::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--grey)); pointer-events: none; }
   @media (min-width: 1000px) {
-    .scale-block { grid-template-columns: 1fr 1fr; gap: 72px; }
-    .scale-block .panel { width: 100%; max-width: 520px; justify-self: end; }
-    .scale-text h3 { font-size: clamp(34px, 3.6vw, 48px); }
-    .scale-text .lede { font-size: 19px; }
+    .scale-block { grid-template-columns: 1fr 1.1fr; }
+    .scale-text { padding: 64px 56px; }
+    .scale-block .panel { max-height: none; min-height: 540px; padding: 0; }
+    .scale-block .win { position: absolute; left: 56px; top: 56px; width: 640px; }
   }
   .brief li span { display: block; color: #d8dad3; font-size: 12px; line-height: 1.45; }
   .brief li b { color: var(--white); font-weight: 600; }
@@ -1340,7 +1356,12 @@
         <span class="label">Incluido en Scale</span>
         <h3>Tu negocio, en un solo panel.</h3>
         <p class="lede">Anuncios, leads, citas y ventas en el mismo sitio. Cada persona que llega desde tus anuncios entra en tu panel y la seguimos hasta que se convierte en cliente.</p>
-        <div class="stepper" aria-label="Etapas de seguimiento"><span>Nuevo</span><i>→</i><span>Contactado</span><i>→</i><span>Cita</span><i>→</i><span>Cliente</span></div>
+        <ul class="scale-feats">
+          <li>Campañas en Meta Ads con creatividades y landing, todo conectado.</li>
+          <li>Seguimiento de cada lead, del anuncio a la venta.</li>
+          <li>Conexión con tu CRM, si ya usas uno.</li>
+          <li>Growth Review mensual con tus resultados.</li>
+        </ul>
       </div>
       <figure class="panel reveal">
         <div class="win" role="img" aria-label="Maqueta del panel de Scale: indicadores, evolución de leads y seguimiento por etapas, sin datos reales">
