@@ -886,6 +886,17 @@
     .kpis .vs { font-size: 8.5px; }
   }
   .kpis .grp { grid-column: 1 / -1; font: 600 10px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2-on-dark); margin-top: 4px; }
+  /* Panel de Scale más compacto (Manu, 2026-11-15): el texto manda; el panel enseña solo
+     captación, ventas y el embudo. El resto del HTML se queda, oculto, por si se recupera. */
+  .win .glance, .win .r-brief, .kpis > :nth-child(-n+4), .win .donut,
+  .win-tabs span:nth-child(n+5) { display: none; }
+  .win .row2:has(.funnel) { grid-template-columns: 1fr; }
+  @media (min-width: 1000px) {
+    .scale-block { grid-template-columns: 1fr 1fr; gap: 72px; }
+    .scale-block .panel { width: 100%; max-width: 520px; justify-self: end; }
+    .scale-text h3 { font-size: clamp(34px, 3.6vw, 48px); }
+    .scale-text .lede { font-size: 19px; }
+  }
   .brief li span { display: block; color: #d8dad3; font-size: 12px; line-height: 1.45; }
   .brief li b { color: var(--white); font-weight: 600; }
 
