@@ -1894,21 +1894,23 @@
     if (typeof Lenis !== "function") return;
     const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
-    document.addEventListener("click", e => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a || a.getAttribute("href").length < 2) return;
-      const href = a.getAttribute("href");
-      if (href === "#top") {  // logo → inicio, y la dirección vuelve a veoup.es sin "#trabajo" ni similares
-        e.preventDefault(); lenis.scrollTo(0, { duration: 1.2 });
-        try { history.replaceState(null, "", location.pathname + location.search); } catch (x) {}
-        return;
-      }
-      const t = document.querySelector(href);
-      if (!t) return;
-      e.preventDefault();
-      lenis.scrollTo(t, { offset: -80, duration: 1.2 });
-      try { history.replaceState(null, "", href); } catch (x) {}
-    });
+    window.__lenis = lenis;
+  });
+  // Enlaces internos (#trabajo, #planes…): desplazan sin dejar "#..." en la dirección (Manu, 2026-11-14).
+  // Con Lenis (ratón) usa su scroll; en móvil, el nativo. Solo se conserva #revision.
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (href.length < 2) return;
+    const t = href === "#top" ? null : document.querySelector(href);
+    if (href !== "#top" && !t) return;
+    e.preventDefault();
+    const L = window.__lenis;
+    if (!t) L ? L.scrollTo(0, { duration: 1.2 }) : scrollTo({ top: 0, behavior: "smooth" });
+    else if (L) L.scrollTo(t, { offset: -80, duration: 1.2 });
+    else scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: "smooth" });
+    try { history.replaceState(null, "", location.pathname + location.search + (location.hash === "#revision" ? "#revision" : "")); } catch (x) {}
   });
 </script>
 </body>
