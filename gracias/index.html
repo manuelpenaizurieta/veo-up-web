@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/media/icons/apple-touch-icon.png">
+<title>Gracias · VEO UP</title>
+<meta name="description" content="Hemos recibido tu información. Te escribiremos por email para reservar tu Content Day.">
+<meta name="theme-color" content="#F7F7F2">
+<!-- Página de gracias tras el formulario de onboarding (Tally Yj0JvN).
+     Llega aquí: desde /formulario al enviarse (redirección por JS) y desde el enlace directo de Tally
+     (ajuste "Redirect on completion"). No lleva a la agenda: el enlace del Content Day va en el email de
+     bienvenida que Stevan envía tras revisar (plantilla "Bienvenida + reservar Content Day" en el webmail).
+     Eventos: thanks_view (carga), wa_click (WhatsApp). -->
+<script>
+  window.GTM_ID = "GTM-MJM75GLF";
+  window.dataLayer = window.dataLayer || [];
+  var veoQueue = [];
+  window.track = function (event, params) {
+    var e = Object.assign({ event: event }, params || {});
+    if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
+  };
+  try { window.__veoInterno = localStorage.getItem("veoup-interno") === "1"; } catch (e) { window.__veoInterno = false; }
+  window.loadGTM = function () {
+    if (!window.GTM_ID || window.__gtmLoaded || window.__veoInterno) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
+    document.head.appendChild(s);
+  };
+  try { if (localStorage.getItem("veoup-consent") === "si") window.loadGTM(); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #101010; --cream: #F7F7F2; --green: #38D66B; --grey: #EAECE9; --muted: #5a5d59; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--cream); color: var(--black); font: 16px/1.5 Inter, system-ui, sans-serif;
+    display: flex; flex-direction: column; }
+  .top { max-width: 560px; width: 100%; margin: 0 auto; padding: 20px 16px 0; display: flex; justify-content: space-between; align-items: center; }
+  .top img { display: block; width: 112px; height: auto; }
+  .top a.back { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; }
+  main { flex: 1; width: 100%; max-width: 560px; margin: 0 auto; padding: 40px 16px 48px; }
+  .check { width: 56px; height: 56px; border-radius: 50%; background: var(--green); display: grid; place-items: center;
+    animation: pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+  .check svg { width: 28px; height: 28px; fill: none; stroke: var(--black); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+  h1 { font: 700 clamp(30px, 7vw, 40px)/1.1 Sora, Inter, sans-serif; letter-spacing: -.02em; margin: 24px 0 12px; }
+  .lede { font-size: 18px; color: #3a3d39; margin: 0 0 28px; }
+  .card { background: #fff; border-radius: 24px; padding: 24px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 40px rgba(16,16,16,.06); }
+  .card h2 { font: 700 20px/1.25 Sora, Inter, sans-serif; margin: 0 0 6px; }
+  .card .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+  .card .meta li { font-size: 13px; font-weight: 600; background: var(--grey); border-radius: 999px; padding: 4px 10px; }
+  .card p { margin: 0 0 20px; color: #3a3d39; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; border-radius: 999px;
+    background: var(--green); color: var(--black); font: 700 17px Inter, sans-serif; text-decoration: none;
+    transition: transform .15s, box-shadow .15s; box-shadow: 0 8px 24px rgba(56,214,107,.35); }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(56,214,107,.45); }
+  .btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 16px; }
+  .card .tip { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--grey); font-size: 13px; color: var(--muted); }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 15px; color: #3a3d39; }
+  .steps b { color: var(--black); }
+  .steps span.n { width: 28px; height: 28px; border-radius: 50%; background: var(--black); color: #fff; display: grid; place-items: center;
+    font: 700 13px Inter, sans-serif; }
+  .help { margin: 28px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
+  .help a { color: var(--black); font-weight: 600; }
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="/" aria-label="VEO UP, ir a la web"><img src="/media/firma-logo.png" width="176" height="52" alt="VEO UP"></a>
+</header>
+<main>
+  <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <h1 id="titulo">¡Gracias! Ya tenemos tu información.</h1>
+  <p class="lede">Con lo que nos has contado empezamos a preparar tu contenido.</p>
+
+  <section class="card" aria-labelledby="siguiente">
+    <h2 id="siguiente">Qué pasa ahora</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><span><b>Revisamos tu información</b> para preparar tu sesión.</span></li>
+      <li><span class="n">2</span><span><b>Te escribimos por email</b> desde <b>start@veoup.es</b> con el enlace para reservar tu <b>Content Day</b>.</span></li>
+      <li><span class="n">3</span><span><b>Grabamos en tu negocio.</b> Un día de producción, contenido para todo el mes.</span></li>
+    </ol>
+    <p class="tip">Si no ves nuestro email, mira en la carpeta de spam o promociones.</p>
+  </section>
+
+  <p class="help">¿Prefieres hablarlo antes? <a href="https://wa.me/34611216083?text=Hola%2C%20acabo%20de%20rellenar%20el%20formulario%20de%20VEO%20UP." target="_blank" rel="noopener" id="wa">Escríbenos por WhatsApp</a></p>
+</main>
+<script>
+  // Nombre opcional en la URL (?n=Ana), que pone /formulario al redirigir. Solo texto, nunca HTML.
+  try {
+    var n = (new URLSearchParams(location.search).get("n") || "").trim().split(/\s+/)[0].slice(0, 30);
+    if (n) document.getElementById("titulo").textContent = "¡Gracias, " + n + "! Ya tenemos tu información.";
+  } catch (e) {}
+  track("thanks_view", { form_name: "onboarding" });
+  document.getElementById("wa").addEventListener("click", function () { track("wa_click", { wa_plan: "doubt", wa_zone: "gracias" }); });
+</script>
+</body>
+</html>

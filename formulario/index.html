@@ -111,7 +111,20 @@
       var p = d.payload.page;
       if (!stepsSeen[p]) { stepsSeen[p] = 1; track("form_step", { form_name: "onboarding", form_step: String(p) }); }
     }
-    if (d.event === "Tally.FormSubmitted" && !sent) { sent = true; track("form_submit", { form_name: "onboarding" }); }
+    if (d.event === "Tally.FormSubmitted" && !sent) {
+      sent = true; track("form_submit", { form_name: "onboarding" });
+      // Lleva a /gracias (reserva de la reunión). Pasa solo el nombre de pila, si viene en las respuestas.
+      var nombre = "";
+      try {
+        (d.payload && d.payload.fields || []).some(function (f) {
+          if (/nombre/i.test(f.title || "") && !/negocio|empresa/i.test(f.title || "")) {
+            var v = f.answer && (f.answer.value != null ? f.answer.value : f.answer.raw);
+            if (typeof v === "string" && v.trim()) { nombre = v.trim().split(/\s+/)[0].slice(0, 30); return true; }
+          }
+        });
+      } catch (x) {}
+      setTimeout(function () { location.href = "/gracias/" + (nombre ? "?n=" + encodeURIComponent(nombre) : ""); }, 700);
+    }
   });
 
   // Banner de cookies (misma lógica que la home; no sale en modo interno).
