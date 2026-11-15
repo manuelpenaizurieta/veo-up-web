@@ -99,7 +99,7 @@
   else fetch(window.PAGOS_URL + "?accion=verificar&s=" + encodeURIComponent(s)).then(function (r) { return r.json(); }).then(function (d) {
     if (!d || !d.ok || !d.pagado) { mostrar("ko"); return; }
     if (d.nombre) document.getElementById("titulo").textContent = "¡Bienvenido a VEO UP, " + String(d.nombre).slice(0, 30) + "!";
-    document.getElementById("plan").textContent = NOMBRES[d.plan] || "";
+    document.getElementById("plan").textContent = (NOMBRES[d.plan] || "") + (d.ads ? " + Google Ads" : "");
     document.getElementById("reservar").href = window.RESERVA_URL;
     mostrar("ok");
     track("purchase_ok", { plan: d.plan || "" });

@@ -67,6 +67,19 @@
   .op .pr { text-align: right; white-space: nowrap; }
   .op .pr b { font: 700 20px Sora, Inter, sans-serif; display: block; }
   .op .pr small { font-size: 12px; color: var(--muted); }
+  .extra { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 14px; align-items: start; background: #fff; border: 2px dashed #c9ccc8;
+    border-radius: 20px; padding: 16px 18px; margin: -6px 0 20px; cursor: pointer; }
+  .extra[hidden] { display: none; }
+  .extra input { position: absolute; opacity: 0; pointer-events: none; }
+  .extra .caja { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #c9ccc8; margin-top: 2px; display: grid; place-items: center; }
+  .extra:has(input:checked) { border-style: solid; border-color: var(--black); }
+  .extra:has(input:checked) .caja { background: var(--black); border-color: var(--black); }
+  .extra:has(input:checked) .caja::after { content: ""; width: 10px; height: 6px; border: solid #fff; border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg); }
+  .extra:has(input:focus-visible) { outline: 3px solid var(--green); outline-offset: 2px; }
+  .extra b { display: block; font: 700 16px/1.3 Sora, Inter, sans-serif; }
+  .extra small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .extra .pr { text-align: right; white-space: nowrap; }
+  .extra .pr b { font-size: 17px; }
   .resumen { background: #fff; border-radius: 20px; padding: 18px 20px; margin: 0 0 18px;
     box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 28px rgba(16,16,16,.05); }
   .resumen dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-size: 15px; }
@@ -112,9 +125,14 @@
       <span class="pr"><b>890 €</b><small>/mes + IVA</small></span></label>
   </fieldset>
 
+  <label class="extra" id="extra" hidden><input type="checkbox" id="ads"><span class="caja" aria-hidden="true"></span>
+    <span><b>Añadir Google Ads</b><small>Para que te encuentren quienes ya te buscan en Google. Opcional, solo con Scale.</small></span>
+    <span class="pr"><b>+300 €</b><small>/mes + IVA</small></span></label>
+
   <section class="resumen" aria-live="polite">
     <dl>
       <dt id="r-plan">Plan Growth</dt><dd id="r-base">490,00 €</dd>
+      <dt id="r-ads-t" hidden>Google Ads</dt><dd id="r-ads" hidden>300,00 €</dd>
       <dt>IVA (21 %)</dt><dd id="r-iva">102,90 €</dd>
       <dt class="tot">Total al mes</dt><dd class="tot" id="r-total">592,90 €</dd>
     </dl>
@@ -140,16 +158,22 @@
   var eur = function (n) { return n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €"; };
   var pre = (q.get("plan") || "").toLowerCase();
   if (PRECIOS[pre]) document.querySelector('input[value="' + pre + '"]').checked = true;
+  var ADS = 300, adsBox = document.getElementById("ads"), extra = document.getElementById("extra");
+  if (q.get("ads") === "1") adsBox.checked = true;
+  function conAds() { return plan() === "scale" && adsBox.checked; }
   if (q.get("cancelado")) document.getElementById("cancelado").style.display = "block";
   function plan() { return document.querySelector('input[name="plan"]:checked').value; }
   function pintar() {
-    var p = plan(), base = PRECIOS[p], iva = Math.round(base * 21) / 100;
+    var p = plan(); extra.hidden = p !== "scale";
+    var a = conAds(), base = PRECIOS[p] + (a ? ADS : 0), iva = Math.round(base * 21) / 100;
     document.getElementById("r-plan").textContent = "Plan " + NOMBRES[p];
-    document.getElementById("r-base").textContent = eur(base);
+    document.getElementById("r-base").textContent = eur(PRECIOS[p]);
+    document.getElementById("r-ads-t").hidden = !a; document.getElementById("r-ads").hidden = !a;
     document.getElementById("r-iva").textContent = eur(iva);
     document.getElementById("r-total").textContent = eur(base + iva);
   }
   document.querySelectorAll('input[name="plan"]').forEach(function (r) { r.addEventListener("change", pintar); });
+  adsBox.addEventListener("change", pintar);
   pintar();
   track("pay_view", { plan: plan() });
 
@@ -158,9 +182,9 @@
   btn.addEventListener("click", function () {
     if (!window.PAGOS_URL) return;
     btn.disabled = true; err.textContent = ""; btn.firstChild.textContent = "Abriendo pago seguro… ";
-    var u = window.PAGOS_URL + "?accion=crear&plan=" + encodeURIComponent(plan()) +
+    var u = window.PAGOS_URL + "?accion=crear&plan=" + encodeURIComponent(plan()) + (conAds() ? "&ads=1" : "") +
       "&email=" + encodeURIComponent(q.get("email") || "") + "&ref=" + encodeURIComponent(q.get("ref") || "");
-    track("pay_click", { plan: plan() });
+    track("pay_click", { plan: plan(), ads: conAds() ? "si" : "no" });
     fetch(u).then(function (r) { return r.json(); }).then(function (d) {
       if (d && d.ok && /^https:\/\/checkout\.stripe\.com\//.test(d.url)) { location.href = d.url; return; }
       throw new Error((d && d.error) || "respuesta");
