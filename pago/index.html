@@ -14,8 +14,7 @@
      El botón llama al script «VEO UP · Pagos» (Apps Script en start@), que crea la sesión de Stripe Checkout con
      IVA 21 % no incluido y devuelve la URL. Precios: deben coincidir con Stripe (190 / 490 / 890 € + IVA). -->
 <script>
-  window.PAGOS_URL = "";   // DESACTIVADO (Manu, 2026-11-15): sin datos de facturación todavía. Para reactivar, poner la URL /exec de «VEO UP · Pagos»:
-  // https://script.google.com/macros/s/AKfycbxJiuLP9dBSeJyOOU-HBN6FaSbENUi63OnrqpXnS40Et7CWuGS_tX3CZ9_5qboIol6R/exec   // URL /exec de la web app «VEO UP · Pagos». Vacía = botón desactivado.
+  window.PAGOS_URL = "https://script.google.com/macros/s/AKfycbxJiuLP9dBSeJyOOU-HBN6FaSbENUi63OnrqpXnS40Et7CWuGS_tX3CZ9_5qboIol6R/exec";   // Stripe en MODO PRUEBA (2026-11-15): flujo real activo; los gratis usan /formulario/?gratis=1   // URL /exec de la web app «VEO UP · Pagos». Vacía = botón desactivado.
   window.GTM_ID = "GTM-MJM75GLF";
   window.dataLayer = window.dataLayer || [];
   var veoQueue = [];

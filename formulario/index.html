@@ -81,6 +81,14 @@
 <main>
   <iframe id="tally" data-tally-src="https://tally.so/embed/Yj0JvN?alignLeft=1&amp;transparentBackground=1&amp;dynamicHeight=1"
     loading="eager" title="Empecemos con tu contenido · VEO UP"></iframe>
+  <script>
+    // Enlace gratis (Stevan, 2026-11-15): veoup.es/formulario/?gratis=1 pasa la marca a Tally (campo oculto «gratis»):
+    // oculta la pregunta de planes y el script de correos envía la bienvenida gratis en vez del enlace de pago.
+    (function () {
+      var g = new URLSearchParams(location.search).get("gratis");
+      if (g === "1") { var f = document.getElementById("tally"); f.dataset.tallySrc += "&gratis=1"; }
+    })();
+  </script>
   <p class="help">¿Alguna duda? <a href="https://wa.me/34611216083?text=Hola%2C%20tengo%20una%20duda%20con%20el%20formulario%20de%20VEO%20UP." target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
 </main>
 <!-- PENDIENTE: el texto del banner y la política de cookies los revisa un responsable (igual que en la home) -->
