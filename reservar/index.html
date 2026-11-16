@@ -73,7 +73,9 @@
   .hora:hover { border-color: #b9bcb6; }
   .hora[aria-pressed="true"] { background: var(--green); border-color: var(--green); }
   .hora[aria-pressed="true"] small { color: #10421f; }
-  @media (max-width: 420px) { .horas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .franja { grid-column: 1 / -1; margin: 8px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .franja:first-child { margin-top: 0; }
+  @media (max-width: 420px) { .horas { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hora { height: 48px; font-size: 15px; } }
   .resumen { display: flex; gap: 12px; align-items: center; background: var(--green-bg); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; font-size: 15px; }
   .resumen svg { flex: none; width: 22px; height: 22px; fill: none; stroke: var(--green-ink); stroke-width: 2; stroke-linecap: round; }
   .resumen[hidden] { display: none; }
@@ -142,7 +144,7 @@
       if (p.accion === "reservar") return res({ ok: true, inicio: p.ini });
       var out = [], base = new Date(); base.setHours(0, 0, 0, 0);
       for (var i = 2; i < 22; i++) { var d = new Date(base.getTime() + i * 864e5); if (d.getDay() === 0 || d.getDay() === 6) continue;
-        [9, 12, 15, 18].forEach(function (h, k) { if ((i + k) % 3) out.push(new Date(d.getTime() + h * 36e5).toISOString()); }); }
+        for (var m = 540; m <= 1080; m += 30) { if (i % 3 === 0 && m >= 600 && m < 780) continue; out.push(new Date(d.getTime() + m * 6e4).toISOString()); } }
       res({ ok: true, negocio: "Café Tres Hojas", nombre: "Lucía", reservado: null, huecos: out, duracion: 120, antelacion: 48 });
     }, 500); });
   }
@@ -197,8 +199,11 @@
           + '</small><b>' + x.toLocaleDateString("es-ES", { timeZone: TZ, day: "numeric" }) + '</b><span>' + x.toLocaleDateString("es-ES", { timeZone: TZ, month: "short" }).replace(".", "") + '</span></button>'; }).join("");
     }
     function pintarHoras() {
-      horas.innerHTML = (porDia[sel.dia] || []).map(function (x) { var iso = x.toISOString();
-        return '<button type="button" class="hora" data-i="' + iso + '" aria-pressed="' + (sel.ini === iso) + '">' + hora(x) + '</button>'; }).join("");
+      var boton = function (x) { var iso = x.toISOString();
+        return '<button type="button" class="hora" data-i="' + iso + '" aria-pressed="' + (sel.ini === iso) + '">' + hora(x) + '</button>'; };
+      var lista = porDia[sel.dia] || [], h = function (x) { return Number(hora(x).slice(0, 2)); };
+      var man = lista.filter(function (x) { return h(x) < 14; }), tar = lista.filter(function (x) { return h(x) >= 14; });
+      horas.innerHTML = (man.length ? '<p class="franja">Mañana</p>' + man.map(boton).join("") : "") + (tar.length ? '<p class="franja">Tarde</p>' + tar.map(boton).join("") : "");
       var r = document.getElementById("resumen");
       if (sel.ini) { r.hidden = false; document.getElementById("r-txt").innerHTML = "<b>" + esc(largo(new Date(sel.ini))) + "</b>"; } else r.hidden = true;
       btn.disabled = !sel.ini;
