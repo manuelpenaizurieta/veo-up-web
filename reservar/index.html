@@ -157,9 +157,10 @@
       res({ ok: true, negocio: "Café Tres Hojas", nombre: "Lucía", reservado: null, huecos: out, duracion: 120, antelacion: 48 });
     }, 500); });
   }
-  function pantallaEstado(tipo, titulo, texto, extraHTML) {
+  function pantallaEstado(tipo, titulo, texto, extraHTML, waMsg) {
     app.innerHTML = '<div class="card estado"><div class="ic' + (tipo === "no" ? " no" : "") + '">' + (tipo === "no" ? ICON.no : ICON.ok) + '</div>'
-      + '<h2>' + titulo + '</h2>' + texto + (extraHTML || "") + '</div>' + ayuda();
+      + '<h2>' + titulo + '</h2>' + texto + (extraHTML || "") + '</div>'
+      + (/wa\.me/.test(extraHTML || "") ? "" : ayuda(waMsg));   // un solo botón de WhatsApp por pantalla
   }
   function ayuda(t) {
     return '<div class="help"><p>¿Necesitas otra fecha o tienes dudas?</p><a class="btn cal wa" href="' + WA + encodeURIComponent(t || "Hola, tengo una duda con la reserva de mi Content Day.") + '" target="_blank" rel="noopener">'
@@ -261,8 +262,7 @@
     var ini = res && res.inicio ? new Date(res.inicio) : null;
     pantallaEstado("ok", "Ya tienes tu Content Day", (ini ? '<p class="fecha">' + esc(largo(ini)) + '</p>' : "")
       + "<p>Si necesitas cambiar la fecha, escríbenos y lo movemos.</p>",
-      (ini ? botonesCal(ini, 120, "").replace('cal-opc"', 'cal-opc" style="margin-bottom:10px"') : "")
-      + '<div class="acciones"><a class="btn sec" href="' + WA + encodeURIComponent("Hola, quiero cambiar la fecha de mi Content Day.") + '" target="_blank" rel="noopener">Cambiar la fecha por WhatsApp</a></div>');
+      ini ? botonesCal(ini, 120, "") : "", "Hola, quiero cambiar la fecha de mi Content Day.");
   }
   function cargar(manteniendoError) {
     if (!ref && !DEMO) return sinRef();
