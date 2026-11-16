@@ -1647,11 +1647,13 @@
   // Quien entra por el QR es un negocio seleccionado para la prueba gratuita (Manu, 2026-11-16): todos los botones
   // de WhatsApp llevan este mensaje, sea cual sea el plan del botón (el plan se sigue midiendo en wa_click).
   // Sin «(QR)» a la vista del cliente: el propio texto (solo lo envía quien entra por el QR) es la marca de origen.
+  // TEMPORAL: solo durante la semana de prueba (Manu, 2026-11-16). Después el QR va al flujo normal: quitar WA_QR y
+  // usar WA_MESSAGES también para el QR (cambio ya probado: la prueba gratis queda solo en /gratis/).
   const WA_QR = "¡Hola! 👋 Vengo de la web de VEO UP y quiero comenzar mi experiencia con la prueba gratuita. 🚀\n\n"
     + "Soy un negocio seleccionado por el equipo de VEO UP y me gustaría comenzar este proceso para descubrir todo lo que podemos conseguir juntos.";
   // Origen de la visita: si llega desde el QR (/start pone utm_source=qr), se recuerda durante la visita y los
   // botones de WhatsApp usan el mensaje WA_QR (sin marca visible; desde 2026-11-16 ya no se añade «(QR)»).
-  // waTag solo sirve ya para saber el origen (wa_origin=qr en la medición).
+  // waTag también sirve para saber el origen (wa_origin=qr en la medición).
   let waTag = "";
   try {
     const q = new URLSearchParams(location.search);
@@ -1660,6 +1662,8 @@
     if (src === "qr") waTag = camp && camp !== "puerta-fria" ? " (QR · " + camp + ")" : " (QR)";
   } catch (e) {}
   const waOrigin = waTag ? "qr" : "web";
+  // El formulario del QR NO va a /gratis/ (Manu, 2026-11-16): la prueba gratis es solo para 4 negocios, que entran
+  // por el enlace /gratis/ que les pasan los socios; el QR lleva al flujo normal de pago.
   // Zona de la web donde está un elemento (para saber desde dónde hacen clic).
   const zoneOf = el => {
     if (el.closest(".wa-nudge")) return "burbuja_dudas";
