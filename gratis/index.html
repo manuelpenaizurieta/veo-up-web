@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/media/icons/apple-touch-icon.png">
+<title>Empieza tu prueba gratuita · VEO UP</title>
+<meta name="description" content="Cuéntanos un poco de tu negocio para preparar tu Content Day. Son 5 minutos.">
+<meta property="og:title" content="Empieza tu prueba gratuita · VEO UP">
+<meta property="og:description" content="Cuéntanos un poco de tu negocio para preparar tu Content Day. Son 5 minutos.">
+<meta property="og:url" content="https://www.veoup.es/gratis/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="VEO UP">
+<meta property="og:image" content="https://www.veoup.es/media/og-gratis.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VEO UP: Haz que te vean. Haz que te elijan. Prueba gratuita.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.veoup.es/media/og-gratis.jpg">
+<meta name="theme-color" content="#0A0A0C">
+<!-- Formulario de la prueba gratuita: enlace corto veoup.es/gratis (2026-11-16). Es la misma página que
+     /formulario/ con la marca gratis=1 siempre puesta en el Tally Yj0JvN (campo oculto «gratis»): oculta la
+     pregunta de planes y el script de correos envía la bienvenida gratis.
+     Eventos: form_view, form_step, form_submit con form_name "onboarding_gratis". -->
+<script>
+  window.GTM_ID = "GTM-MJM75GLF";
+  window.dataLayer = window.dataLayer || [];
+  var veoQueue = [];
+  window.track = function (event, params) {
+    var e = Object.assign({ event: event }, params || {});
+    if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
+  };
+  try {
+    var qi = new URLSearchParams(location.search).get("interno");
+    if (qi === "1") localStorage.setItem("veoup-interno", "1");
+    if (qi === "0") localStorage.removeItem("veoup-interno");
+    window.__veoInterno = localStorage.getItem("veoup-interno") === "1";
+  } catch (e) { window.__veoInterno = false; }
+  window.loadGTM = function () {
+    if (!window.GTM_ID || window.__gtmLoaded || window.__veoInterno) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
+    document.head.appendChild(s);
+  };
+  try { if (localStorage.getItem("veoup-consent") === "si") window.loadGTM(); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #101010; --cream: #F7F7F2; --green: #38D66B; --grey: #EAECE9; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--black); font: 16px/1.5 Inter, system-ui, sans-serif; }
+  .top { max-width: 680px; margin: 0 auto; padding: 16px 16px 0; }
+  .back { font-size: 14px; font-weight: 600; color: #5a5d59; text-decoration: none; }
+  .back:hover { color: var(--black); }
+  main { max-width: 680px; margin: 0 auto; padding: 12px 16px 48px; }
+  iframe { width: 100%; border: 0; min-height: 520px; display: block; }
+  /* Mientras sale el aviso de cookies, hueco abajo para que no tape el botón del formulario */
+  html.consent-open main { padding-bottom: 240px; }
+  .help { margin-top: 24px; font-size: 14px; color: #5a5d59; text-align: center; }
+  .help a { color: var(--black); font-weight: 600; }
+  .consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60; background: #fff; border-radius: 18px;
+    padding: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.18); display: grid; gap: 12px; opacity: 0; transform: translateY(12px);
+    pointer-events: none; transition: .3s; }
+  .consent.show { opacity: 1; transform: none; pointer-events: auto; }
+  .consent p { margin: 0; font-size: 14px; line-height: 1.45; color: #3a3d39; }
+  .consent p b { color: var(--black); }
+  .consent-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .consent button { min-height: 44px; border: 0; border-radius: 999px; font: 600 14px Inter, sans-serif; cursor: pointer; }
+  .consent .no { background: var(--grey); color: var(--black); }
+  .consent .si { background: var(--black); color: #fff; }
+  @media (min-width: 900px) { .consent { left: 24px; right: auto; bottom: 24px; width: 380px; } }
+</style>
+</head>
+<body>
+<!-- La portada del formulario de Tally ya lleva el logo: aquí solo un enlace discreto de vuelta a la web -->
+<header class="top"><a href="/" class="back">← Volver a veoup.es</a></header>
+<main>
+  <!-- gratis=1 va fijo en la URL del iframe: lo usan Tally.loadEmbeds() y el respaldo del setTimeout de abajo -->
+  <iframe id="tally" data-tally-src="https://tally.so/embed/Yj0JvN?alignLeft=1&amp;transparentBackground=1&amp;dynamicHeight=1&amp;gratis=1"
+    loading="eager" title="Empieza tu prueba gratuita · VEO UP"></iframe>
+  <p class="help">¿Alguna duda? <a href="https://wa.me/34611216083?text=Hola%2C%20tengo%20una%20duda%20con%20el%20formulario%20de%20la%20prueba%20gratuita%20de%20VEO%20UP." target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+</main>
+<!-- PENDIENTE: el texto del banner y la política de cookies los revisa un responsable (igual que en la home) -->
+<div class="consent" id="consent" role="dialog" aria-label="Cookies" aria-hidden="true">
+  <p><b>¿Nos dejas medir?</b> Usamos cookies de analítica para saber qué funciona en la web. Solo si aceptas.</p>
+  <div class="consent-btns">
+    <button type="button" class="no" data-consent="no">Rechazar</button>
+    <button type="button" class="si" data-consent="si">Aceptar</button>
+  </div>
+</div>
+<script src="https://tally.so/widgets/embed.js" async onload="Tally.loadEmbeds()"></script>
+<script>
+  // Por si embed.js tarda o falla: carga el iframe directamente.
+  setTimeout(function () {
+    var f = document.getElementById("tally");
+    if (!f.src) f.src = f.dataset.tallySrc;
+  }, 2500);
+
+  // Medición del formulario a partir de los mensajes que envía el iframe de Tally.
+  var stepsSeen = {}, sent = false;
+  window.addEventListener("message", function (e) {
+    if (typeof e.origin !== "string" || e.origin.indexOf("tally.so") === -1) return;
+    var d = e.data;
+    if (typeof d === "string") { try { d = JSON.parse(d); } catch (x) { return; } }
+    if (!d || typeof d.event !== "string") return;
+    if (d.event === "Tally.FormLoaded" && !stepsSeen.loaded) { stepsSeen.loaded = 1; track("form_view", { form_name: "onboarding_gratis" }); }
+    if (d.event === "Tally.FormPageView" && d.payload && d.payload.page) {
+      var p = d.payload.page;
+      if (!stepsSeen[p]) { stepsSeen[p] = 1; track("form_step", { form_name: "onboarding_gratis", form_step: String(p) }); }
+    }
+    if (d.event === "Tally.FormSubmitted" && !sent) {
+      sent = true; track("form_submit", { form_name: "onboarding_gratis" });
+      // Lleva a /gracias (reserva de la reunión). Pasa solo el nombre de pila, si viene en las respuestas.
+      var nombre = "";
+      try {
+        (d.payload && d.payload.fields || []).some(function (f) {
+          if (/nombre/i.test(f.title || "") && !/negocio|empresa/i.test(f.title || "")) {
+            var v = f.answer && (f.answer.value != null ? f.answer.value : f.answer.raw);
+            if (typeof v === "string" && v.trim()) { nombre = v.trim().split(/\s+/)[0].slice(0, 30); return true; }
+          }
+        });
+      } catch (x) {}
+      setTimeout(function () { location.href = "/gracias/" + (nombre ? "?n=" + encodeURIComponent(nombre) : ""); }, 700);
+    }
+  });
+
+  // Banner de cookies (misma lógica que la home; no sale en modo interno).
+  var consent = window.__veoInterno ? null : document.getElementById("consent");
+  if (consent) {
+    var choice = null;
+    try { choice = localStorage.getItem("veoup-consent"); } catch (e) {}
+    if (!choice) setTimeout(function () { consent.classList.add("show"); consent.setAttribute("aria-hidden", "false"); document.documentElement.classList.add("consent-open"); }, 600);
+    consent.querySelectorAll("[data-consent]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var v = b.dataset.consent;
+        try { localStorage.setItem("veoup-consent", v); } catch (e) {}
+        consent.classList.remove("show"); consent.setAttribute("aria-hidden", "true"); document.documentElement.classList.remove("consent-open");
+        if (v === "si") window.loadGTM();
+      });
+    });
+  }
+</script>
+</body>
+</html>
