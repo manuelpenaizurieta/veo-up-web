@@ -868,6 +868,8 @@
   .more summary::-webkit-details-marker { display: none; }
   .more summary::after { content: "+"; font-size: 16px; color: var(--green-ink); }
   .more[open] summary::after { content: "–"; }
+  .more .menos, .more[open] .mas { display: none; }
+  .more[open] .menos { display: inline; }
   .more[open] summary { margin-bottom: 10px; }
   .more p + p { margin-top: 10px; }
   /* Avisos internos (Pendiente, Imagen de prueba): solo se ven abriendo la web con #revision */
@@ -1488,25 +1490,27 @@
         <div class="person-body">
           <h3>Manu</h3>
           <div class="role"><b>Cofundador</b><span class="tag">Captación, datos y tecnología</span></div>
-          <p>Hago que tu contenido <strong>te traiga clientes</strong>. Llevo más de 5 años en marketing de resultados, con más de 1 M€ gestionados en publicidad.</p>
-          <details class="more" data-bio="manu"><summary>Leer más</summary>
-          <p>He construido VEO UP por dentro: <strong>la web, las reservas, los pagos, el CRM y las automatizaciones</strong> que acompañan a cada cliente desde el primer mensaje.</p>
-          <p>En tu negocio aplico lo mismo: <strong>anuncios en Meta y Google, medición y automatización con IA</strong>, y un panel a tu medida donde ves qué te trae clientes y qué no.</p>
+          <p>Hago que tu contenido <strong>te traiga clientes</strong>: anuncios, medición y un sistema que sigue a cada cliente hasta la venta.</p>
+          <details class="more" data-bio="manu"><summary><span class="mas">Leer más</span><span class="menos">Leer menos</span></summary>
+          <p>Vengo del marketing de resultados en empresa, agencia y consultoría, en España y Latinoamérica. He dirigido el marketing de <strong>varias marcas de un grupo B2B</strong>, coordinando agencias, ferias y equipo comercial, y he montado la <strong>medición completa del lead a la venta</strong>: web, Google Analytics y CRM conectados.</p>
+          <p>En VEO UP he construido todo lo que no se ve: <strong>la web, las reservas, los pagos, el CRM y las automatizaciones</strong> que acompañan a cada cliente desde el primer mensaje. Trabajo a diario con <strong>agentes de IA</strong> que revisan campañas y datos.</p>
+          <p>En tu negocio aplico lo mismo: <strong>anuncios en Meta y Google con pruebas A/B</strong>, seguimiento de cada contacto y un <strong>panel a tu medida</strong> donde ves qué te trae clientes y qué no.</p>
           </details>
           <div class="sign">Yo hago que te elijan.</div>
         </div>
       </article>
       <article class="person">
         <div class="pic-col">
-          <div class="pic"><img src="media/equipo/stevan.webp" alt="Stevan, de VEO UP" width="640" height="640" loading="lazy"></div>
+          <div class="pic"><img src="media/equipo/stevan-congreso.webp" alt="Stevan, de VEO UP" width="640" height="800" style="object-position:25% 20%" loading="lazy"></div>
         </div>
         <div class="person-body">
           <h3>Stevan</h3>
           <div class="role"><b>Cofundador</b><span class="tag">Marca, creatividad y producción</span></div>
           <p>Hago que <strong>se vea lo que vale tu negocio</strong>: ideas, planificación, grabación y edición de cada vídeo.</p>
-          <details class="more" data-bio="stevan"><summary>Leer más</summary>
-          <p>VEO UP nació de una idea mía: <strong>hacer visible el valor que ya existe</strong>. Le di nombre y hoy me encargo de la <strong>marca</strong>, la <strong>creatividad</strong> y la <strong>producción audiovisual</strong>, la nuestra y la de cada cliente.</p>
-          <p>Grabamos con producción móvil profesional porque <strong>la calidad no debería ser un privilegio</strong>. Cuando el vídeo está listo, entra Manu.</p>
+          <details class="more" data-bio="stevan"><summary><span class="mas">Leer más</span><span class="menos">Leer menos</span></summary>
+          <p>VEO UP nació de una idea mía: <strong>hacer visible el valor que ya existe</strong>. Le di nombre e identidad, y hoy me encargo de la <strong>dirección de marca</strong>, la <strong>estrategia creativa y de contenido</strong> y la <strong>producción audiovisual</strong>, la nuestra y la de cada cliente.</p>
+          <p>Grabamos con <strong>iPhone Pro, Blackmagic Camera, ProRes y audio profesional</strong>, y editamos en DaVinci Resolve. No hace falta una gran producción para lograr grandes resultados: <strong>la calidad no debería ser un privilegio</strong>.</p>
+          <p>Creo en los <strong>pequeños gigantes</strong>: negocios pequeños en tamaño y gigantes en lo que han construido. Mi trabajo es que se note. Cuando el vídeo está listo, entra Manu.</p>
           </details>
           <div class="sign">Yo hago que te vean.</div>
         </div>
