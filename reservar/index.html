@@ -83,6 +83,10 @@
   .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(56,214,107,.45); }
   .btn:disabled { opacity: .5; cursor: default; box-shadow: none; }
   .btn.sec { background: #fff; box-shadow: none; border: 1.5px solid var(--line); }
+  /* Sin hora elegida: gris y con el texto de lo que falta (2026-11-18: en móvil el verde claro parecía activo y «no hacía nada») */
+  .btn.espera { background: var(--grey); color: var(--muted); box-shadow: none; }
+  .btn.espera:hover { transform: none; box-shadow: none; }
+  .error .btn { margin-top: 12px; }
   .btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .spin { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid currentColor; border-right-color: transparent; animation: g .7s linear infinite; }
   @keyframes g { to { transform: rotate(360deg); } }
@@ -145,7 +149,9 @@
   function api(params) {
     if (DEMO) return demo(params);
     var u = window.RESERVAS_URL + "?" + new URLSearchParams(params).toString();
-    return fetch(u).then(function (r) { return r.json(); });
+    /* Límite de 30 s: con mala cobertura el fetch puede quedarse colgado y el botón girando sin fin */
+    var ctl = window.AbortController ? new AbortController() : null, t = ctl && setTimeout(function () { ctl.abort(); }, 30000);
+    return fetch(u, ctl ? { signal: ctl.signal } : {}).then(function (r) { clearTimeout(t); return r.json(); }, function (e) { clearTimeout(t); throw e; });
   }
   /* Vista de diseño (#demo): datos inventados, no reserva nada */
   function demo(p) {
@@ -217,8 +223,8 @@
         : '<div class="vacio">Ahora mismo no quedan huecos libres en las próximas semanas. Escríbenos por WhatsApp y te buscamos fecha.</div>')
       + '</section>'
       + '<div class="resumen" id="resumen" hidden>' + ICON.cal + '<span id="r-txt"></span></div>'
-      + '<button class="btn" id="reservar" type="button" disabled>Reservar Content Day' + ICON.flecha + '</button>'
-      + '<p class="error" id="error" role="alert"></p>'
+      + '<button class="btn espera" id="reservar" type="button" aria-disabled="true">Elige una hora para reservar</button>'
+      + '<div class="error" id="error" role="alert"></div>'
       + '<ul class="lista"><li>' + ICON.ok + '<span>Te llega la <b>confirmación por email</b> al momento.</span></li>'
       + '<li>' + ICON.ok + '<span>Antes de la sesión te enviamos la <b>propuesta de contenido</b>.</span></li>'
       + '<li>' + ICON.ok + '<span>¿Te surge algo? Cambiamos la fecha por WhatsApp.</span></li></ul>' + ayuda();
@@ -237,24 +243,43 @@
       horas.innerHTML = (man.length ? '<p class="franja">Mañana</p>' + man.map(boton).join("") : "") + (tar.length ? '<p class="franja">Tarde</p>' + tar.map(boton).join("") : "");
       var r = document.getElementById("resumen");
       if (sel.ini) { r.hidden = false; document.getElementById("r-txt").innerHTML = "<b>" + esc(largo(new Date(sel.ini))) + "</b>"; } else r.hidden = true;
-      btn.disabled = !sel.ini;
+      etiquetaBoton();
+    }
+    function etiquetaBoton() {
+      btn.classList.toggle("espera", !sel.ini);
+      btn.setAttribute("aria-disabled", String(!sel.ini));
+      btn.innerHTML = sel.ini ? "Reservar Content Day" + ICON.flecha : "Elige una hora para reservar";
+      if (sel.ini) document.getElementById("error").textContent = "";
     }
     dias.addEventListener("click", function (e) { var b = e.target.closest(".dia"); if (!b) return; sel.dia = b.dataset.k; sel.ini = null; pintarDias(); pintarHoras(); });
     horas.addEventListener("click", function (e) { var b = e.target.closest(".hora"); if (!b) return; sel.ini = b.dataset.i; pintarHoras(); });
     pintarDias(); pintarHoras();
     btn.addEventListener("click", function () {
-      if (!sel.ini) return;
-      var neg = document.getElementById("negocio").value.trim(), err = document.getElementById("error");
+      var err = document.getElementById("error");
+      if (btn.disabled) return;
+      if (!sel.ini) { err.textContent = "Elige una hora para tu Content Day."; horas.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+      var neg = document.getElementById("negocio").value.trim();
       if (!neg) { err.textContent = "Escribe el nombre de tu negocio."; document.getElementById("negocio").focus(); return; }
+      var elegido = sel.ini;
       btn.disabled = true; btn.innerHTML = '<span class="spin" aria-hidden="true"></span>Reservando…'; err.textContent = "";
-      api({ accion: "reservar", ref: ref, ini: sel.ini, negocio: neg }).then(function (r) {
+      api({ accion: "reservar", ref: ref, ini: elegido, negocio: neg }).then(function (r) {
         if (r && r.ok) return hecho(new Date(r.inicio), d, neg);
         if (r && r.error === "ya") return yaReservado(r.reservado);
         if (r && r.error === "hueco") { err.textContent = "Ese hueco se acaba de ocupar. Te mostramos los que quedan libres."; return cargar(true); }
         throw new Error(r && r.error || "error");
-      }).catch(function () {
-        btn.disabled = false; btn.innerHTML = "Reservar Content Day" + ICON.flecha;
-        err.textContent = "No se ha podido reservar. Inténtalo de nuevo o escríbenos por WhatsApp.";
+      }).catch(function (e) {
+        track("reserva_error", { motivo: String(e && e.message || e).slice(0, 80) });
+        /* Si la respuesta se perdió por el camino (cobertura, bloqueador), puede que la cita sí se creara: lo comprobamos antes de dar error */
+        return api({ accion: "huecos", ref: ref }).then(function (c) {
+          if (c && c.reservado) return yaReservado(c.reservado);
+          throw e;
+        }).catch(function () {
+          btn.disabled = false; etiquetaBoton();
+          var msg = "Hola, quiero reservar mi Content Day el " + largo(new Date(elegido)).toLowerCase() + " (" + neg + "). En la web no me deja.";
+          err.innerHTML = "No se ha podido reservar desde aquí. Inténtalo de nuevo o mándanos la hora por WhatsApp y te la dejamos reservada."
+            + '<a class="btn sec" href="' + WA + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Reservar por WhatsApp' + ICON.flecha + '</a>';
+          var h = app.querySelector(".help"); if (h) h.hidden = true;   // un solo botón de WhatsApp por pantalla
+        });
       });
     });
   }
