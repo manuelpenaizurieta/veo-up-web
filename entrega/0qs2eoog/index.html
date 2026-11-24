@@ -23,7 +23,15 @@ a{color:inherit;text-decoration:none}h1,h2,h3{font-family:Sora,Inter,sans-serif;
 .hero.on .htxt,.hero.on:after,.hero.on .bar{opacity:0;pointer-events:none;transition:opacity .3s}
 /* Cuerpo claro */
 main{max-width:620px;margin:0 auto;padding:44px 20px 40px}
-.sec+.sec{margin-top:48px}.sec>h2{font-size:30px}.sec>.lead{color:var(--mut);margin-top:6px}
+.sec+.sec{margin-top:48px}
+.carta{background:#fff;border-radius:24px;padding:28px 24px;box-shadow:0 0 0 1px var(--line)}
+.carta .k{color:var(--gi)}.carta .k:before{background:var(--gi)}
+.carta h2{font-size:clamp(26px,7vw,34px);margin:12px 0 16px}.carta h2 em{font-style:normal;color:var(--gi)}
+.carta p{color:#2b2d2a;font-size:16.5px;line-height:1.6}.carta p+p{margin-top:12px}.carta b{color:var(--k)}
+.puntos{list-style:none;margin:20px 0 4px;display:grid;gap:10px}
+.puntos li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;font-size:15px;color:#2b2d2a}
+.puntos li b{color:var(--k)}
+.firma{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}.firma b{display:block;color:var(--k);font:700 17px Sora;letter-spacing:-.01em}.sec>h2{font-size:30px}.sec>.lead{color:var(--mut);margin-top:6px}
 .ok{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;font-weight:600}
 .ok b{width:20px;height:20px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-size:11px}
 .files{margin-top:22px;border-top:1px solid var(--line)}
@@ -33,15 +41,26 @@ main{max-width:620px;margin:0 auto;padding:44px 20px 40px}
 .dl{width:48px;height:48px;border-radius:50%;background:var(--k);color:#fff;display:grid;place-items:center;font-size:20px;transition:transform .15s}
 .dl:active{transform:scale(.94)}.dl.off{background:#d6d7d2;color:#888}
 .note{margin-top:12px;font-size:13px;color:var(--mut)}
-.pasos{list-style:none;margin-top:18px;counter-reset:p}.pasos li{counter-increment:p;display:grid;grid-template-columns:40px 1fr;padding:14px 0;border-top:1px solid var(--line);color:#2b2d2a}
-.pasos li:before{content:counter(p,decimal-leading-zero);font:700 15px Sora;color:var(--gi)}.pasos b{color:var(--k)}
+.pasos{list-style:none;margin-top:18px}.pasos li{display:grid;grid-template-columns:44px 1fr;gap:4px;align-items:center;padding:14px 0;border-top:1px solid var(--line);color:#2b2d2a}
+.pasos b{color:var(--k)}
+.ic{width:34px;height:34px;border-radius:10px;background:#fff;box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;color:var(--k)}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dl svg{width:22px;height:22px}.file .doc{width:54px;height:72px;border-radius:8px;background:var(--k);color:var(--g);display:grid;place-items:center}.file .doc svg{width:26px;height:26px}
+.prox{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:#fff;border-radius:22px;padding:22px;box-shadow:0 0 0 1px var(--line)}
+.prox .ic{width:52px;height:52px;border-radius:16px;background:var(--g);box-shadow:none}.prox .ic svg{width:26px;height:26px}
+.prox h2{font-size:21px}.prox p{color:var(--mut);font-size:14.5px;margin-top:3px}.prox a{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;background:var(--k);color:#fff;border-radius:14px;padding:15px 18px;font-weight:700}
+.tag-ig{margin-top:14px;font-size:14px;color:var(--mut)}.tag-ig a{color:var(--k);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .camb{background:var(--k);color:#fff;border-radius:22px;padding:26px 22px}
 .camb .n{font:700 56px/1 Sora;color:var(--g)}.camb h2{font-size:24px;margin:8px 0 8px}.camb p{color:#c9cbc6}.camb p b{color:#fff}
 .btns{display:grid;gap:10px;margin-top:20px}
 .b{display:flex;justify-content:space-between;align-items:center;border-radius:14px;padding:15px 18px;font-weight:700}
 .b.p{background:var(--g);color:var(--k)}.b.s{border:1px solid #3a3a3a;color:#fff}
-footer{background:var(--k);color:#fff;padding:36px 20px 44px;text-align:center}
-footer p{font:700 22px/1.2 Sora;letter-spacing:-.02em}footer span{display:block;margin-top:10px;color:#8b8d88;font-size:13px}
+footer{background:var(--k);color:#fff;padding:40px 20px 44px}footer .in{max-width:620px;margin:0 auto}
+footer img{height:24px}footer p{font:700 24px/1.15 Sora;letter-spacing:-.02em;margin-top:18px}
+.cont{display:grid;gap:2px;margin-top:24px;border-top:1px solid #262626}
+.cont a{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #262626;color:#e4e5e1;font-size:15px}
+.cont a span{color:#8b8d88;font-size:13px}.cont svg{color:var(--g)}
+footer small{display:block;margin-top:22px;color:#6f716d;font-size:12.5px}
 @media(min-width:860px){
   .hero{height:auto;min-height:0;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;padding:96px max(40px,calc((100vw - 1080px)/2)) 64px}
   .hero:after{display:none}.hero video{position:relative;height:auto;aspect-ratio:9/16;max-height:78vh;border-radius:22px;order:2}
@@ -59,22 +78,35 @@ footer p{font:700 22px/1.2 Sora;letter-spacing:-.02em}footer span{display:block;
   </div>
 </header>
 <main>
+  <section class="sec carta">
+    <span class="k">Servicio finalizado con éxito</span>
+    <h2>Gracias por confiar en <em>VEO UP</em>, Rachel.</h2>
+    <p>Tu Content Day de noviembre ya es contenido: hemos terminado tu vídeo y está listo para publicar.</p>
+    <ul class="puntos">
+      <li><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M6 16l3.5-3.5 3 3 2-2L18 16"/><circle cx="14.5" cy="8" r="1.3"/></svg></span><span><b>Tu vídeo lleva su portada</b>, pensada para que la uses en la publicación.</span></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19.1z"/><path d="M9.2 9.3c.3 2.2 2.3 4.2 4.6 4.6l1-1.1 1.8.8-.4 1.6c-3.4.4-7.4-3.6-7-7l1.6-.4.8 1.8z"/></svg></span><span><b>Tienes una ronda de cambios.</b> Si quieres ajustar algo, envíanos todos los cambios juntos.</span></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><span><b>Todo se descarga aquí</b>, cuando quieras.</span></li>
+    </ul>
+    <p class="firma"><b>El equipo de VEO UP</b>Hacemos visible el valor que ya existe.</p>
+  </section>
   <section class="sec">
     <h2>Tu entrega</h2>
     <p class="lead">Tu vídeo, editado y con su portada. Listo para publicar.</p>
-    <p class="ok"><b>✓</b>Servicio finalizado con éxito · 24 de noviembre de 2026</p>
+    <p class="ok"><b>✓</b>Entregado el 24 de noviembre de 2026</p>
     <div class="files">
-    <div class="file"><img src="portada-1.jpg" alt=""><div><h3>Vídeo 1 · Tu estudio, tu técnica y tú</h3><p>Vídeo original · MP4 · 4K · 24 s · 114 MB</p></div><a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1WJibgbGGPbbfSU1QFgT05F07S6N-73OI" target="_blank" rel="noopener" aria-label="Descargar el vídeo">↓</a></div>
-    <div class="file"><img src="portada-1.jpg" alt=""><div><h3>Portada del vídeo 1</h3><p>Para la publicación · PNG · 1252×2240 px</p></div><a class="dl" href="portada-1.png" download="Portada Vídeo 1 - DISTINKT nails by Rachel.png" aria-label="Descargar la portada">↓</a></div></div>
+    <div class="file"><img src="portada-1.jpg" alt=""><div><h3>Vídeo 1 · Tu estudio, tu técnica y tú</h3><p>Vídeo original · MP4 · 4K · 24 s · 114 MB</p></div><a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1WJibgbGGPbbfSU1QFgT05F07S6N-73OI" target="_blank" rel="noopener" aria-label="Descargar el vídeo"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a></div>
+    <div class="file"><img src="portada-1.jpg" alt=""><div><h3>Portada del vídeo 1</h3><p>Para la publicación · PNG · 1252×2240 px</p></div><a class="dl" href="portada-1.png" download="Portada Vídeo 1 - DISTINKT nails by Rachel.png" aria-label="Descargar la portada"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a></div>
+    <div class="file"><span class="doc"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M9.5 13h5M9.5 16.5h5"/></svg></span><div><h3>Tu entrega en PDF</h3><p>Para guardarla o compartirla · PDF · 1.0 MB</p></div><a class="dl" href="Entrega VEO UP - DISTINKT nails by Rachel.pdf" download aria-label="Descargar el PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a></div></div>
     <p class="note">El vídeo se descarga en su calidad original desde Google Drive. Si te avisa de que no puede analizarlo, toca «Descargar de todos modos».</p>
   </section>
   <section class="sec">
     <h2>Cómo usar tu portada</h2>
     <ol class="pasos">
-      <li><span><b>Descarga el vídeo y su portada</b> y guárdalos en tu galería.</span></li>
-      <li><span><b>Al subir el reel</b>, toca «Editar portada» y elige la portada desde tu galería.</span></li>
-      <li><span><b>Revisa cómo queda en tu perfil:</b> en la cuadrícula, Instagram la muestra recortada en vertical.</span></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><span><b>Descarga el vídeo y su portada</b> y guárdalos en tu galería.</span></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M6 16l3.5-3.5 3 3 2-2L18 16"/><circle cx="14.5" cy="8" r="1.3"/></svg></span><span><b>Al subir el reel</b>, toca «Editar portada» y elige la portada desde tu galería.</span></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span><span><b>Revisa cómo queda en tu perfil:</b> en la cuadrícula, Instagram la muestra recortada en vertical.</span></li>
     </ol>
+    <p class="tag-ig">Cuando lo publiques, etiquétanos en <a href="https://www.instagram.com/veoup.es/" target="_blank" rel="noopener">@veoup.es</a>.</p>
   </section>
   <section class="sec camb">
     <div class="n">1</div>
@@ -82,8 +114,19 @@ footer p{font:700 22px/1.2 Sora;letter-spacing:-.02em}footer span{display:block;
     <p>Si quieres ajustar algo, envíanos <b>todos los cambios juntos en un solo mensaje</b> y lo dejamos listo.</p>
     <div class="btns"><a class="b p" href="https://wa.me/34611216083?text=Hola%2C%20soy%20Rachel%20%28DISTINKT%20nails%20by%20Rachel%29.%20He%20visto%20la%20entrega%20y%20quiero%20pedir%20mi%20ronda%20de%20cambios%3A%20">Pedir mis cambios por WhatsApp<span>→</span></a><a class="b s" href="https://wa.me/34611216083?text=Hola%2C%20soy%20Rachel%20%28DISTINKT%20nails%20by%20Rachel%29.%20He%20visto%20la%20entrega%3A%20%C2%A1todo%20perfecto%21">Todo perfecto<span>✓</span></a></div>
   </section>
+  <section class="sec prox"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><div><h2>Tu próximo Content Day</h2><p>Elige ya el día y la hora de la próxima grabación.</p></div>
+    <a href="https://www.veoup.es/reservar/?ref=9NkaEpK">Reservar mi próximo Content Day<span>→</span></a></section>
 </main>
-<footer><p>Haz que te vean.<br>Haz que te elijan.</p><span>Gracias por confiar en VEO UP · veoup.es</span></footer>
+<footer><div class="in">
+  <img src="logo-veoup.png" alt="VEO UP">
+  <p>Haz que te vean.<br>Haz que te elijan.</p>
+  <nav class="cont" aria-label="Contacto y redes de VEO UP">
+    <a href="https://wa.me/34611216083?text=Hola%2C%20soy%20Rachel%20%28DISTINKT%20nails%20by%20Rachel%29.%20"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19.1z"/><path d="M9.2 9.3c.3 2.2 2.3 4.2 4.6 4.6l1-1.1 1.8.8-.4 1.6c-3.4.4-7.4-3.6-7-7l1.6-.4.8 1.8z"/></svg>WhatsApp<span>+34 611 21 60 83</span></a>
+    <a href="https://www.instagram.com/veoup.es/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg>Instagram<span>@veoup.es</span></a><a href="https://www.tiktok.com/@veoup.es" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg>TikTok<span>@veoup.es</span></a>
+    <a href="https://www.veoup.es/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 2.6 14.6 0 17M12 3.5c-2.6 2.4-2.6 14.6 0 17"/></svg>Web<span>veoup.es</span></a>
+  </nav>
+  <small>Valencia · España</small>
+</div></footer>
 <script>
 const v=document.getElementById('v'),h=document.getElementById('hero');
 document.getElementById('son').addEventListener('click',()=>{v.muted=false;v.loop=false;v.currentTime=0;v.controls=true;v.play();h.classList.add('on');});
