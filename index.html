@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>VEO UP · Contenido mensual para negocios de Valencia</title>
-<meta name="description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 190 €/mes + IVA, sin permanencia.">
+<meta name="description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 230 €/mes + IVA, sin permanencia.">
 <meta name="theme-color" content="#101010">
 <link rel="canonical" href="https://www.veoup.es/">
 <script>
   // Dirección principal: www.veoup.es (decisión de Manu, 2026-11-11). Si se entra sin www, se redirige.
   if (location.hostname === "veoup.es") location.replace("https://www.veoup.es" + location.pathname + location.search + location.hash);
+  // Agrupa las escuchas del scroll: como mucho una ejecución por fotograma (scroll más ágil en ordenador).
+  window.porFotograma = f => { let pendiente = false; return () => { if (pendiente) return; pendiente = true; requestAnimationFrame(() => { pendiente = false; f(); }); }; };
 </script>
 <script>
   // Medición: Google Tag Manager SOLO se carga si el visitante acepta las cookies (banner al pie).
@@ -45,21 +47,21 @@
 </script>
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="iNJFu4hXHDTr0DPLWedU6ZnDF2p5fcCTewOAyJ30mwA" />
-<meta property="og:image" content="https://www.veoup.es/media/og-veoup.jpg?v=2">
+<meta property="og:image" content="https://www.veoup.es/media/og-veoup.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="VEO UP: Haz que te vean. Haz que te elijan. Desde 190 €/mes + IVA.">
+<meta property="og:image:alt" content="VEO UP: Haz que te vean. Haz que te elijan. Desde 230 €/mes + IVA.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.veoup.es/media/og-veoup.jpg?v=2">
+<meta name="twitter:image" content="https://www.veoup.es/media/og-veoup.jpg?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"VEO UP","url":"https://www.veoup.es/",
  "image":"https://www.veoup.es/media/og-veoup.jpg","telephone":"+34611216083",
  "sameAs":["https://www.instagram.com/veoup.es/","https://www.tiktok.com/@veoup.es"],
  "description":"Suscripción de contenido para negocios de Valencia: planificamos, grabamos y editamos tu contenido cada mes.",
  "areaServed":{"@type":"City","name":"Valencia"},"address":{"@type":"PostalAddress","addressLocality":"Valencia","addressCountry":"ES"},
- "priceRange":"190 € – 890 € al mes + IVA",
+ "priceRange":"230 € – 890 € al mes + IVA",
  "makesOffer":[
-  {"@type":"Offer","name":"Content","price":"190","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"190","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"3 vídeos + 3 shorts al mes, 1 Content Day"},
+  {"@type":"Offer","name":"Content","price":"230","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"230","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"3 vídeos + 3 shorts al mes, 1 Content Day"},
   {"@type":"Offer","name":"Growth","price":"490","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"490","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"4 vídeos + 8 shorts + 1 vídeo premium, Meta Ads e informe mensual"},
   {"@type":"Offer","name":"Scale","price":"890","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"890","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"6 vídeos + 12 shorts + 2 premium, Meta Ads, landing, automatización de leads y panel"}]}
 </script>
@@ -68,7 +70,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="VEO UP">
 <meta property="og:title" content="VEO UP · Haz que te vean. Haz que te elijan.">
-<meta property="og:description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 190 €/mes + IVA, sin permanencia.">
+<meta property="og:description" content="Suscripción de contenido para negocios de Valencia. Planificamos, grabamos y editamos tu contenido cada mes. 230 €/mes + IVA, sin permanencia.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon-32.png">
 <link rel="apple-touch-icon" href="/media/icons/apple-touch-icon.png">
@@ -76,7 +78,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* Layout: una sola columna editorial; el precio (190 €) es el objeto que se repite en toda la página. */
+  /* Layout: una sola columna editorial; el precio (230 €) es el objeto que se repite en toda la página. */
   :root {
     --black: #101010;
     --black-2: #191919;
@@ -163,8 +165,8 @@
   .bar {
     display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
     height: 60px; padding: 0 8px 0 18px; border-radius: 999px;
-    background: rgba(255, 255, 255, .8);
-    backdrop-filter: saturate(1.5) blur(16px); -webkit-backdrop-filter: saturate(1.5) blur(16px);
+    background: rgba(255, 255, 255, .88);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 0 0 1px rgba(16,16,16,.07), 0 12px 32px -18px rgba(16,16,16,.3);
     transition: box-shadow .25s var(--ease), background .25s var(--ease);
   }
@@ -1032,9 +1034,6 @@
   /* Hero: la imagen entra con un zoom lento */
   .hero-media img { animation: heroZoom 2.6s cubic-bezier(.16,1,.3,1) both; }
   @keyframes heroZoom { from { transform: scale(1.14); } to { transform: scale(1); } }
-  /* Scroll suave (Lenis) */
-  html.lenis, html.lenis body { height: auto; }
-  .lenis.lenis-smooth { scroll-behavior: auto !important; }
   /* Decisión de Manu (2026-11-11): las animaciones funcionan siempre, también con "Reducir movimiento"
      activado en el móvil. Solo se desactiva el desplazamiento suave al pulsar enlaces. */
   @media (prefers-reduced-motion: reduce) {
@@ -1278,7 +1277,7 @@
       <div class="cmp-row cmp-cols" role="row"><span role="columnheader"></span><span role="columnheader">Agencia tradicional</span><span role="columnheader">Videógrafo freelance</span><span role="columnheader" class="me">VEO UP</span></div>
       <div class="cmp-row" role="row"><span role="rowheader">Contenido</span><span role="cell">Mucho proceso y reuniones</span><span role="cell">Por proyecto, cuando se encarga</span><span role="cell" class="me">Nuevo cada mes, con un Content Day</span></div>
       <div class="cmp-row" role="row"><span role="rowheader">Estrategia</span><span role="cell">Sí, con su coste</span><span role="cell">Normalmente no</span><span role="cell" class="me">Plan del mes con ideas y guion</span></div>
-      <div class="cmp-row" role="row"><span role="rowheader">Precio</span><span role="cell">Cuotas altas</span><span role="cell">Variable en cada encargo</span><span role="cell" class="me">Desde 190 €/mes + IVA, cuota fija</span></div>
+      <div class="cmp-row" role="row"><span role="rowheader">Precio</span><span role="cell">Cuotas altas</span><span role="cell">Variable en cada encargo</span><span role="cell" class="me">Desde 230 €/mes + IVA, cuota fija</span></div>
       <div class="cmp-row" role="row"><span role="rowheader">Compromiso</span><span role="cell">Suele haber permanencia</span><span role="cell">Sin seguimiento</span><span role="cell" class="me">Sin permanencia</span></div>
       <div class="cmp-row" role="row"><span role="rowheader">Anuncios y resultados</span><span role="cell">Otro servicio aparte</span><span role="cell">No</span><span role="cell" class="me">En Growth y Scale, medidos</span></div>
     </div>
@@ -1295,7 +1294,7 @@
       <li class="step s1">
         <span class="verb">Crear</span>
         <h3>Content</h3>
-        <p class="price">190 € <small>/mes + IVA</small></p>
+        <p class="price">230 € <small>/mes + IVA</small></p>
         <p class="for">Contenido profesional para tu negocio, cada mes.</p>
         <ul>
           <li>3 vídeos + 3 shorts</li>
@@ -1509,7 +1508,7 @@
     </div>
     <div class="faq reveal">
       <details>
-        <summary>¿Qué incluye el plan de 190 €?</summary>
+        <summary>¿Qué incluye el plan de 230 €?</summary>
         <div class="a"><p>Cada mes: 3 vídeos de 45–60 segundos, 3 shorts de unos 15 segundos y un Content Day de 90–120 minutos. Nos encargamos de las ideas, la grabación y la edición, y te lo damos listo para publicar, con una ronda de cambios por pieza.</p></div>
       </details>
       <details>
@@ -1550,7 +1549,7 @@
         <li><b>Reservas</b> tu Content Day</li>
       </ol>
       <div class="row">
-        <a class="btn btn-primary" data-wa="start" href="#">Empezar por 190 €/mes + IVA <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+        <a class="btn btn-primary" data-wa="start" href="#">Empezar por 230 €/mes + IVA <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
         <a class="text-link" data-wa="doubt" href="#">Tengo una duda</a>
       </div>
       <p class="alt-form">¿Prefieres no escribir? <a href="/formulario/" data-form-link>Cuéntanos de tu negocio aquí (5 min)</a></p>
@@ -1596,7 +1595,7 @@
   </div>
 </footer>
 <div class="mobile-cta" id="mobileCta" aria-hidden="true">
-  <span><b>190 €/mes + IVA</b>Sin permanencia</span>
+  <span><b>230 €/mes + IVA</b>Sin permanencia</span>
   <a class="btn btn-primary" data-wa="start" href="#" tabindex="-1">Empezar <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
 </div>
 <a class="wa-float" data-wa="doubt" href="#" aria-label="Escríbenos por WhatsApp"><svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
@@ -1725,10 +1724,10 @@
     document.querySelectorAll("section, footer").forEach(s => io.observe(s));
   }
   const depths = [25, 50, 75, 100], hit = new Set();
-  addEventListener("scroll", () => {
+  addEventListener("scroll", porFotograma(() => {
     const p = (scrollY + innerHeight) / document.documentElement.scrollHeight * 100;
     depths.forEach(d => { if (p >= d - 1 && !hit.has(d)) { hit.add(d); track("scroll_depth", { percent: d }); } });
-  }, { passive: true });
+  }), { passive: true });
 
   // Preguntas frecuentes abiertas y clics del menú.
   document.querySelectorAll("#faq details").forEach(d => d.addEventListener("toggle", () => {
@@ -1862,7 +1861,7 @@
     if (scrollY < 200) markLink("");  // arriba del todo no hay ninguna sección marcada en el menú
     nav.classList.toggle("on-hero", hero.getBoundingClientRect().bottom > 90 && menu.hidden);
   };
-  addEventListener("scroll", syncNav, { passive: true });
+  addEventListener("scroll", porFotograma(syncNav), { passive: true });
   // Menú que se esconde al bajar y reaparece al subir (solo afecta en móvil, ver CSS .nav-up).
   let lastY = scrollY;
   addEventListener("scroll", () => {
@@ -1899,7 +1898,7 @@
   const splitCheck = () => document.querySelectorAll(".split:not(.in)").forEach(h => {
     if (h.getBoundingClientRect().top < innerHeight * .92) h.classList.add("in");
   });
-  addEventListener("scroll", splitCheck, { passive: true }); addEventListener("load", splitCheck); splitCheck();
+  addEventListener("scroll", porFotograma(splitCheck), { passive: true }); addEventListener("load", splitCheck); splitCheck();
 
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; syncCta(); if (e.isIntersecting) markLink(""); }).observe(hero);
@@ -1915,17 +1914,10 @@
     document.querySelectorAll(".reveal, .split").forEach(el => el.classList.add("in"));
   }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script>
-  // Scroll suave tipo "web premiada" con Lenis (solo ratón/trackpad; en móvil se deja el scroll nativo).
-  addEventListener("load", () => {
-    if (typeof Lenis !== "function") return;
-    const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
-    window.__lenis = lenis;
-  });
+  // Scroll nativo en todos los dispositivos (2026-11-25): el scroll suave con inercia (Lenis) se notaba pesado en ordenador.
   // Enlaces internos (#trabajo, #planes…): desplazan sin dejar "#..." en la dirección (Manu, 2026-11-14).
-  // Con Lenis (ratón) usa su scroll; en móvil, el nativo. Solo se conserva #revision.
+  // Desplazamiento suave nativo. Solo se conserva #revision.
   document.addEventListener("click", e => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
@@ -1934,10 +1926,7 @@
     const t = href === "#top" ? null : document.querySelector(href);
     if (href !== "#top" && !t) return;
     e.preventDefault();
-    // En pantallas táctiles Lenis no anima el scroll de la ventana: ahí, scroll nativo.
-    const L = matchMedia("(pointer: fine)").matches ? window.__lenis : null;
-    if (!t) L ? L.scrollTo(0, { duration: 1.2 }) : scrollTo({ top: 0, behavior: "smooth" });
-    else if (L) L.scrollTo(t, { offset: -80, duration: 1.2 });
+    if (!t) scrollTo({ top: 0, behavior: "smooth" });
     else scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: "smooth" });
     try { history.replaceState(null, "", location.pathname + location.search + (location.hash === "#revision" ? "#revision" : "")); } catch (x) {}
   });

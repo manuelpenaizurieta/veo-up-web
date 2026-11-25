@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#F7F7F2">
 <!-- Página de pago. Llega aquí desde el email 2 («Solicitud aprobada»): /pago/?plan=growth&email=..&ref=<Submission ID>.
      El botón llama al script «VEO UP · Pagos» (Apps Script en start@), que crea la sesión de Stripe Checkout con
-     IVA 21 % no incluido y devuelve la URL. Precios: deben coincidir con Stripe (190 / 490 / 890 € + IVA). -->
+     IVA 21 % no incluido y devuelve la URL. Precios: deben coincidir con Stripe (230 / 490 / 890 € + IVA). -->
 <script>
   window.PAGOS_URL = "https://script.google.com/macros/s/AKfycbxJiuLP9dBSeJyOOU-HBN6FaSbENUi63OnrqpXnS40Et7CWuGS_tX3CZ9_5qboIol6R/exec";   // Stripe en MODO PRUEBA (2026-11-15): flujo real activo; los gratis usan /formulario/?gratis=1   // URL /exec de la web app «VEO UP · Pagos». Vacía = botón desactivado.
   window.GTM_ID = "GTM-MJM75GLF";
@@ -116,7 +116,7 @@
     <legend>Plan</legend>
     <label class="op"><input type="radio" name="plan" value="content"><span class="radio"></span>
       <span><h2>Content</h2><p>3 vídeos + 3 shorts · 1 Content Day al mes</p></span>
-      <span class="pr"><b>190 €</b><small>/mes + IVA</small></span></label>
+      <span class="pr"><b>230 €</b><small>/mes + IVA</small></span></label>
     <label class="op"><input type="radio" name="plan" value="growth" checked><span class="radio"></span>
       <span><h2>Growth <span class="badge">Más vendido</span></h2><p>4 vídeos + 8 shorts + 1 premium · Meta Ads · informe mensual</p></span>
       <span class="pr"><b>490 €</b><small>/mes + IVA</small></span></label>
@@ -153,7 +153,7 @@
 </main>
 <script>
   if (location.hash === "#revision") document.body.classList.add("revision");
-  var PRECIOS = { content: 190, growth: 490, scale: 890 }, NOMBRES = { content: "Content", growth: "Growth", scale: "Scale" };
+  var PRECIOS = { content: 230, growth: 490, scale: 890 }, NOMBRES = { content: "Content", growth: "Growth", scale: "Scale" };
   var q = new URLSearchParams(location.search);
   var eur = function (n) { return n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €"; };
   var pre = (q.get("plan") || "").toLowerCase();
