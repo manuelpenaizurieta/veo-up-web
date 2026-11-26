@@ -12,8 +12,8 @@
 <meta name="theme-color" content="#F7F7F2">
 <!-- Contratación en 3 pasos (Manu, 2026-11-26): 1 plan · 2 extras · 3 último paso.
      Content → pago con Stripe (web app «VEO UP · Pagos», accion=crear con plan y extras).
-     Growth y Scale → datos básicos + videollamada de 30 min (web app «VEO UP · Reservas Content Day», accion=reunion);
-     quien ya habló con nosotros puede pagar desde aquí. Estado en la URL: ?plan=&ads=1&panel=1&web=1&paso=1..3
+     Growth y Scale → reunión de evaluación GRATUITA (datos básicos + videollamada de 30 min, web app «VEO UP · Reservas Content Day»,
+     accion=reunion, con plan y extras). Aquí NO pagan: después de la reunión les mandamos el enlace de pago desde el CRM (Manu, 2026-11-26). Estado en la URL: ?plan=&ads=1&panel=1&web=1&paso=1..3
      Vista de diseño sin datos reales: /empezar/#demo -->
 <script>
   window.RESERVAS_URL = "https://script.google.com/macros/s/AKfycbymxjBtTayemeeaILYYCc_IypjVeiP6f5LJiQaYFMQ8XzAlx6UWPOoWc4HtdZ9Jx8dQsA/exec";   // web app «VEO UP · Reservas Content Day» (start@), versión 4 (huecos, reservar e ics)
@@ -107,6 +107,14 @@
   .x:has(input:checked) .sw::after { transform: translateX(18px); }
   .x .tag { position: absolute; top: 16px; right: 16px; font: 700 10px/1 Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--green-ink); background: var(--green-bg); padding: 5px 8px; border-radius: 99px; }
   .nota { font-size: 13px; color: var(--muted); margin: 16px 0 0; }
+  .plan .como { grid-column: 2 / -1; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--green-ink); }
+  .plan .como svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .plan[aria-checked="true"][data-plan="scale"] .como { color: var(--green); }
+  @media (max-width: 520px) { .plan .como { grid-column: 1 / -1; } }
+  .res .gratis-n { margin: 0; display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 12px; border-radius: 14px; background: rgba(56,214,107,.1); font-size: 13px; line-height: 1.45; color: #d8dad3; }
+  .res .gratis-n svg { width: 18px; height: 18px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
+  .res .gratis-n b { color: #fff; }
+  @media (min-width: 980px) { .mov { display: none; } }
   /* Paso 3 */
   .card { background: #fff; border-radius: 22px; padding: 22px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 10px 32px rgba(16,16,16,.06); margin: 0 0 14px; }
   .card h2 { font: 700 18px/1.2 Sora, Inter, sans-serif; letter-spacing: -.02em; margin: 0 0 14px; display: flex; align-items: center; gap: 10px; }
@@ -256,33 +264,36 @@
   function pintarResumen() {
     var c = cuentas(), li = function (l) { return "<li><span>" + l[0] + (l[1] ? "<em>" + l[1] + "</em>" : "") + "</span><b>" + l[2] + "</b></li>"; };
     var lineas = !c.uno ? c.lm.map(li).join("") : '<li class="g"><span>Cada mes</span></li>' + c.lm.map(li).join("") + '<li class="g"><span>Solo el primer mes</span></li>' + c.lu.map(li).join("");
-    document.getElementById("res").innerHTML = '<span class="t">Tu selección</span><ul>' + lineas + '</ul>'
-      + '<div class="tot"><span>' + (c.uno ? "Primer mes" : "Cada mes") + '</span><b>' + eur(c.mes + c.uno) + '</b></div>'
-      + (c.uno ? '<p class="luego">Después, <b>' + eur(c.mes) + '</b> al mes</p>' : "")
+    var gratis = conReu();
+    document.getElementById("res").innerHTML = '<span class="t">' + (gratis ? "Lo que te interesa" : "Tu selección") + '</span><ul>' + lineas + '</ul>'
+      + (gratis ? '<div class="tot"><span>Hoy pagas</span><b>0 €</b></div><p class="luego">Si te encaja, <b>' + eur(c.mes) + '</b> al mes' + (c.uno ? ' + ' + eur(c.uno) + ' el primer mes' : "") + '</p>'
+        + '<p class="gratis-n">' + ICON.video + '<span>Primero, una reunión de evaluación <b>gratuita</b> de 30 minutos. Después de hablar te enviamos el enlace para activar tu plan.</span></p>'
+        : '<div class="tot"><span>' + (c.uno ? "Primer mes" : "Cada mes") + '</span><b>' + eur(c.mes + c.uno) + '</b></div>' + (c.uno ? '<p class="luego">Después, <b>' + eur(c.mes) + '</b> al mes</p>' : ""))
       + '<p class="iva">Precios + IVA. Sin permanencia. La inversión en anuncios la pagas tú directamente a Meta o a Google.</p>'
       + (st.paso < 3 ? '<button class="btn" type="button" data-sig>Continuar' + ICON.flecha + '</button>' : "");
-    document.getElementById("b-tot").textContent = eur(c.mes + c.uno);
-    document.getElementById("b-sub").textContent = c.uno ? "1.er mes · luego " + eur(c.mes) + "/mes" : "al mes + IVA";
+    document.getElementById("b-tot").textContent = gratis ? "Hoy 0 €" : eur(c.mes + c.uno);
+    document.getElementById("b-sub").textContent = gratis ? "si te encaja, " + eur(c.mes) + "/mes + IVA" : c.uno ? "1.er mes · luego " + eur(c.mes) + "/mes" : "al mes + IVA";
     var bb = document.getElementById("b-btn");
-    bb.innerHTML = st.paso < 3 ? "Continuar" : (conReu() ? "Agendar reunión" : "Pagar con tarjeta");
+    bb.innerHTML = st.paso < 3 ? "Continuar" : (conReu() ? "Agendar reunión gratis" : "Pagar con tarjeta");
   }
   function pintarProg() {
     document.querySelectorAll(".prog button").forEach(function (b) { var n = +b.dataset.ir; b.className = n < st.paso ? "hecho" : n === st.paso ? "ahora" : ""; b.disabled = n > st.paso; });
-    document.getElementById("p3").textContent = conReu() ? "Reunión" : "Pago";
+    document.getElementById("p3").textContent = conReu() ? "Reunión gratis" : "Pago";
   }
   /* ---------- pasos ---------- */
   function paso1() {
     app.innerHTML = '<section class="paso"><p class="k">Paso 1 de 3</p><h1>Elige tu plan</h1><p class="lede">Contenido profesional cada mes, sin permanencia. Puedes subir de plan cuando quieras.</p>'
       + '<div class="planes" role="radiogroup" aria-label="Plan">' + Object.keys(PLAN).map(function (k) { var p = PLAN[k];
         return '<button type="button" class="plan" role="radio" data-plan="' + k + '" aria-checked="' + (st.plan === k) + '"><span class="radio" aria-hidden="true"></span><span><span class="verb">' + p.verb + '</span><span class="nom">' + p.n + (p.badge ? '<span class="badge">' + p.badge + '</span>' : "") + '</span></span>'
-          + '<span class="pr">' + eur(p.p) + '<small>/mes + IVA</small></span><ul>' + p.inc.map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul></button>'; }).join("") + '</div>'
-      + '<p class="nota">' + (st.plan === "content" ? "Con Content pagas y empiezas: después nos cuentas tu negocio y reservas tu Content Day." : "Growth y Scale empiezan con una videollamada de 30 minutos para conocer tu negocio, sin compromiso.") + '</p>'
+          + '<span class="pr">' + eur(p.p) + '<small>/mes + IVA</small></span><ul>' + p.inc.map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul>'
+          + '<span class="como">' + (k === "content" ? ICON.candado + "Pagas y empiezas" : ICON.video + "Empieza con una reunión de evaluación gratuita") + '</span></button>'; }).join("") + '</div>'
+      + '<p class="nota">' + (st.plan === "content" ? "Con Content pagas y empiezas: después nos cuentas tu negocio y reservas tu Content Day." : "Growth y Scale empiezan con una reunión de evaluación gratuita de 30 minutos. Hoy no pagas nada: si te encaja, después te enviamos el enlace para activar tu plan.") + '</p>'
       + '<div class="nav"><span></span><button class="btn" type="button" data-sig>Continuar' + ICON.flecha + '</button></div></section>';
     app.querySelector(".planes").addEventListener("click", function (e) { var b = e.target.closest(".plan"); if (!b) return; st.plan = b.dataset.plan; refrescar(true); });
   }
   function paso2() {
     var v = validos();
-    app.innerHTML = '<section class="paso"><p class="k">Paso 2 de 3</p><h1>Añade si quieres</h1><p class="lede">' + (st.plan === "content" ? "Con Content puedes añadir tu web. Los anuncios y el panel van con Growth y Scale." : "Todo es opcional: añade solo lo que tu negocio necesite. Puedes quitarlo cuando quieras.") + '</p>'
+    app.innerHTML = '<section class="paso"><p class="k">Paso 2 de 3</p><h1>Añade si quieres</h1><p class="lede">' + (st.plan === "content" ? "Con Content puedes añadir tu web. Los anuncios y el panel van con Growth y Scale." : "Todo es opcional: marca lo que te interese y lo vemos juntos en la reunión gratuita. Hoy no pagas nada.") + '</p>'
       + '<div class="xs' + (v.length === 3 ? " tres" : "") + '">' + v.map(function (k) { var x = X[k], alta = k === "panel" ? (st.plan === "scale" ? "alta incluida" : "+ 290 € de alta") : "";
         return '<label class="x"><input type="checkbox" data-x="' + k + '"' + (st.x[k] ? " checked" : "") + '>' + (k === "panel" && st.plan === "scale" ? '<span class="tag">Alta incluida</span>' : "")
           + '<span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + x.ico + '</svg></span><b>' + x.n + '</b><p>' + x.txt + (k === "panel" ? ' <a href="/#live" target="_blank" rel="noopener" style="color:var(--green-ink);font-weight:600">Verlo en directo</a>' : "") + '</p>'
@@ -292,6 +303,12 @@
     app.querySelectorAll("input[data-x]").forEach(function (i) { i.addEventListener("change", function () { st.x[i.dataset.x] = i.checked; pintarResumen(); urlEstado(); }); });
   }
   function resumenMovil() {
+    if (conReu()) {
+      var g = cuentas();
+      return '<div class="card"><h2>Lo que te interesa</h2><ul class="lista" style="gap:8px">' + g.lm.concat(g.lu).map(function (l) { return '<li style="display:flex;justify-content:space-between;gap:12px"><span>' + l[0] + (l[1] ? ' <small style="color:var(--muted)">' + l[1] + '</small>' : "") + '</span><b>' + l[2] + '</b></li>'; }).join("") + '</ul>'
+        + '<p style="margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-weight:700"><span>Hoy pagas</span><span>0 €</span></p>'
+        + '<p class="ayuda" style="text-align:right">Si te encaja: ' + eur(g.mes) + ' al mes + IVA' + (g.uno ? ' (+ ' + eur(g.uno) + ' el primer mes)' : "") + '</p></div>';
+    }
     var c = cuentas(), li = function (l) { return "<li><span>" + l[0] + (l[1] ? " <small style='color:var(--muted)'>" + l[1] + "</small>" : "") + "</span><b>" + l[2] + "</b></li>"; };
     return '<div class="card"><h2>Tu selección</h2><ul class="lista" style="gap:8px">' + c.lm.concat(c.lu).map(function (l) { return '<li style="display:flex;justify-content:space-between;gap:12px"><span>' + l[0] + (l[1] ? ' <small style="color:var(--muted)">' + l[1] + '</small>' : "") + '</span><b>' + l[2] + '</b></li>'; }).join("") + '</ul>'
       + '<p style="margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-weight:700"><span>' + (c.uno ? "Primer mes" : "Cada mes") + '</span><span>' + eur(c.mes + c.uno) + ' + IVA</span></p>'
@@ -307,16 +324,16 @@
       document.getElementById("pagar").addEventListener("click", pagar);
       return;
     }
-    app.innerHTML = '<section class="paso"><p class="k">Paso 3 de 3 · ' + PLAN[st.plan].n + '</p><h1>Antes de empezar, hablamos</h1><p class="lede">Una <b>videollamada de 30 minutos</b> para conocer tu negocio y ver cómo te ayudamos. Sin compromiso: si te encaja, contratas después.</p>'
+    app.innerHTML = '<section class="paso"><p class="k">Paso 3 de 3 · ' + PLAN[st.plan].n + '</p><h1>Tu reunión de evaluación gratuita</h1><p class="lede">Una <b>videollamada de 30 minutos</b> para conocer tu negocio y ver qué plan te encaja. <b>Hoy no pagas nada:</b> si te convence, después te enviamos por WhatsApp o email el enlace para activar tu plan.</p>'
+      + '<div class="mov">' + resumenMovil() + '</div>'
       + '<div class="card"><h2><i>1</i>Tus datos</h2><div class="grid2">' + [["nombre", "Nombre", "text", "given-name", 1], ["apellidos", "Apellidos", "text", "family-name", 0], ["email", "Email", "email", "email", 1], ["telefono", "WhatsApp", "tel", "tel", 1, "+34 600 00 00 00"], ["negocio", "Nombre del negocio", "text", "organization", 1], ["web", "Web", "url", "url", 0, "www.tunegocio.es"], ["redes", "Instagram u otras redes", "text", "off", 0, "@tunegocio"]].map(function (f) {
           return '<div class="campo"><label for="' + f[0] + '">' + f[1] + (f[4] ? "" : " <small>(opcional)</small>") + '</label><input class="txt" id="' + f[0] + '" type="' + f[2] + '" autocomplete="' + f[3] + '" maxlength="160"' + (f[5] ? ' placeholder="' + f[5] + '"' : "") + '></div>'; }).join("")
       + '</div><div class="trampa" aria-hidden="true"><label for="web_url">No rellenar</label><input id="web_url" tabindex="-1" autocomplete="off"></div></div>'
       + '<div class="card"><h2><i>2</i>Día y hora</h2><div id="cal"><div class="esq"></div></div><p class="ayuda">Hora de España · por Google Meet · te llega la confirmación al email con el enlace.</p></div>'
       + '<div class="error" id="error" role="alert"></div>'
-      + '<div class="nav"><button class="atras" type="button" data-ant>' + ICON.atras + 'Atrás</button><button class="btn" type="button" id="agendar">' + ICON.video + 'Agendar reunión</button></div>'
-      + '<p class="nota" style="text-align:center">¿Ya hemos hablado? <button class="link" type="button" id="yapago">Activa tu plan y paga ahora</button></p></section>';
+      + '<div class="nav"><button class="atras" type="button" data-ant>' + ICON.atras + 'Atrás</button><button class="btn" type="button" id="agendar">' + ICON.video + 'Agendar reunión gratis</button></div>'
+      + '<p class="nota" style="text-align:center">¿Ya hemos hablado y quieres activar tu plan? Te enviamos el enlace: <a href="' + WA + encodeURIComponent("Hola, ya hemos hablado y quiero activar el plan " + PLAN[st.plan].n + ".") + '" target="_blank" rel="noopener" style="color:var(--black);font-weight:600">pídelo por WhatsApp</a>.</p></section>';
     document.getElementById("agendar").addEventListener("click", agendar);
-    document.getElementById("yapago").addEventListener("click", pagar);
     cargarHuecos();
   }
   /* ---------- calendario de la reunión ---------- */
@@ -362,15 +379,15 @@
     if (falta.length) { falta.forEach(function (x) { document.getElementById(x[0]).classList.add("mal"); }); err.textContent = "Revisa los datos marcados: nombre, email, WhatsApp (9 cifras o más) y nombre del negocio."; document.getElementById(falta[0][0]).focus(); return; }
     if (!st.reu.ini) { err.textContent = "Elige el día y la hora de la reunión."; document.getElementById("cal").scrollIntoView({ behavior: "smooth", block: "center" }); return; }
     btn.disabled = true; btn.innerHTML = '<span class="spin" aria-hidden="true"></span>Agendando…'; err.textContent = "";
-    var datos = { accion: "reunion", ini: st.reu.ini, plan: st.plan, nombre: val("nombre"), apellidos: val("apellidos"), email: val("email"), telefono: val("telefono"), negocio: val("negocio"), web: val("web"), redes: val("redes"), web_url: val("web_url") };
-    (DEMO ? Promise.resolve({ ok: true, inicio: st.reu.ini, meet: "https://meet.google.com/abc-defg-hij" }) : api(window.RESERVAS_URL, datos)).then(function (r) {
+    var datos = { accion: "reunion", ini: st.reu.ini, plan: st.plan, extras: validos().filter(function (k) { return st.x[k]; }).join(","), nombre: val("nombre"), apellidos: val("apellidos"), email: val("email"), telefono: val("telefono"), negocio: val("negocio"), web: val("web"), redes: val("redes"), web_url: val("web_url") };
+    (DEMO ? Promise.resolve({ ok: true, inicio: st.reu.ini, meet: "", demo: true }) : api(window.RESERVAS_URL, datos)).then(function (r) {
       if (r && r.ok) return finReunion(r);
       if (r && r.error === "ya") return finYa(r.reunion);
-      if (r && r.error === "hueco") { err.textContent = "Esa hora se acaba de ocupar. Elige otra, por favor."; st.reu.ini = null; st.reu.huecos = null; cargarHuecos(); btn.disabled = false; btn.innerHTML = ICON.video + "Agendar reunión"; return; }
+      if (r && r.error === "hueco") { err.textContent = "Esa hora se acaba de ocupar. Elige otra, por favor."; st.reu.ini = null; st.reu.huecos = null; cargarHuecos(); btn.disabled = false; btn.innerHTML = ICON.video + "Agendar reunión gratis"; return; }
       throw new Error(r && r.error || "error");
     }).catch(function (e) {
       track("reunion_error", { motivo: String(e && e.message || e).slice(0, 80) });
-      btn.disabled = false; btn.innerHTML = ICON.video + "Agendar reunión";
+      btn.disabled = false; btn.innerHTML = ICON.video + "Agendar reunión gratis";
       var msg = "Hola, soy " + val("nombre") + " de " + val("negocio") + ". Quiero agendar la reunión del plan " + PLAN[st.plan].n + " el " + largo(new Date(st.reu.ini)).toLowerCase() + ". En la web no me deja.";
       err.innerHTML = (e && e.message === "datos" ? "Revisa tus datos, hay alguno que no es válido. " : "No se ha podido agendar desde aquí. ") + '<a href="' + WA + encodeURIComponent(msg) + '" target="_blank" rel="noopener" style="color:#b3261e;font-weight:700">Agéndala por WhatsApp</a>';
     });
@@ -382,7 +399,8 @@
     var f = function (d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
     var gcal = "https://calendar.google.com/calendar/render?" + new URLSearchParams({ action: "TEMPLATE", text: "Reunión con VEO UP", dates: f(ini) + "/" + f(new Date(ini.getTime() + 30 * 60000)), details: "Videollamada con VEO UP." + (r.meet ? " " + r.meet : ""), ctz: TZ }).toString();
     app.innerHTML = '<section class="paso card fin"><div class="ic">' + ICON.ok + '</div><h2>¡Reunión agendada!</h2><p class="fecha">' + esc(largo(ini)) + '</p>'
-      + '<p>Te acabamos de enviar la confirmación al email con el enlace de la videollamada. Hablamos de tu negocio y, si te encaja, activas tu plan ' + PLAN[st.plan].n + ' desde aquí.</p>'
+      + '<p>Te acabamos de enviar la confirmación al email con el enlace de la videollamada. Es <b>gratuita y sin compromiso</b>: hablamos de tu negocio y, si te encaja, te enviamos el enlace para activar tu plan ' + PLAN[st.plan].n + '.</p>'
+      + (r.demo ? '<p style="font-size:13px;color:var(--muted)">Vista de demostración: no se ha agendado nada. En una reserva real aquí aparece el enlace de tu videollamada.</p>' : "")
       + '<div class="acc">' + (r.meet ? '<a class="btn" href="' + esc(r.meet) + '" target="_blank" rel="noopener">' + ICON.video + 'Enlace de Google Meet</a>' : "") + '<a class="btn sec" href="' + gcal + '" target="_blank" rel="noopener">Añadir a mi calendario</a></div></section>';
     window.scrollTo(0, 0);
   }
@@ -409,7 +427,7 @@
   /* ---------- navegación ---------- */
   function refrescar(mismoPaso) {
     pintarProg(); pintarResumen(); urlEstado();
-    if (mismoPaso && st.paso === 1) { app.querySelectorAll(".plan").forEach(function (b) { b.setAttribute("aria-checked", String(b.dataset.plan === st.plan)); }); var n = app.querySelector(".nota"); if (n) n.textContent = st.plan === "content" ? "Con Content pagas y empiezas: después nos cuentas tu negocio y reservas tu Content Day." : "Growth y Scale empiezan con una videollamada de 30 minutos para conocer tu negocio, sin compromiso."; return; }
+    if (mismoPaso && st.paso === 1) { app.querySelectorAll(".plan").forEach(function (b) { b.setAttribute("aria-checked", String(b.dataset.plan === st.plan)); }); var n = app.querySelector(".nota"); if (n) n.textContent = st.plan === "content" ? "Con Content pagas y empiezas: después nos cuentas tu negocio y reservas tu Content Day." : "Growth y Scale empiezan con una reunión de evaluación gratuita de 30 minutos. Hoy no pagas nada: si te encaja, después te enviamos el enlace para activar tu plan."; return; }
     [null, paso1, paso2, paso3][st.paso]();
     track("empezar_paso", { paso: st.paso, plan: st.plan });
   }

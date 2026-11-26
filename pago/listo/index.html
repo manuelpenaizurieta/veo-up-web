@@ -115,7 +115,7 @@
     var ex = String(d.extras || (d.ads ? "ads" : "")).split(",").filter(Boolean).map(function (k) { return EXTRA[k] || k; });
     document.getElementById("plan").textContent = [NOMBRES[d.plan] || ""].concat(ex).join(" + ");
     var dos = d.plan === "scale";
-    if (d.ref) {
+    if (d.ref && !/^n_/.test(d.ref)) {   // ref de formulario: ya nos contó su negocio → reservar. n_… (enlace desde la ficha tras la reunión) → falta el formulario
       document.getElementById("reservar").href = "/reservar/?ref=" + encodeURIComponent(d.ref);
       if (dos) { document.getElementById("r-tit").textContent = "Reserva tus 2 Content Days"; document.getElementById("r-txt").textContent = "Con Scale grabamos 2 veces al mes: elige dos días distintos."; document.getElementById("reservar").firstChild.textContent = "Reservar mis Content Days "; }
     } else {
