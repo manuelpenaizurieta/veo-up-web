@@ -59,11 +59,11 @@
  "sameAs":["https://www.instagram.com/veoup.es/","https://www.tiktok.com/@veoup.es"],
  "description":"Suscripción de contenido para negocios de Valencia: planificamos, grabamos y editamos tu contenido cada mes.",
  "areaServed":{"@type":"City","name":"Valencia"},"address":{"@type":"PostalAddress","addressLocality":"Valencia","addressCountry":"ES"},
- "priceRange":"230 € – 890 € al mes + IVA",
+ "priceRange":"230 € – 990 € al mes + IVA",
  "makesOffer":[
   {"@type":"Offer","name":"Content","price":"230","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"230","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"2 vídeos + 3 shorts al mes, 1 Content Day"},
   {"@type":"Offer","name":"Growth","price":"490","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"490","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"3 vídeos + 4 shorts al mes, Meta Ads e informe mensual"},
-  {"@type":"Offer","name":"Scale","price":"890","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"890","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"4 vídeos + 6 shorts al mes, 2 Content Days, Meta Ads y automatización de leads"}]}
+  {"@type":"Offer","name":"Scale","price":"990","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"990","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"4 vídeos + 6 shorts al mes, 2 Content Days, Meta Ads y automatización de leads"}]}
 </script>
 <meta property="og:url" content="https://www.veoup.es/">
 <meta property="og:type" content="website">
@@ -1092,11 +1092,20 @@
   .cfg-tot b { font: 800 40px/1 var(--font-head); letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
   .cfg-uno { padding-top: 0; border-top: 0; }
   .cfg-uno[hidden] { display: none; }
+  .cfg-lines li.g { margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+  .cfg-lines li.g:first-child { margin-top: 0; }
+  .cfg-lines li.sub { padding-top: 8px; border-top: 1px dashed var(--line-dark); }
+  .cfg-lines li.sub span { color: var(--ink-2-on-dark); }
+  .cfg-luego { margin: -6px 0 0; text-align: right; font-size: 13.5px; color: #d8dad3; }
+  .cfg-luego b { color: var(--white); }
+  .cx[hidden] { display: none; }
   .cfg-uno b { font: 700 20px/1 var(--font-head); letter-spacing: -0.02em; }
   .cfg-iva { font-size: 12px; line-height: 1.45; color: var(--ink-2-on-dark); margin: 0; }
   .cfg-cta { width: 100%; }
   .cfg-pay { justify-self: center; font-size: 13px; color: var(--ink-2-on-dark); text-decoration: none; }
   .cfg-pay:hover { color: var(--white); }
+  .cfg-pay[hidden], .cfg-reu[hidden] { display: none; }
+  .cfg-reu { margin: 0; font-size: 13px; line-height: 1.45; color: #d8dad3; padding: 10px 12px; border-radius: 12px; background: rgba(56,214,107,.1); }
   .custom { margin-top: 18px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px 16px; align-items: center; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
   .custom p { margin: 0; font-size: 15px; color: var(--ink-2); line-height: 1.45; }
   .custom p b { color: var(--ink); }
@@ -1289,6 +1298,15 @@
   }
 
   .lv-k .v em.neg { color: #ff8a7a; }
+
+  .lv-chart .bar.g { fill: #38D66B; } .lv-chart .bar.p { fill: #ff8a7a; fill-opacity: .7; }
+  .lv-chart .bar.g.on { fill: #6be890; } .lv-chart .bar.p.on { fill: #ffb0a5; }
+  .lv-chart .grid.base { stroke: #3a3a3a; }
+  .lv-legend i.sg { background: #38D66B; } .lv-legend i.sp { background: #ff8a7a; }
+  .lv-kpis.k4 { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 720px) { .lv-kpis.k4 { grid-template-columns: repeat(4, 1fr); } }
+  .lv-kpis.k1 { grid-template-columns: 1fr; gap: 14px; }
+  .lv-kpis.k1 .lv-k { background: #202020; border-radius: 10px; padding: 12px; }
 </style>
 </head>
 <body>
@@ -1572,7 +1590,7 @@
         <span class="badge">Más vendido</span>
         <span class="verb">Construir el sistema</span>
         <h3>Scale</h3>
-        <p class="price">890 € <small>/mes + IVA</small></p>
+        <p class="price">990 € <small>/mes + IVA</small></p>
         <p class="for">Un sistema completo que capta, sigue y cierra cada cliente.</p>
         <span class="plus">Todo lo de Growth, ampliado, más:</span>
         <ul>
@@ -1597,7 +1615,7 @@
         <div class="cfg-plans" role="radiogroup" aria-label="Plan">
           <button type="button" role="radio" data-plan="content"><b>Content</b><span>230 €/mes</span></button>
           <button type="button" role="radio" data-plan="growth"><b>Growth</b><span>490 €/mes</span></button>
-          <button type="button" role="radio" data-plan="scale"><b>Scale</b><span>890 €/mes</span></button>
+          <button type="button" role="radio" data-plan="scale"><b>Scale</b><span>990 €/mes</span></button>
         </div>
         <div class="cfg-x">
           <label class="cx" data-x="ads">
@@ -1626,10 +1644,13 @@
       <aside class="cfg-sum" aria-live="polite">
         <span class="cfg-sum-t">Tu selección</span>
         <ul class="cfg-lines" id="cfg-lines"></ul>
-        <div class="cfg-tot"><span>Cada mes</span><b id="cfg-mes">490 €</b></div>
-        <div class="cfg-uno" id="cfg-uno-row" hidden><span>Pago único</span><b id="cfg-uno">0 €</b></div>
+        <div class="cfg-tot"><span id="cfg-tot-t">Cada mes</span><b id="cfg-mes">490 €</b></div>
+        <p class="cfg-luego" id="cfg-luego" hidden></p>
         <p class="cfg-iva">Precios + IVA. Sin permanencia. La inversión en anuncios la pagas tú directamente a Meta o a Google.</p>
-        <a class="btn btn-primary cfg-cta" id="cfg-cta" href="#" target="_blank" rel="noopener">Empezar con esta selección <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+        <p class="cfg-reu" id="cfg-reu" hidden>Growth y Scale empiezan con una videollamada de 30 minutos para conocer tu negocio. Sin compromiso.</p>
+        <a class="btn btn-primary cfg-cta" id="cfg-cta" href="/pago/"><span id="cfg-cta-t">Contratar ahora</span> <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="cfg-pay" id="cfg-ya" href="/pago/" hidden>¿Ya hemos hablado? Contrata aquí →</a>
+        <a class="cfg-pay" id="cfg-wa" href="#" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
       </aside>
     </div>
 
@@ -1653,7 +1674,7 @@
             <button type="button" role="tab" data-tab="resumen">Resumen</button>
             <button type="button" role="tab" data-tab="anuncios">Anuncios</button>
             <button type="button" role="tab" data-tab="leads">Leads</button>
-            <button type="button" role="tab" data-tab="contenido">Contenido</button>
+            <button type="button" role="tab" data-tab="redes">Redes</button>
             <button type="button" role="tab" data-tab="web">Web</button>
           </div>
           <div class="lv-period" role="group" aria-label="Periodo">
@@ -2148,37 +2169,49 @@
 <script>
 (function () {
   var WA = "34611216083";
-  var PLAN = { content: ["Content", 230], growth: ["Growth", 490], scale: ["Scale", 890] };
+  var PLAN = { content: ["Content", 230], growth: ["Growth", 490], scale: ["Scale", 990] };
   var X = { ads: ["Google Ads", 250, 0], panel: ["Panel en tiempo real", 49, 290], web: ["Tu web", 0, 490] };
   var st = { plan: "growth" };
   var eur = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €"; };
   var box = function (k) { return document.querySelector('.cx[data-x="' + k + '"] input'); };
   function pintar() {
-    var p = st.plan, mes = PLAN[p][1], uno = 0, lines = [], partes = [PLAN[p][0]];
+    var p = st.plan, mes = PLAN[p][1], uno = 0, lm = [], lu = [], partes = [PLAN[p][0]];
     document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.plan === p ? "true" : "false"); });
-    var pan = document.querySelector('.cx[data-x="panel"]'), pin = box("panel");
-    var sinPanel = p === "content"; pan.classList.toggle("off", sinPanel); pin.disabled = sinPanel; if (sinPanel) pin.checked = false;
-    pan.querySelector(".cx-alta").textContent = sinPanel ? "con Growth y Scale" : (p === "scale" ? "al mes · alta incluida" : "al mes · alta 290 €");
-    lines.push(["Plan " + PLAN[p][0], "", eur(PLAN[p][1]) + "/mes"]);
+    /* Content solo puede añadir la web (Manu, 2026-11-26): Google Ads y panel, con Growth y Scale */
+    ["ads", "panel"].forEach(function (k) { var row = document.querySelector('.cx[data-x="' + k + '"]'); row.hidden = p === "content"; if (p === "content") box(k).checked = false; });
+    document.querySelector('.cx[data-x="panel"] .cx-alta').textContent = p === "scale" ? "al mes · alta incluida" : "al mes · alta 290 €";
+    lm.push(["Plan " + PLAN[p][0], "", eur(PLAN[p][1])]);
     ["ads", "panel", "web"].forEach(function (k) {
       if (!box(k).checked) return;
       var x = X[k], alta = k === "panel" && p === "scale" ? 0 : x[2];
       mes += x[1]; uno += alta; partes.push(x[0]);
-      if (x[1]) lines.push([x[0], "", "+" + eur(x[1]) + "/mes"]);
-      if (alta) lines.push([x[0], k === "panel" ? "alta" : "pago único", eur(alta)]);
-      if (k === "panel" && p === "scale") lines.push([x[0], "alta", "incluida"]);
+      if (x[1]) lm.push([x[0], k === "panel" && p === "scale" ? "alta incluida" : "", "+" + eur(x[1])]);
+      if (alta) lu.push([x[0], k === "panel" ? "alta" : "", eur(alta)]);
     });
-    document.getElementById("cfg-lines").innerHTML = lines.map(function (l) { return "<li><span>" + l[0] + (l[1] ? "<em>" + l[1] + "</em>" : "") + "</span><b>" + l[2] + "</b></li>"; }).join("");
-    document.getElementById("cfg-mes").textContent = eur(mes);
-    document.getElementById("cfg-uno-row").hidden = !uno; document.getElementById("cfg-uno").textContent = eur(uno);
+    var li = function (l) { return "<li><span>" + l[0] + (l[1] ? "<em>" + l[1] + "</em>" : "") + "</span><b>" + l[2] + "</b></li>"; };
+    document.getElementById("cfg-lines").innerHTML = !uno ? lm.map(li).join("")
+      : '<li class="g"><span>Cada mes</span></li>' + lm.map(li).join("") + '<li class="sub"><span>Total al mes</span><b>' + eur(mes) + "</b></li>"
+        + '<li class="g"><span>Solo el primer mes</span></li>' + lu.map(li).join("") + '<li class="sub"><span>Total pago único</span><b>' + eur(uno) + "</b></li>";
+    document.getElementById("cfg-tot-t").textContent = uno ? "Primer mes" : "Cada mes";
+    document.getElementById("cfg-mes").textContent = eur(mes + uno);
+    var luego = document.getElementById("cfg-luego"); luego.hidden = !uno; luego.innerHTML = "Después, <b>" + eur(mes) + "</b> al mes";
     var txt = "Hola, vengo de la web de VEO UP y quiero empezar con " + (partes.length > 1 ? "el plan " + partes[0] + " + " + partes.slice(1).join(" + ") : "el plan " + partes[0]) + ".";
-    document.getElementById("cfg-cta").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt);
+    /* El botón va directo al pago (Stripe) con el plan y los extras elegidos (Manu, 2026-11-26); WhatsApp queda para dudas */
     var q = new URLSearchParams({ plan: p }); ["ads", "panel", "web"].forEach(function (k) { if (box(k).checked) q.set(k, "1"); });
-    var cp = document.getElementById("cfg-pay"); if (cp) cp.href = "pago/_propuesta.html?" + q.toString();
+    /* Growth y Scale: primero la reunión (veoup.es/reunion); quien ya habló con nosotros contrata con el enlace de abajo.
+       Content: directo al pago (Manu, 2026-11-26). */
+    var conReu = p !== "content", pago = "/pago/?" + q.toString();
+    document.getElementById("cfg-cta").href = conReu ? "/reunion/?plan=" + p : pago;
+    document.getElementById("cfg-cta-t").textContent = conReu ? "Agendar reunión" : "Contratar ahora";
+    document.getElementById("cfg-reu").hidden = !conReu;
+    var ya = document.getElementById("cfg-ya"); ya.hidden = !conReu; ya.href = pago;
+    document.getElementById("cfg-wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt.replace("quiero empezar con", "tengo dudas sobre"));
   }
   document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.addEventListener("click", function () { st.plan = b.dataset.plan; pintar(); }); });
   document.querySelectorAll(".cx input").forEach(function (i) { i.addEventListener("change", pintar); });
-  document.getElementById("cfg-cta").addEventListener("click", function () { if (window.track) track("wa_click", { wa_plan: st.plan, wa_zone: "configurador" }); });
+  document.getElementById("cfg-cta").addEventListener("click", function () { if (window.track) track(st.plan === "content" ? "pay_start" : "reunion_start", { plan: st.plan, zona: "configurador" }); });
+  document.getElementById("cfg-ya").addEventListener("click", function () { if (window.track) track("pay_start", { plan: st.plan, zona: "configurador_ya_hablamos" }); });
+  document.getElementById("cfg-wa").addEventListener("click", function () { if (window.track) track("wa_click", { wa_plan: st.plan, wa_zone: "configurador" }); });
   document.querySelectorAll("[data-pick]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); st.plan = a.dataset.pick; pintar(); document.getElementById("arma").scrollIntoView({ behavior: "smooth", block: "start" }); }); });
   pintar();
 })();
@@ -2206,6 +2239,7 @@
     if (f === "eur0") return nf0.format(v) + " €";
     if (f === "x") return nf1.format(v) + "×";
     if (f === "pct") return nf1.format(v) + " %";
+    if (f === "signo") return (v > 0 ? "+" : v < 0 ? "−" : "") + nf0.format(Math.abs(v));
     return nf0.format(v);
   }
   function hace(t) { var s = Math.max(1, Math.round((Date.now() - t) / 1000)); if (s < 60) return "hace " + s + " s"; var m = Math.round(s / 60); if (m < 60) return "hace " + m + " min"; var h = Math.round(m / 60); return h < 24 ? "hace " + h + " h" : "hace " + Math.round(h / 24) + " d"; }
@@ -2229,6 +2263,13 @@
     else { L = k < 21 ? lead21[k] : (k < 27 ? lead6[k - 21] : 2); I = k < 21 ? inv21[k] : (k < 27 ? inv6[k - 21] : 11); }
     dias.push({ d: d, inv: I, leads: L });
   }
+  var SEG_HOY = 3482, gA = reparte(220, 34), pA = reparte(60, 34), gB = reparte(205, 28), pB = reparte(49, 28), gC = reparte(258, 27), pC = reparte(51, 27);
+  dias.forEach(function (x, i) {
+    if (i < 34) { x.sg = gA[i]; x.sp = pA[i]; } else if (i < 62) { x.sg = gB[i - 34]; x.sp = pB[i - 34]; }
+    else if (i < ULT) { x.sg = gC[i - 62]; x.sp = pC[i - 62]; } else { x.sg = 10; x.sp = 3; }
+  });
+  function sumD(ia, ib, k) { var t = 0; for (var j = Math.max(0, ia); j <= ib; j++) t += dias[j][k] || 0; return t; }
+  function segTotal(ib) { var t = SEG_HOY; for (var j = ULT; j > ib; j--) t -= dias[j].sg - dias[j].sp; return t; }
   function reparteFijo(total, w) {
     var s = w.reduce(function (a, b) { return a + b; }, 0), raw = w.map(function (x) { return total * x / s; }), fl = raw.map(Math.floor), rest = total - fl.reduce(function (a, b) { return a + b; }, 0);
     raw.map(function (x, i) { return [x - fl[i], i]; }).sort(function (a, b) { return b[0] - a[0]; }).slice(0, rest).forEach(function (p) { fl[p[1]]++; });
@@ -2244,17 +2285,19 @@
   function deltas(c) {
     var ia = c.ia, ib = c.ib, n = ib - ia + 1, pa = ia - n;
     var txt = ib === ULT ? (n === 1 ? "vs. ayer" : n === 7 ? "vs. semana anterior" : n === 28 ? "vs. 28 días anteriores" : "vs. periodo anterior") : (n === 1 ? "vs. día anterior" : "vs. periodo anterior");
-    if (pa < 0) return { leads: "sin datos del periodo anterior", roas: "por cada € invertido" };
-    var p = rango(pa, ia - 1);
+    var gN = sumD(ia, ib, "sg"), pN = sumD(ia, ib, "sp");
+    if (pa < 0) return { leads: "sin datos del periodo anterior", roas: "por cada € invertido", seg: "<em>" + (gN - pN >= 0 ? "+" : "−") + Math.abs(gN - pN) + "</em> en el periodo" };
+    var p = rango(pa, ia - 1), gP = sumD(pa, ia - 1, "sg"), pP = sumD(pa, ia - 1, "sp");
     function em(x, menosEsMejor, suf) { var malo = menosEsMejor ? x > 0 : x < 0; return "<em" + (malo ? ' class="neg"' : "") + ">" + (x > 0 ? "+" : "−") + Math.abs(x) + (suf || "") + "</em> " + txt; }
-    function dif(a, b) { var x = a - b; return x ? em(x) : "sin cambios " + txt; }
+    function dif(a, b, menosEsMejor) { var x = a - b; return x ? em(x, menosEsMejor) : "sin cambios " + txt; }
     function pct(a, b, menosEsMejor) { if (!a && !b) return "sin ventas en el periodo"; if (!b || !isFinite(a) || !isFinite(b)) return "—"; var x = Math.round((a - b) / b * 100); return x ? em(x, menosEsMejor, " %") : "sin cambios " + txt; }
-    return { leads: dif(c.leads, p.leads), cpl: pct(c.inv / c.leads, p.inv / p.leads, true), citas: dif(c.citas, p.citas), clientes: c.citas ? "<em>" + Math.round(c.clientes / c.citas * 100) + " %</em> de las citas" : "sin citas en el periodo", ingresos: pct(c.ingresos, p.ingresos), roas: "por cada € invertido" };
+    return { leads: dif(c.leads, p.leads), cpl: pct(c.inv / c.leads, p.inv / p.leads, true), citas: dif(c.citas, p.citas), seg: "<em" + (gN - pN < 0 ? ' class="neg"' : "") + ">" + (gN - pN >= 0 ? "+" : "−") + Math.abs(gN - pN) + "</em> en el periodo", seg_g: dif(gN, gP), seg_p: dif(pN, pP, true), seg_n: dif(gN - pN, gP - pP), clientes: c.citas ? "<em>" + Math.round(c.clientes / c.citas * 100) + " %</em> de las citas" : "sin citas en el periodo", ingresos: pct(c.ingresos, p.ingresos), roas: "por cada € invertido" };
   }
   S.hoy = rango(ULT, ULT); S.d7 = rango(ULT - 6, ULT); S.d28 = rango(ULT - 27, ULT);
   VS.hoy = deltas(S.hoy); VS.d7 = deltas(S.d7); VS.d28 = deltas(S.d28);
   var hNow = new Date().getHours(), idx = Math.max(0, Math.min(12, hNow - 8)), horas = [], hl = reparte(2, idx + 1), hi = reparte(11, idx + 1);
-  for (i = 0; i <= 12; i++) horas.push({ h: 8 + i, inv: i <= idx ? hi[i] : null, leads: i <= idx ? hl[i] : null });
+  var hg = reparte(10, idx + 1), hp = reparte(3, idx + 1);
+  for (i = 0; i <= 12; i++) horas.push({ h: 8 + i, inv: i <= idx ? hi[i] : null, leads: i <= idx ? hl[i] : null, sg: i <= idx ? hg[i] : null, sp: i <= idx ? hp[i] : null });
 
   var NOMBRES = ["L. M.", "J. R.", "A. G.", "M. P.", "C. S.", "D. F.", "S. N.", "P. V.", "R. T.", "E. B.", "N. C.", "I. L."];
   var ETAPA = { nuevo: ["Nuevo", "#6aa8ff"], contactado: ["Contactado", "#f4b400"], cita: ["Cita", "#c48bff"], cliente: ["Cliente", "#38D66B"] };
@@ -2277,6 +2320,10 @@
     switch (k) {
       case "cpl": return p.inv / p.leads;
       case "cpl_ads": return p.inv / (p.ads.meta[1] + p.ads.google[1]);
+      case "seg": return segTotal(p.ib);
+      case "seg_g": return sumD(p.ia, p.ib, "sg");
+      case "seg_p": return sumD(p.ia, p.ib, "sp");
+      case "seg_n": return sumD(p.ia, p.ib, "sg") - sumD(p.ia, p.ib, "sp");
       case "roas": return p.ingresos ? p.ingresos / p.inv : null;
       case "conv": return p.leads / p.visitas * 100;
       case "meta_inv": return p.ads.meta[0]; case "meta_leads": return p.ads.meta[1]; case "meta_clics": return p.ads.meta[2]; case "meta_cpl": return p.ads.meta[0] / p.ads.meta[1];
@@ -2328,6 +2375,24 @@
     return '<div class="lv-chart"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lvGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#38D66B" stop-opacity=".28"/><stop offset="1" stop-color="#38D66B" stop-opacity="0"/></linearGradient></defs>' +
       '<line class="grid" x1="0" y1="50" x2="600" y2="50"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/>' + bars + '<path class="area" d="' + area + '"/><path class="ln" d="' + line + '"/>' + dots + '<line class="guide" x1="0" x2="0" y1="0" y2="' + H + '" style="display:none"/>' + hits + '</svg><div class="lv-tip"></div></div><div class="lv-axis">' + ax.map(function (a) { return "<span>" + a + "</span>"; }).join("") + '</div><div class="lv-legend"><span><i></i>Inversión en anuncios</span><span><i class="g"></i>Leads</span></div>';
   }
+  function graficoSeg() {
+    var s = serie(), n = s.length, W = 600, H = 150, bw = W / n, mg = 1, mp = 1;
+    s.forEach(function (x) { if (x.sg != null) { mg = Math.max(mg, x.sg); mp = Math.max(mp, x.sp); } });
+    var k = (H - 16) / (mg + mp), base = 8 + mg * k, barras = "", hits = "";
+    s.forEach(function (x, j) {
+      if (x.sg != null) {
+        var hg = x.sg * k, hp = x.sp * k, bx = (j * bw + bw * .2).toFixed(1), w = (bw * .6).toFixed(1);
+        barras += '<rect class="bar g" data-j="' + j + '" x="' + bx + '" y="' + (base - hg).toFixed(1) + '" width="' + w + '" height="' + Math.max(hg, .01).toFixed(1) + '" rx="2"/>'
+          + '<rect class="bar p" data-j="' + j + '" x="' + bx + '" y="' + base.toFixed(1) + '" width="' + w + '" height="' + Math.max(hp, .01).toFixed(1) + '" rx="2"/>';
+      }
+      hits += '<rect class="hit" data-j="' + j + '" x="' + (j * bw).toFixed(1) + '" y="0" width="' + bw.toFixed(1) + '" height="' + H + '"/>';
+    });
+    var ax = s === horas ? ["8:00", "12:00", "16:00", "20:00"] : (n <= 7 ? s.filter(function (x, j) { return n < 5 || j % 2 === 0; }).map(function (x) { return DIAS[x.d.getDay()] + " " + x.d.getDate(); })
+      : [0, 1 / 3, 2 / 3, 1].map(function (f) { var x = s[Math.round(f * (n - 1))]; return x.d.getDate() + " " + MESES[x.d.getMonth()]; }));
+    return '<div class="lv-chart" data-tipo="seg"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><line class="grid base" x1="0" y1="' + base.toFixed(1) + '" x2="600" y2="' + base.toFixed(1) + '"/>' + barras
+      + '<line class="guide" x1="0" x2="0" y1="0" y2="' + H + '" style="display:none"/>' + hits + '</svg><div class="lv-tip"></div></div><div class="lv-axis">' + ax.map(function (a) { return "<span>" + a + "</span>"; }).join("")
+      + '</div><div class="lv-legend"><span><i class="sg"></i>Ganados</span><span><i class="sp"></i>Perdidos</span></div>';
+  }
   function engancharGrafico() {
     var ch = body.querySelector(".lv-chart"); if (!ch) return;
     var svg = ch.querySelector("svg"), tip = ch.querySelector(".lv-tip"), guide = svg.querySelector(".guide"), s = serie();
@@ -2336,7 +2401,9 @@
       svg.querySelectorAll(".bar").forEach(function (b) { b.classList.toggle("on", +b.dataset.j === j); });
       guide.setAttribute("x1", cx); guide.setAttribute("x2", cx); guide.style.display = "";
       var tit = s === horas ? x.h + ":00 – " + (x.h + 1) + ":00" : DIAS[x.d.getDay()] + " " + x.d.getDate() + " " + MESES[x.d.getMonth()];
-      tip.innerHTML = "<b>" + tit + "</b>" + (x.inv == null ? "Todavía no ha llegado" : fmt(x.inv, "eur0") + " en anuncios · " + x.leads + (x.leads === 1 ? " lead" : " leads"));
+      tip.innerHTML = "<b>" + tit + "</b>" + (x.inv == null ? "Todavía no ha llegado" : ch.dataset.tipo === "seg"
+        ? "+" + x.sg + " ganados · −" + x.sp + " perdidos · neto " + fmt(x.sg - x.sp, "signo")
+        : fmt(x.inv, "eur0") + " en anuncios · " + x.leads + (x.leads === 1 ? " lead" : " leads"));
       var px = (cx / 600) * rect.width; tip.style.left = Math.max(70, Math.min(rect.width - 70, px)) + "px"; tip.style.top = "30px"; tip.classList.add("on");
     }
     function off() { tip.classList.remove("on"); guide.style.display = "none"; svg.querySelectorAll(".bar.on").forEach(function (b) { b.classList.remove("on"); }); }
@@ -2391,8 +2458,11 @@
       return '<div class="lv-kpis">' + kpi("leads", "Leads") + kpi("citas", "Citas") + kpi("clientes", "Clientes nuevos") + "</div>" +
         '<div class="lv-row r21">' + tablaLeads() + '<div class="lv-card" data-c="src"><span class="lv-t">De dónde vienen</span><span class="lv-d">' + S[st.p].leads + " leads en el periodo</span>" + origen() + "</div></div>";
     },
-    contenido: function () {
-      return '<div class="lv-kpis">' + kpi("alcance", "Alcance") + kpi("visitas", "Visitas a perfil y web") + kpi("leads", "Leads") + "</div>" + piezas();
+    redes: function () {
+      return '<div class="lv-kpis k4">' + kpi("seg", "Seguidores", "") + kpi("seg_g", "Ganados", "") + kpi("seg_p", "Perdidos", "") + kpi("seg_n", "Crecimiento neto", "signo", " hl") + "</div>"
+        + '<div class="lv-row r21"><div class="lv-card"><span class="lv-t">Seguidores ganados y perdidos</span><span class="lv-d">' + (serie() === horas ? "Hora a hora, hoy" : "Día a día") + " · toca el gráfico para ver cada día</span>" + graficoSeg() + "</div>"
+        + '<div class="lv-card"><span class="lv-t">Alcance del contenido</span><span class="lv-d">Personas que lo han visto en el periodo</span><div class="lv-kpis k1"><div class="lv-k"><small>Alcance</small>' + num("alcance") + '</div><div class="lv-k"><small>Visitas a perfil y web</small>' + num("visitas") + "</div></div></div></div>"
+        + piezas();
     },
     web: function () {
       return '<div class="lv-kpis">' + kpi("visitas", "Visitas a perfil y web") + kpi("conv", "Visitas que se convierten en lead", "pct") + kpi("leads", "Leads") + "</div>" +
@@ -2440,9 +2510,13 @@
       feed.forEach(function (e) { e.nuevo = false; }); feed.unshift({ c: C.venta, tx: "Cliente nuevo · " + imp + " €", sub: c ? "Lead #" + c.id + " · del anuncio a la venta" : "Venta atribuida", t: ahora, nuevo: true });
       toast(C.venta, "Cliente nuevo", "+" + imp + " €");
     }
+    var nuevos = r() < .55 ? 1 + Math.round(r()) : 0, idos = r() < .18 ? 1 : 0;
+    if (nuevos || idos) { dias[ULT].sg += nuevos; dias[ULT].sp += idos; horas[idx].sg += nuevos; horas[idx].sp += idos; SEG_HOY += nuevos - idos; }
+    if (nuevos && x >= .9) { feed.forEach(function (e) { e.nuevo = false; }); feed.unshift({ c: C.ig, tx: "+" + nuevos + (nuevos > 1 ? " seguidores" : " seguidor"), sub: "Instagram", t: ahora, nuevo: true }); toast(C.ig, "+" + nuevos + (nuevos > 1 ? " seguidores nuevos" : " seguidor nuevo"), "Instagram"); }
     st.upd = ahora;
     if (st.tab === "resumen") { var f = document.getElementById("lv-feed"); if (f) f.innerHTML = feedHTML(); var ch = body.querySelector(".lv-chart"); if (ch) { ch.parentNode.innerHTML = '<span class="lv-t">Inversión y leads</span><span class="lv-d">' + (serie() === horas ? "Hora a hora, hoy" : "Día a día") + " · toca el gráfico para ver cada día</span>" + grafico(); engancharGrafico(); } var o = body.querySelector('[data-c="src"] .lv-src-l'); if (o) o.outerHTML = origen(); }
     if (st.tab === "leads") { var tl = body.querySelector(".lv-leads"); if (tl) tl.closest(".lv-card").outerHTML = tablaLeads(); var o2 = body.querySelector('[data-c="src"] .lv-src-l'); if (o2) o2.outerHTML = origen(); }
+    if (st.tab === "redes") { var cs = body.querySelector('.lv-chart[data-tipo="seg"]'); if (cs) { cs.parentNode.innerHTML = '<span class="lv-t">Seguidores ganados y perdidos</span><span class="lv-d">' + (serie() === horas ? "Hora a hora, hoy" : "Día a día") + " · toca el gráfico para ver cada día</span>" + graficoSeg(); engancharGrafico(); } }
     if (st.tab === "anuncios") { var cp = body.querySelector(".lv-tbl"); if (cp) cp.closest(".lv-card").outerHTML = campanas(); }
     refrescar(); flash(x < .58 ? '[data-c="leads"]' : (x < .8 ? '[data-c="citas"]' : (x < .9 ? '[data-c="clientes"],[data-c="ingresos"]' : "")) || "x");
   }

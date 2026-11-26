@@ -72,14 +72,26 @@
     <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
     <h1 id="titulo">¡Bienvenido a VEO UP!</h1>
     <p class="lede">Tu suscripción <b id="plan"></b> está activa. Te llegará la factura por email.</p>
-    <section class="card">
-      <h2>Reserva tu Content Day</h2>
-      <p>Elige el día y la hora para grabar en tu negocio.</p>
+    <section class="card" id="paso-reserva">
+      <h2 id="r-tit">Reserva tu Content Day</h2>
+      <p id="r-txt">Elige el día y la hora para grabar en tu negocio.</p>
       <ul>
         <li>Con al menos <b>48 horas</b> de antelación.</li>
-        <li>De lunes a viernes. La sesión dura hasta 2 horas.</li>
+        <li>De lunes a sábado. La sesión dura hasta 2 horas.</li>
       </ul>
-      <a class="btn" id="reservar" href="#" target="_blank" rel="noopener">Reservar Content Day
+      <a class="btn" id="reservar" href="#">Reservar Content Day
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+    <!-- Pago hecho desde la web sin formulario (botón «Contratar ahora», 2026-11-26): falta que nos cuente su negocio.
+         Al enviar el formulario, el script de bienvenida casa el pago por email y le manda el enlace para reservar. -->
+    <section class="card" id="paso-form" hidden>
+      <h2>Último paso: cuéntanos tu negocio</h2>
+      <p>Son unos 5 minutos. Con eso preparamos tu contenido y te llega por email el enlace para reservar tu <b id="f-cd">Content Day</b>.</p>
+      <ul>
+        <li>Usa el mismo email con el que has pagado<b id="f-mail"></b>.</li>
+        <li>Si te surge cualquier duda, escríbenos por WhatsApp.</li>
+      </ul>
+      <a class="btn" id="formulario" href="/formulario/">Rellenar el formulario
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </section>
   </div>
@@ -99,12 +111,23 @@
   else fetch(window.PAGOS_URL + "?accion=verificar&s=" + encodeURIComponent(s)).then(function (r) { return r.json(); }).then(function (d) {
     if (!d || !d.ok || !d.pagado) { mostrar("ko"); return; }
     if (d.nombre) document.getElementById("titulo").textContent = "¡Bienvenido a VEO UP, " + String(d.nombre).slice(0, 30) + "!";
-    document.getElementById("plan").textContent = (NOMBRES[d.plan] || "") + (d.ads ? " + Google Ads" : "");
-    document.getElementById("reservar").href = window.RESERVA_URL;
+    var EXTRA = { ads: "Google Ads", panel: "Panel en tiempo real", web: "Tu web" };
+    var ex = String(d.extras || (d.ads ? "ads" : "")).split(",").filter(Boolean).map(function (k) { return EXTRA[k] || k; });
+    document.getElementById("plan").textContent = [NOMBRES[d.plan] || ""].concat(ex).join(" + ");
+    var dos = d.plan === "scale";
+    if (d.ref) {
+      document.getElementById("reservar").href = "/reservar/?ref=" + encodeURIComponent(d.ref);
+      if (dos) { document.getElementById("r-tit").textContent = "Reserva tus 2 Content Days"; document.getElementById("r-txt").textContent = "Con Scale grabamos 2 veces al mes: elige dos días distintos."; document.getElementById("reservar").firstChild.textContent = "Reservar mis Content Days "; }
+    } else {
+      document.getElementById("paso-reserva").hidden = true; document.getElementById("paso-form").hidden = false;
+      if (d.email) document.getElementById("f-mail").textContent = " (" + String(d.email).slice(0, 80) + ")";
+      if (dos) document.getElementById("f-cd").textContent = "2 Content Days";
+    }
     mostrar("ok");
     track("purchase_ok", { plan: d.plan || "" });
   }).catch(function () { mostrar("ko"); });
   document.getElementById("reservar").addEventListener("click", function () { track("booking_click", { zona: "pago_listo" }); });
+  document.getElementById("formulario").addEventListener("click", function () { track("form_click", { zona: "pago_listo" }); });
   document.getElementById("wa").addEventListener("click", function () { track("wa_click", { wa_plan: "doubt", wa_zone: "pago_listo" }); });
 </script>
 </body>

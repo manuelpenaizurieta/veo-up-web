@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#F7F7F2">
 <!-- Página de pago. Llega aquí desde el email 2 («Solicitud aprobada»): /pago/?plan=growth&email=..&ref=<Submission ID>.
      El botón llama al script «VEO UP · Pagos» (Apps Script en start@), que crea la sesión de Stripe Checkout con
-     IVA 21 % no incluido y devuelve la URL. Precios: deben coincidir con Stripe (230 / 490 / 890 € + IVA). -->
+     IVA 21 % no incluido y devuelve la URL. Precios: deben coincidir con Stripe (230 / 490 / 990 € + IVA; extras: Google Ads 250 €/mes, panel 49 €/mes + alta 290 €, web 490 €). -->
 <script>
   window.PAGOS_URL = "https://script.google.com/macros/s/AKfycbxJiuLP9dBSeJyOOU-HBN6FaSbENUi63OnrqpXnS40Et7CWuGS_tX3CZ9_5qboIol6R/exec";   // Stripe en MODO PRUEBA (2026-11-15): flujo real activo; los gratis usan /formulario/?gratis=1   // URL /exec de la web app «VEO UP · Pagos». Vacía = botón desactivado.
   window.GTM_ID = "GTM-MJM75GLF";
@@ -100,6 +100,16 @@
   .help a { color: var(--black); font-weight: 600; }
   .rev { display: none; background: #ffe7e7; border: 1px dashed #c33; border-radius: 12px; padding: 10px 12px; font-size: 13px; margin: 16px 0 0; }
   body.revision .rev { display: block; }
+  .sub { font: 600 12px/1 Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 6px 0 10px; }
+  .extra { margin: 0 0 10px; }
+  .extra[hidden] { display: none; }
+  .resumen { margin-top: 10px; }
+  .resumen .rt { margin: 0 0 8px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .resumen dl + div, .resumen dl + .hoy, .resumen div + .hoy { margin-top: 16px; }
+  .resumen .hoy { border-top: 1px solid var(--grey); padding-top: 12px; font-size: 18px; }
+  .resumen .hoy dt { color: var(--black); font-weight: 700; }
+  .resumen .hoy dd { font: 700 22px Sora, Inter, sans-serif; }
+  .resumen .nota { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -109,7 +119,7 @@
 </header>
 <main>
   <h1>Activa tu plan</h1>
-  <p class="lede">Elige tu plan y activa la suscripción. Después reservas tu <b>Content Day</b>.</p>
+  <p class="lede">Elige tu plan, añade lo que necesites y activa la suscripción. Después nos cuentas tu negocio y reservas tu <b>Content Day</b>.</p>
   <p class="aviso" id="cancelado">No se ha hecho ningún cargo. Puedes intentarlo de nuevo cuando quieras.</p>
 
   <fieldset class="planes">
@@ -122,20 +132,26 @@
       <span class="pr"><b>490 €</b><small>/mes + IVA</small></span></label>
     <label class="op"><input type="radio" name="plan" value="scale"><span class="radio"></span>
       <span><h2>Scale <span class="badge">Más vendido</span></h2><p>4 vídeos + 6 shorts · 2 Content Days · captación y automatización de leads</p></span>
-      <span class="pr"><b>890 €</b><small>/mes + IVA</small></span></label>
+      <span class="pr"><b>990 €</b><small>/mes + IVA</small></span></label>
   </fieldset>
 
-  <label class="extra" id="extra" hidden><input type="checkbox" id="ads"><span class="caja" aria-hidden="true"></span>
-    <span><b>Añadir Google Ads</b><small>Para que te encuentren quienes ya te buscan en Google. Opcional, solo con Scale.</small></span>
-    <span class="pr"><b>+300 €</b><small>/mes + IVA</small></span></label>
+  <p class="sub">Añade si quieres</p>
+  <label class="extra" data-x="ads"><input type="checkbox" id="x-ads"><span class="caja" aria-hidden="true"></span>
+    <span><b>Google Ads</b><small>Que te encuentre quien ya busca lo que ofreces.</small></span>
+    <span class="pr"><b>+250 €</b><small>/mes + IVA</small></span></label>
+  <label class="extra" data-x="panel"><input type="checkbox" id="x-panel"><span class="caja" aria-hidden="true"></span>
+    <span><b>Panel en tiempo real</b><small id="x-panel-txt">Anuncios, leads y ventas en directo. Alta de 290 € la primera vez.</small></span>
+    <span class="pr"><b>+49 €</b><small>/mes + IVA</small></span></label>
+  <label class="extra" data-x="web"><input type="checkbox" id="x-web"><span class="caja" aria-hidden="true"></span>
+    <span><b>Tu web</b><small>Como veoup.es: rápida, con tus vídeos y lista para medir.</small></span>
+    <span class="pr"><b>490 €</b><small>pago único + IVA</small></span></label>
 
   <section class="resumen" aria-live="polite">
-    <dl>
-      <dt id="r-plan">Plan Growth</dt><dd id="r-base">490,00 €</dd>
-      <dt id="r-ads-t" hidden>Google Ads</dt><dd id="r-ads" hidden>300,00 €</dd>
-      <dt>IVA (21 %)</dt><dd id="r-iva">102,90 €</dd>
-      <dt class="tot">Total al mes</dt><dd class="tot" id="r-total">592,90 €</dd>
-    </dl>
+    <p class="rt">Cada mes</p>
+    <dl id="r-mes"></dl>
+    <div id="r-uno-box" hidden><p class="rt">Solo el primer mes</p><dl id="r-uno"></dl></div>
+    <dl class="hoy"><dt>Hoy pagas</dt><dd id="r-hoy"></dd></dl>
+    <p class="nota">Después, <b id="r-luego"></b> al mes con IVA. Sin permanencia.</p>
   </section>
 
   <button class="btn" id="pagar" type="button">Activar suscripción
@@ -153,28 +169,37 @@
 </main>
 <script>
   if (location.hash === "#revision") document.body.classList.add("revision");
-  var PRECIOS = { content: 230, growth: 490, scale: 890 }, NOMBRES = { content: "Content", growth: "Growth", scale: "Scale" };
+  var PRECIOS = { content: 230, growth: 490, scale: 990 }, NOMBRES = { content: "Content", growth: "Growth", scale: "Scale" };
   var q = new URLSearchParams(location.search);
-  var eur = function (n) { return n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €"; };
+  var eur = function (n) { var t = (Math.round(n * 100) / 100).toFixed(2).split("."); return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "," + t[1] + " €"; };
   var pre = (q.get("plan") || "").toLowerCase();
   if (PRECIOS[pre]) document.querySelector('input[value="' + pre + '"]').checked = true;
-  var ADS = 300, adsBox = document.getElementById("ads"), extra = document.getElementById("extra");
-  if (q.get("ads") === "1") adsBox.checked = true;
-  /* Extras (Google Ads, panel, web) fuera del pago online hasta adaptar el script de Stripe (2026-11-26): se contratan por WhatsApp. */
-  function conAds() { return false; }
+  /* Extras (Manu, 2026-11-26): Google Ads y panel con Growth y Scale; la web con cualquier plan. En Scale la alta del panel va incluida. */
+  var X = { ads: [250, 0, "Google Ads"], panel: [49, 290, "Panel en tiempo real"], web: [0, 490, "Tu web"] };
+  ["ads", "panel", "web"].forEach(function (k) { if (q.get(k) === "1") document.getElementById("x-" + k).checked = true; });
   if (q.get("cancelado")) document.getElementById("cancelado").style.display = "block";
   function plan() { return document.querySelector('input[name="plan"]:checked').value; }
+  function marcado(k) { var b = document.getElementById("x-" + k); return b.checked && !b.closest(".extra").hidden; }
+  function filas(id, rows) { document.getElementById(id).innerHTML = rows.map(function (r) { return "<dt" + (r[2] ? ' class="tot"' : "") + ">" + r[0] + "</dt><dd" + (r[2] ? ' class="tot"' : "") + ">" + r[1] + "</dd>"; }).join(""); }
   function pintar() {
-    var p = plan(); extra.hidden = true;
-    var a = conAds(), base = PRECIOS[p] + (a ? ADS : 0), iva = Math.round(base * 21) / 100;
-    document.getElementById("r-plan").textContent = "Plan " + NOMBRES[p];
-    document.getElementById("r-base").textContent = eur(PRECIOS[p]);
-    document.getElementById("r-ads-t").hidden = !a; document.getElementById("r-ads").hidden = !a;
-    document.getElementById("r-iva").textContent = eur(iva);
-    document.getElementById("r-total").textContent = eur(base + iva);
+    var p = plan(), mes = PRECIOS[p], uno = 0, rm = [["Plan " + NOMBRES[p], eur(PRECIOS[p])]], ru = [];
+    ["ads", "panel"].forEach(function (k) { document.getElementById("x-" + k).closest(".extra").hidden = p === "content"; });
+    document.getElementById("x-panel-txt").textContent = p === "scale" ? "Anuncios, leads y ventas en directo. Alta incluida en Scale." : "Anuncios, leads y ventas en directo. Alta de 290 € la primera vez.";
+    ["ads", "panel", "web"].forEach(function (k) {
+      if (!marcado(k)) return;
+      var x = X[k], alta = (k === "panel" && p === "scale") ? 0 : x[1];
+      if (x[0]) { mes += x[0]; rm.push([x[2], eur(x[0])]); }
+      if (alta) { uno += alta; ru.push([x[2] + (k === "panel" ? " · alta" : ""), eur(alta)]); }
+    });
+    var ivaM = Math.round(mes * 21) / 100, ivaU = Math.round(uno * 21) / 100;
+    rm.push(["IVA (21 %)", eur(ivaM)]); rm.push(["Total al mes", eur(mes + ivaM), 1]); filas("r-mes", rm);
+    document.getElementById("r-uno-box").hidden = !uno;
+    if (uno) { ru.push(["IVA (21 %)", eur(ivaU)]); ru.push(["Total pago único", eur(uno + ivaU), 1]); filas("r-uno", ru); }
+    document.getElementById("r-hoy").textContent = eur(mes + ivaM + uno + ivaU);
+    document.getElementById("r-luego").textContent = eur(mes + ivaM);
   }
   document.querySelectorAll('input[name="plan"]').forEach(function (r) { r.addEventListener("change", pintar); });
-  adsBox.addEventListener("change", pintar);
+  document.querySelectorAll(".extra input").forEach(function (r) { r.addEventListener("change", pintar); });
   pintar();
   track("pay_view", { plan: plan() });
 
@@ -183,9 +208,9 @@
   btn.addEventListener("click", function () {
     if (!window.PAGOS_URL) return;
     btn.disabled = true; err.textContent = ""; btn.firstChild.textContent = "Abriendo pago seguro… ";
-    var u = window.PAGOS_URL + "?accion=crear&plan=" + encodeURIComponent(plan()) + (conAds() ? "&ads=1" : "") +
+    var u = window.PAGOS_URL + "?accion=crear&plan=" + encodeURIComponent(plan()) + ["ads", "panel", "web"].filter(marcado).map(function (k) { return "&" + k + "=1"; }).join("") +
       "&email=" + encodeURIComponent(q.get("email") || "") + "&ref=" + encodeURIComponent(q.get("ref") || "");
-    track("pay_click", { plan: plan(), ads: conAds() ? "si" : "no" });
+    track("pay_click", { plan: plan(), ads: marcado("ads") ? "si" : "no", extras: ["ads", "panel", "web"].filter(marcado).join(",") || "ninguno" });
     fetch(u).then(function (r) { return r.json(); }).then(function (d) {
       if (d && d.ok && /^https:\/\/checkout\.stripe\.com\//.test(d.url)) { location.href = d.url; return; }
       throw new Error((d && d.error) || "respuesta");

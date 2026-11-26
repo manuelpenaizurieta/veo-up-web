@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/media/icons/apple-touch-icon.png">
+<title>Agenda tu reunión · VEO UP</title>
+<meta name="description" content="Agenda una videollamada de 30 minutos con VEO UP para contarnos tu negocio antes de empezar con Growth o Scale.">
+<meta name="theme-color" content="#F7F7F2">
+<!-- Reunión previa de Growth y Scale (Manu, 2026-11-26): antes de contratar, el cliente deja sus datos básicos y agenda
+     una videollamada de 30 min (Google Meet). Habla con la web app «VEO UP · Reservas Content Day» (start@): accion=huecos_reunion /
+     reunion. La cita llega al CRM (pestaña Reservas → Supabase) y, si no había ficha, se crea con origen «Web-Reunión».
+     Vista de diseño sin datos reales: /reunion/#demo -->
+<script>
+  window.RESERVAS_URL = "https://script.google.com/macros/s/AKfycbymxjBtTayemeeaILYYCc_IypjVeiP6f5LJiQaYFMQ8XzAlx6UWPOoWc4HtdZ9Jx8dQsA/exec";   // web app «VEO UP · Reservas Content Day» (start@), versión 4 (huecos, reservar e ics)
+  window.GTM_ID = "GTM-MJM75GLF";
+  window.dataLayer = window.dataLayer || [];
+  var veoQueue = [];
+  window.track = function (event, params) {
+    var e = Object.assign({ event: event }, params || {});
+    if (window.__gtmLoaded) window.dataLayer.push(e); else veoQueue.push(e);
+  };
+  try { window.__veoInterno = localStorage.getItem("veoup-interno") === "1"; } catch (e) { window.__veoInterno = false; }
+  window.loadGTM = function () {
+    if (!window.GTM_ID || window.__gtmLoaded || window.__veoInterno) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    veoQueue.forEach(function (e) { window.dataLayer.push(e); }); veoQueue = [];
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + window.GTM_ID;
+    document.head.appendChild(s);
+  };
+  try { if (localStorage.getItem("veoup-consent") === "si") window.loadGTM(); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #101010; --cream: #F7F7F2; --green: #38D66B; --grey: #EAECE9; --line: #E2E4DF; --muted: #5a5d59; --green-ink: #1E8A43; --green-bg: #DDF6E5; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--black); font: 16px/1.5 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .top { max-width: 680px; margin: 0 auto; padding: 20px 16px 0; display: flex; justify-content: space-between; align-items: center; }
+  .top img { display: block; width: 112px; height: auto; }
+  .top span { font-size: 13px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .top svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  main { max-width: 680px; margin: 0 auto; padding: 28px 16px 64px; }
+  .k { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--green-ink); margin: 0 0 8px; }
+  h1 { font: 700 clamp(28px, 6.5vw, 40px)/1.08 Sora, Inter, sans-serif; letter-spacing: -.025em; margin: 0 0 10px; }
+  .lede { font-size: 17px; color: #3a3d39; margin: 0 0 26px; }
+  .card { background: #fff; border-radius: 22px; padding: 20px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 10px 32px rgba(16,16,16,.06); margin: 0 0 16px; }
+  .paso { display: flex; align-items: center; gap: 10px; font: 700 15px Sora, Inter, sans-serif; margin: 0 0 14px; }
+  .paso i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: #fff; display: grid; place-items: center; font-size: 13px; }
+  label.campo { display: block; font-size: 14px; font-weight: 600; margin: 0 0 8px; }
+  input.txt { width: 100%; height: 52px; border: 1.5px solid #d9dbd7; border-radius: 14px; padding: 0 16px; font: 500 16px Inter, sans-serif; color: var(--black); background: #fff; }
+  input.txt:focus { outline: none; border-color: var(--black); box-shadow: 0 0 0 4px rgba(16,16,16,.08); }
+  .ayuda { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .dias { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 10px; margin: 0 -4px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+  .dia { all: unset; box-sizing: border-box; flex: none; width: 74px; padding: 10px 6px; border-radius: 16px; border: 1.5px solid var(--line); text-align: center; cursor: pointer; scroll-snap-align: start; background: #fff; transition: border-color .15s, background .15s; }
+  .dia small { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: capitalize; }
+  .dia b { display: block; font: 700 22px/1.15 Sora, Inter, sans-serif; margin: 2px 0; }
+  .dia span { display: block; font-size: 11.5px; color: var(--muted); text-transform: capitalize; }
+  .dia:hover { border-color: #b9bcb6; }
+  .dia[aria-pressed="true"] { background: var(--black); border-color: var(--black); color: #fff; }
+  .dia[aria-pressed="true"] small, .dia[aria-pressed="true"] span { color: #c9ccc7; }
+  .dia:focus-visible, .hora:focus-visible, .btn:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .horas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 6px 0 0; }
+  .hora { all: unset; box-sizing: border-box; height: 52px; border-radius: 14px; border: 1.5px solid var(--line); display: grid; place-items: center; font: 700 16px Inter, sans-serif; cursor: pointer; background: #fff; font-variant-numeric: tabular-nums; transition: border-color .15s, background .15s; }
+  .hora small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: -6px; }
+  .hora:hover { border-color: #b9bcb6; }
+  .hora[aria-pressed="true"] { background: var(--green); border-color: var(--green); }
+  .hora[aria-pressed="true"] small { color: #10421f; }
+  .franja { grid-column: 1 / -1; margin: 8px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .franja:first-child { margin-top: 0; }
+  @media (max-width: 420px) { .horas { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hora { height: 48px; font-size: 15px; } }
+  .resumen { display: flex; gap: 12px; align-items: center; background: var(--green-bg); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; font-size: 15px; }
+  .resumen svg { flex: none; width: 22px; height: 22px; fill: none; stroke: var(--green-ink); stroke-width: 2; stroke-linecap: round; }
+  .resumen[hidden] { display: none; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border: 0; border-radius: 999px; background: var(--green); color: var(--black); font: 700 17px Inter, sans-serif; cursor: pointer; box-shadow: 0 8px 24px rgba(56,214,107,.35); transition: transform .15s, box-shadow .15s, opacity .15s; text-decoration: none; }
+  .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(56,214,107,.45); }
+  .btn:disabled { opacity: .5; cursor: default; box-shadow: none; }
+  .btn.sec { background: #fff; box-shadow: none; border: 1.5px solid var(--line); }
+  /* Sin hora elegida: gris y con el texto de lo que falta (2026-11-18: en móvil el verde claro parecía activo y «no hacía nada») */
+  .btn.espera { background: var(--grey); color: var(--muted); box-shadow: none; }
+  .btn.espera:hover { transform: none; box-shadow: none; }
+  .error .btn { margin-top: 12px; }
+  .btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .spin { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid currentColor; border-right-color: transparent; animation: g .7s linear infinite; }
+  @keyframes g { to { transform: rotate(360deg); } }
+  .error { color: #b3261e; font-size: 14px; margin: 12px 0 0; min-height: 1em; }
+  .esq { height: 74px; border-radius: 16px; background: linear-gradient(90deg, #eeefea 0%, #f6f7f2 50%, #eeefea 100%); background-size: 200% 100%; animation: brillo 1.2s infinite; }
+  @keyframes brillo { to { background-position: -200% 0; } }
+  .estado { text-align: center; padding: 28px 8px 8px; }
+  .estado .ic { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; margin: 0 auto 18px; background: var(--green-bg); }
+  .estado .ic svg { width: 30px; height: 30px; fill: none; stroke: var(--green-ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .estado .ic.no { background: #fbeae8; } .estado .ic.no svg { stroke: #b3261e; }
+  .estado h2 { font: 700 26px/1.15 Sora, Inter, sans-serif; letter-spacing: -.02em; margin: 0 0 8px; }
+  .estado p { margin: 0 auto 18px; color: #3a3d39; max-width: 46ch; }
+  .estado .fecha { font: 700 20px/1.3 Sora, Inter, sans-serif; color: var(--black); margin: 0 0 18px; }
+  .acciones { display: grid; gap: 10px; max-width: 360px; margin: 0 auto; }
+  .cal-t { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 0 2px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
+  .cal-t svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn.cal { min-height: 52px; font-size: 16px; background: #fff; border: 1.5px solid var(--line); box-shadow: none; }
+  .btn.cal:hover { border-color: #c9ccc7; box-shadow: 0 6px 18px rgba(16,16,16,.08); }
+  .btn.cal.apple { background: var(--black); border-color: var(--black); color: #fff; }
+  .btn.cal.apple:hover { box-shadow: 0 8px 22px rgba(16,16,16,.25); }
+  .btn.cal.google { background: var(--green); border-color: var(--green); color: var(--black); }
+  .btn.cal.google:hover { box-shadow: 0 8px 22px rgba(56,214,107,.35); }
+  .btn svg.logo { width: 22px; height: 22px; stroke: none; fill: currentColor; flex: none; }
+  .lista { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; font-size: 14px; color: #3a3d39; }
+  .lista li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; }
+  .lista svg { width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: #1f9d4c; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .help { display: grid; gap: 10px; max-width: 360px; margin: 26px auto 0; font-size: 14px; color: var(--muted); text-align: center; }
+  .help p { margin: 0; }
+  .vacio { padding: 16px; border: 1.5px dashed var(--line); border-radius: 14px; color: var(--muted); font-size: 14px; text-align: center; }
+  /* Scale: 2 Content Days (2026-11-26) */
+  .slots { display: grid; gap: 8px; margin: 0 0 14px; }
+  .slot { all: unset; box-sizing: border-box; position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; border: 1.5px dashed #cfd2cc; background: #fff; cursor: pointer; transition: border-color .15s, background .15s; }
+  .slot .n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font: 700 13px Sora, Inter, sans-serif; background: var(--grey); color: var(--muted); }
+  .slot .t small { display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .slot .t b { display: block; font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .slot.on { border-style: solid; border-color: var(--black); box-shadow: 0 0 0 3px rgba(16,16,16,.06); }
+  .slot.on .n { background: var(--black); color: #fff; }
+  .slot.lleno { border-style: solid; border-color: var(--green); background: #fbfefc; }
+  .slot.lleno .n { background: var(--green); color: var(--black); }
+  .slot.lleno.on { border-color: var(--black); }
+  .slot.fijo { cursor: default; border-style: solid; border-color: var(--line); background: var(--cream); }
+  .slot.fijo .n { background: var(--green-bg); color: var(--green-ink); }
+  .slot .x { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; line-height: 1; color: var(--muted); }
+  .slot .x:hover { background: var(--grey); color: var(--black); }
+  .slot:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .dia.usado { opacity: .4; cursor: not-allowed; background: var(--grey); }
+  .fechas { list-style: none; padding: 0; margin: 0 auto 14px; max-width: 420px; display: grid; gap: 10px; text-align: left; }
+  .fechas li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--cream); }
+  .fechas .n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font: 700 13px Sora, Inter, sans-serif; background: var(--green); }
+  .fechas .t b { display: block; font: 700 15px/1.3 Sora, Inter, sans-serif; }
+  .fechas .t small { font-size: 12px; color: var(--muted); }
+  .cal-mini { display: flex; gap: 6px; }
+  .cal-mini a { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: #fff; border: 1.5px solid var(--line); color: var(--black); }
+  .cal-mini a:hover { border-color: #b9bcb6; }
+  .cal-mini svg.logo { width: 18px; height: 18px; }
+  @media (max-width: 420px) { .fechas li { grid-template-columns: 36px minmax(0, 1fr); } .fechas .cal-mini { grid-column: 1 / -1; justify-content: flex-end; } }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { .spin, .esq { animation: none; } .btn, .dia, .hora { transition: none; } }
+
+  .grid2 { display: grid; gap: 12px; }
+  @media (min-width: 560px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+  .campo-g { display: grid; gap: 6px; }
+  .campo-g label { font-size: 14px; font-weight: 600; }
+  .campo-g label small { font-weight: 500; color: var(--muted); }
+  .planes-r { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .planes-r button { all: unset; box-sizing: border-box; cursor: pointer; padding: 14px; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; display: grid; gap: 2px; }
+  .planes-r button b { font: 700 16px Sora, Inter, sans-serif; }
+  .planes-r button span { font-size: 13px; color: var(--muted); }
+  .planes-r button[aria-pressed="true"] { border-color: var(--black); box-shadow: 0 0 0 3px rgba(16,16,16,.06); }
+  .planes-r button[aria-pressed="true"][data-plan="growth"] { background: var(--green-bg); }
+  .planes-r button:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  input.txt.mal { border-color: #b3261e; }
+  .meet { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--black); }
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="/" aria-label="VEO UP, ir a la web"><img src="/media/firma-logo.png" width="176" height="52" alt="VEO UP"></a>
+  <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg>Videollamada · 30 min</span>
+</header>
+<main id="app" aria-live="polite">
+  <div class="esq" style="height:44px;width:70%;margin:0 0 14px"></div>
+  <div class="esq" style="height:22px;width:90%;margin:0 0 30px"></div>
+  <div class="esq" style="height:180px"></div>
+</main>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), DEMO = location.hash === "#demo", app = document.getElementById("app");
+  var WA = "https://wa.me/34611216083?text=";
+  var ICON = {
+    flecha: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    ok: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+    no: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>',
+    cal: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.6"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+    video: '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg>'
+  };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var TZ = "Europe/Madrid";
+  var diaClave = function (d) { return d.toLocaleDateString("en-CA", { timeZone: TZ }); };
+  var hora = function (d) { return d.toLocaleTimeString("es-ES", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }); };
+  var largo = function (d) { var t = d.toLocaleDateString("es-ES", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" }) + " a las " + hora(d); return t.charAt(0).toUpperCase() + t.slice(1); };
+  function api(params) {
+    if (DEMO) return demo(params);
+    var u = window.RESERVAS_URL + "?" + new URLSearchParams(params).toString();
+    var ctl = window.AbortController ? new AbortController() : null, t = ctl && setTimeout(function () { ctl.abort(); }, 30000);
+    return fetch(u, ctl ? { signal: ctl.signal } : {}).then(function (r) { clearTimeout(t); return r.json(); }, function (e) { clearTimeout(t); throw e; });
+  }
+  function demo(p) {
+    return new Promise(function (res) { setTimeout(function () {
+      if (p.accion === "reunion") return res({ ok: true, inicio: p.ini, meet: "https://meet.google.com/abc-defg-hij", duracion: 30 });
+      var out = [], base = new Date(); base.setHours(0, 0, 0, 0);
+      for (var i = 1; i < 14; i++) { var d = new Date(base.getTime() + i * 864e5); if (d.getDay() === 0) continue;
+        for (var m = 540; m <= 1110; m += 30) { if (i % 3 === 0 && m >= 600 && m < 720) continue; out.push(new Date(d.getTime() + m * 6e4).toISOString()); } }
+      res({ ok: true, huecos: out, duracion: 30 });
+    }, 400); });
+  }
+  function gcal(ini, min, meet) {
+    var f = function (d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
+    return "https://calendar.google.com/calendar/render?" + new URLSearchParams({ action: "TEMPLATE", text: "Reunión con VEO UP", dates: f(ini) + "/" + f(new Date(ini.getTime() + min * 60000)),
+      details: "Videollamada de 30 minutos con VEO UP." + (meet ? " Enlace: " + meet : ""), ctz: TZ }).toString();
+  }
+  function pantallaEstado(tipo, titulo, texto, extraHTML) {
+    app.innerHTML = '<div class="card estado"><div class="ic' + (tipo === "no" ? " no" : "") + '">' + (tipo === "no" ? ICON.no : ICON.ok) + '</div>'
+      + '<h2>' + titulo + '</h2>' + texto + (extraHTML || "") + '</div>' + ayuda();
+  }
+  function ayuda() {
+    return '<div class="help"><p>¿Prefieres hablarlo por WhatsApp?</p><a class="btn cal" href="' + WA + encodeURIComponent("Hola, quiero hablar con VEO UP sobre los planes Growth o Scale.") + '" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div>';
+  }
+  var sel = { plan: /scale/i.test(q.get("plan") || "") ? "scale" : "growth", dia: null, ini: null };
+  function pintar(d) {
+    var porDia = {}, orden = [];
+    (d.huecos || []).forEach(function (s) { var x = new Date(s), k = diaClave(x); if (!porDia[k]) { porDia[k] = []; orden.push(k); } porDia[k].push(x); });
+    sel.dia = orden[0] || null;
+    var campo = function (id, label, tipo, ac, req, ph) {
+      return '<div class="campo-g"><label for="' + id + '">' + label + (req ? "" : " <small>(opcional)</small>") + '</label><input class="txt" id="' + id + '" type="' + tipo + '" autocomplete="' + ac + '"' + (req ? " required" : "") + (ph ? ' placeholder="' + ph + '"' : "") + ' maxlength="160"></div>';
+    };
+    app.innerHTML =
+      '<p class="k">Growth y Scale</p><h1>Hablemos de tu negocio</h1>'
+      + '<p class="lede">Antes de empezar hacemos una <b>videollamada de 30 minutos</b> para conocerte y ver qué necesitas. Sin compromiso: si te encaja, después contratas el plan desde la web.</p>'
+      + '<section class="card"><div class="paso"><i>1</i>¿Qué plan te interesa?</div><div class="planes-r" role="group" aria-label="Plan">'
+      + '<button type="button" data-plan="growth"><b>Growth</b><span>490 €/mes + IVA</span></button><button type="button" data-plan="scale"><b>Scale</b><span>990 €/mes + IVA</span></button></div></section>'
+      + '<section class="card"><div class="paso"><i>2</i>Tus datos</div><div class="grid2">'
+      + campo("nombre", "Nombre", "text", "given-name", true) + campo("apellidos", "Apellidos", "text", "family-name", false)
+      + campo("email", "Email", "email", "email", true) + campo("telefono", "WhatsApp", "tel", "tel", true, "+34 600 00 00 00")
+      + campo("negocio", "Nombre del negocio", "text", "organization", true) + campo("web", "Web", "url", "url", false, "www.tunegocio.es")
+      + '</div><div class="grid2" style="margin-top:12px">' + campo("redes", "Instagram u otras redes", "text", "off", false, "@tunegocio") + '</div>'
+      + '<div class="trampa" aria-hidden="true"><label for="web_url">No rellenar</label><input id="web_url" tabindex="-1" autocomplete="off"></div></section>'
+      + '<section class="card"><div class="paso"><i>3</i>Día y hora</div>'
+      + (orden.length ? '<div class="dias" id="dias" role="group" aria-label="Días disponibles"></div><div class="horas" id="horas" role="group" aria-label="Horas disponibles"></div>'
+        + '<p class="ayuda">Hora de España · videollamada por Google Meet · te llega la invitación al email.</p>'
+        : '<div class="vacio">Ahora mismo no quedan huecos libres. Escríbenos por WhatsApp y te buscamos hora.</div>')
+      + '</section>'
+      + '<div class="resumen" id="resumen" hidden>' + ICON.cal + '<span id="r-txt"></span></div>'
+      + '<button class="btn espera" id="enviar" type="button" aria-disabled="true">Elige día y hora</button>'
+      + '<div class="error" id="error" role="alert"></div>'
+      + '<ul class="lista"><li>' + ICON.ok + '<span>Te llega la <b>invitación con el enlace de Meet</b> al momento.</span></li>'
+      + '<li>' + ICON.ok + '<span>Hablamos de tu negocio, tus objetivos y qué plan te encaja.</span></li>'
+      + '<li>' + ICON.ok + '<span>Sin compromiso: si te convence, contratas después desde la web.</span></li></ul>' + ayuda();
+    var planes = app.querySelector(".planes-r"), btn = document.getElementById("enviar"), err = document.getElementById("error");
+    function pintarPlanes() { planes.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.plan === sel.plan)); }); }
+    planes.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; sel.plan = b.dataset.plan; pintarPlanes(); });
+    pintarPlanes();
+    if (!orden.length) { btn.hidden = true; return; }
+    var dias = document.getElementById("dias"), horas = document.getElementById("horas");
+    function pintarDias() {
+      dias.innerHTML = orden.map(function (k) { var x = porDia[k][0];
+        return '<button type="button" class="dia" data-k="' + k + '" aria-pressed="' + (k === sel.dia) + '"><small>' + x.toLocaleDateString("es-ES", { timeZone: TZ, weekday: "short" }).replace(".", "")
+          + '</small><b>' + x.toLocaleDateString("es-ES", { timeZone: TZ, day: "numeric" }) + '</b><span>' + x.toLocaleDateString("es-ES", { timeZone: TZ, month: "short" }).replace(".", "") + '</span></button>'; }).join("");
+    }
+    function pintarHoras() {
+      var lista = porDia[sel.dia] || [], h = function (x) { return Number(hora(x).slice(0, 2)); };
+      var boton = function (x) { var iso = x.toISOString(); return '<button type="button" class="hora" data-i="' + iso + '" aria-pressed="' + (sel.ini === iso) + '">' + hora(x) + '</button>'; };
+      var man = lista.filter(function (x) { return h(x) < 14; }), tar = lista.filter(function (x) { return h(x) >= 14; });
+      horas.innerHTML = (man.length ? '<p class="franja">Mañana</p>' + man.map(boton).join("") : "") + (tar.length ? '<p class="franja">Tarde</p>' + tar.map(boton).join("") : "");
+      var r = document.getElementById("resumen");
+      if (sel.ini) { r.hidden = false; document.getElementById("r-txt").innerHTML = "<b>" + esc(largo(new Date(sel.ini))) + "</b> · 30 min por videollamada"; } else r.hidden = true;
+      btn.classList.toggle("espera", !sel.ini); btn.setAttribute("aria-disabled", String(!sel.ini));
+      btn.innerHTML = sel.ini ? "Agendar la reunión" + ICON.flecha : "Elige día y hora";
+    }
+    dias.addEventListener("click", function (e) { var b = e.target.closest(".dia"); if (!b) return; sel.dia = b.dataset.k; sel.ini = null; pintarDias(); pintarHoras(); });
+    horas.addEventListener("click", function (e) { var b = e.target.closest(".hora"); if (!b) return; sel.ini = b.dataset.i; pintarHoras(); err.textContent = ""; });
+    pintarDias(); pintarHoras();
+    function val(id) { return document.getElementById(id).value.trim(); }
+    btn.addEventListener("click", function () {
+      if (btn.disabled) return;
+      app.querySelectorAll("input.txt").forEach(function (i) { i.classList.remove("mal"); });
+      var falta = [["nombre", val("nombre")], ["email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("email")) ? "ok" : ""], ["telefono", val("telefono").replace(/\D/g, "").length >= 9 ? "ok" : ""], ["negocio", val("negocio")]].filter(function (x) { return !x[1]; });
+      if (falta.length) {
+        falta.forEach(function (x) { document.getElementById(x[0]).classList.add("mal"); });
+        err.textContent = "Revisa los datos marcados: nombre, email, WhatsApp (9 cifras o más) y nombre del negocio.";
+        document.getElementById(falta[0][0]).focus(); return;
+      }
+      if (!sel.ini) { err.textContent = "Elige el día y la hora de la reunión."; horas.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+      btn.disabled = true; btn.innerHTML = '<span class="spin" aria-hidden="true"></span>Agendando…'; err.textContent = "";
+      var datos = { accion: "reunion", ini: sel.ini, plan: sel.plan, nombre: val("nombre"), apellidos: val("apellidos"), email: val("email"), telefono: val("telefono"),
+        negocio: val("negocio"), web: val("web"), redes: val("redes"), web_url: val("web_url") };
+      api(datos).then(function (r) {
+        if (r && r.ok) return hecho(r);
+        if (r && r.error === "ya") return pantallaEstado("ok", "Ya tienes una reunión agendada", '<p class="fecha">' + esc(largo(new Date(r.reunion.inicio))) + '</p><p>Si necesitas cambiarla, escríbenos por WhatsApp.</p>');
+        if (r && r.error === "hueco") { err.textContent = "Esa hora se acaba de ocupar. Elige otra, por favor."; return cargar(true); }
+        if (r && r.error === "datos") throw new Error("datos");
+        throw new Error(r && r.error || "error");
+      }).catch(function (e) {
+        track("reunion_error", { motivo: String(e && e.message || e).slice(0, 80) });
+        btn.disabled = false; pintarHoras();
+        var msg = "Hola, soy " + val("nombre") + " de " + val("negocio") + ". Quiero agendar la reunión del plan " + (sel.plan === "scale" ? "Scale" : "Growth") + " el " + largo(new Date(sel.ini)).toLowerCase() + ". En la web no me deja.";
+        err.innerHTML = (e && e.message === "datos" ? "Revisa tus datos, hay alguno que no es válido." : "No se ha podido agendar desde aquí. Inténtalo de nuevo o escríbenos y te la dejamos agendada.")
+          + '<a class="btn sec" href="' + WA + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Agendar por WhatsApp' + ICON.flecha + '</a>';
+      });
+    });
+  }
+  function hecho(r) {
+    var ini = new Date(r.inicio);
+    track("reunion_agendada", { plan: sel.plan });
+    pantallaEstado("ok", "¡Reunión agendada!",
+      '<p class="fecha">' + esc(largo(ini)) + '</p><p>Te hemos enviado la <b>invitación al email</b> con el enlace de la videollamada. Hablamos de tu negocio y, si te encaja, después contratas tu plan desde la web.</p>'
+      + (r.meet ? '<p><a class="meet" href="' + esc(r.meet) + '" target="_blank" rel="noopener">' + ICON.video + 'Enlace de Google Meet</a></p>' : ""),
+      '<div class="acciones"><a class="btn cal" href="' + gcal(ini, r.duracion || 30, r.meet) + '" target="_blank" rel="noopener">Añadir a mi calendario</a></div>');
+  }
+  function cargar(manteniendoError) {
+    api({ accion: "huecos_reunion" }).then(function (d) {
+      if (!d || !d.ok) throw new Error("api");
+      if (manteniendoError) {   // conservar lo escrito al recargar huecos
+        var guard = {}; app.querySelectorAll("input").forEach(function (i) { guard[i.id] = i.value; });
+        sel.ini = null; pintar(d); Object.keys(guard).forEach(function (k) { var i = document.getElementById(k); if (i) i.value = guard[k]; });
+        document.getElementById("error").textContent = "Esa hora se acaba de ocupar. Elige otra, por favor.";
+        return;
+      }
+      track("reunion_ver", { plan: sel.plan }); pintar(d);
+    }).catch(function () {
+      pantallaEstado("no", "No hemos podido cargar los huecos", "<p>Recarga la página en un momento o escríbenos por WhatsApp y te buscamos hora.</p>",
+        '<div class="acciones"><button class="btn" type="button" onclick="location.reload()">Volver a intentarlo</button></div>');
+    });
+  }
+  cargar();
+})();
+</script>
+</body>
+</html>
