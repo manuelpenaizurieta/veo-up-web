@@ -131,7 +131,7 @@
       <span><h2>Growth</h2><p>3 vídeos + 4 shorts · Meta Ads · informe mensual</p></span>
       <span class="pr"><b>490 €</b><small>/mes + IVA</small></span></label>
     <label class="op"><input type="radio" name="plan" value="scale"><span class="radio"></span>
-      <span><h2>Scale <span class="badge">Más vendido</span></h2><p>4 vídeos + 6 shorts · 2 Content Days · captación + remarketing</p></span>
+      <span><h2>Scale <span class="badge">Más vendido</span></h2><p>4 vídeos + 6 shorts · 2 Content Days · Meta + Google Ads</p></span>
       <span class="pr"><b>990 €</b><small>/mes + IVA</small></span></label>
   </fieldset>
 
@@ -174,7 +174,7 @@
   var eur = function (n) { var t = (Math.round(n * 100) / 100).toFixed(2).split("."); return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "," + t[1] + " €"; };
   var pre = (q.get("plan") || "").toLowerCase();
   if (PRECIOS[pre]) document.querySelector('input[value="' + pre + '"]').checked = true;
-  /* Extras (Manu, 2026-11-26): Google Ads y panel con Growth y Scale; la web con cualquier plan. En Scale la alta del panel va incluida. */
+  /* Extras (Manu, 2026-11-26): Google Ads es extra en Growth y va incluido en Scale; VEO UP Live (49 €/mes + 290 € de alta) con Growth y Scale; la web con cualquier plan. */
   var X = { ads: [250, 0, "Google Ads"], panel: [49, 290, "VEO UP Live"], web: [0, 490, "Tu web"] };
   ["ads", "panel", "web"].forEach(function (k) { if (q.get(k) === "1") document.getElementById("x-" + k).checked = true; });
   if (q.get("cancelado")) document.getElementById("cancelado").style.display = "block";
@@ -183,11 +183,12 @@
   function filas(id, rows) { document.getElementById(id).innerHTML = rows.map(function (r) { return "<dt" + (r[2] ? ' class="tot"' : "") + ">" + r[0] + "</dt><dd" + (r[2] ? ' class="tot"' : "") + ">" + r[1] + "</dd>"; }).join(""); }
   function pintar() {
     var p = plan(), mes = PRECIOS[p], uno = 0, rm = [["Plan " + NOMBRES[p], eur(PRECIOS[p])]], ru = [];
-    ["ads", "panel"].forEach(function (k) { document.getElementById("x-" + k).closest(".extra").hidden = p === "content"; });
-    document.getElementById("x-panel-txt").textContent = p === "scale" ? "Anuncios, clientes y redes en una pantalla, al momento. Alta incluida en Scale." : "Anuncios, clientes y redes en una pantalla, al momento. Alta de 290 € la primera vez.";
+    document.getElementById("x-ads").closest(".extra").hidden = p !== "growth";
+    document.getElementById("x-panel").closest(".extra").hidden = p === "content";
+    if (p === "scale") rm.push(["Google Ads", "incluido"]);
     ["ads", "panel", "web"].forEach(function (k) {
       if (!marcado(k)) return;
-      var x = X[k], alta = (k === "panel" && p === "scale") ? 0 : x[1];
+      var x = X[k], alta = x[1];
       if (x[0]) { mes += x[0]; rm.push([x[2], eur(x[0])]); }
       if (alta) { uno += alta; ru.push([x[2] + (k === "panel" ? " · alta" : ""), eur(alta)]); }
     });

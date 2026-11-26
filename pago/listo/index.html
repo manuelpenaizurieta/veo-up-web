@@ -111,7 +111,7 @@
   else fetch(window.PAGOS_URL + "?accion=verificar&s=" + encodeURIComponent(s)).then(function (r) { return r.json(); }).then(function (d) {
     if (!d || !d.ok || !d.pagado) { mostrar("ko"); return; }
     if (d.nombre) document.getElementById("titulo").textContent = "¡Bienvenido a VEO UP, " + String(d.nombre).slice(0, 30) + "!";
-    var EXTRA = { ads: "Google Ads", panel: "Panel en tiempo real", web: "Tu web" };
+    var EXTRA = { ads: "Google Ads", panel: "VEO UP Live", web: "Tu web" };
     var ex = String(d.extras || (d.ads ? "ads" : "")).split(",").filter(Boolean).map(function (k) { return EXTRA[k] || k; });
     document.getElementById("plan").textContent = [NOMBRES[d.plan] || ""].concat(ex).join(" + ");
     var dos = d.plan === "scale";

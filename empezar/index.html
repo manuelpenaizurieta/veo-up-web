@@ -219,8 +219,8 @@
   var WA = "https://wa.me/34611216083?text=";
   var PLAN = {
     content: { n: "Content", p: 230, verb: "Crear", inc: ["2 vídeos + 3 shorts", "1 Content Day", "Ideas, grabación y edición"] },
-    growth: { n: "Growth", p: 490, verb: "Conseguir clientes", inc: ["3 vídeos + 4 shorts", "1 Content Day", "Campaña de captación en Meta", "Informe mensual"] },
-    scale: { n: "Scale", p: 990, verb: "Escalar", badge: "Más vendido", inc: ["4 vídeos + 6 shorts", "2 Content Days", "Captación + remarketing", "Pruebas A/B y optimización semanal", "Revisión mensual"] }
+    growth: { n: "Growth", p: 490, verb: "Conseguir clientes", inc: ["3 vídeos + 4 shorts", "1 Content Day", "Campaña de captación en Meta", "1 reunión al mes"] },
+    scale: { n: "Scale", p: 990, verb: "Escalar", badge: "Más vendido", inc: ["4 vídeos + 6 shorts", "2 Content Days", "Meta + Google Ads", "Medición completa", "2 reuniones al mes"] }
   };
   var X = {
     ads: { n: "Google Ads", mes: 250, uno: 0, txt: "Campañas de búsqueda para que te encuentre quien ya busca lo que ofreces.", ico: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>' },
@@ -243,15 +243,15 @@
   var hora = function (d) { return d.toLocaleTimeString("es-ES", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }); };
   var largo = function (d) { var t = d.toLocaleDateString("es-ES", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" }) + " a las " + hora(d); return t.charAt(0).toUpperCase() + t.slice(1); };
   var conReu = function () { return st.plan !== "content"; };
-  function validos() { return st.plan === "content" ? ["web"] : ["ads", "panel", "web"]; }
+  function validos() { return st.plan === "content" ? ["web"] : st.plan === "scale" ? ["panel", "web"] : ["ads", "panel", "web"]; }   // Scale ya incluye Google Ads (2026-11-26)
   function limpiar() { Object.keys(st.x).forEach(function (k) { if (validos().indexOf(k) < 0) st.x[k] = false; }); }
   function cuentas() {
     limpiar();
     var mes = PLAN[st.plan].p, uno = 0, lm = [["Plan " + PLAN[st.plan].n, "", eur(PLAN[st.plan].p)]], lu = [];
     validos().forEach(function (k) {
       if (!st.x[k]) return;
-      var x = X[k], alta = k === "panel" && st.plan === "scale" ? 0 : x.uno;
-      if (x.mes) { mes += x.mes; lm.push([x.n, k === "panel" && st.plan === "scale" ? "alta incluida" : "", "+" + eur(x.mes)]); }
+      var x = X[k], alta = x.uno;
+      if (x.mes) { mes += x.mes; lm.push([x.n, "", "+" + eur(x.mes)]); }
       if (alta) { uno += alta; lu.push([x.n, k === "panel" ? "alta" : "", eur(alta)]); }
     });
     return { mes: mes, uno: uno, lm: lm, lu: lu };
@@ -293,11 +293,11 @@
   }
   function paso2() {
     var v = validos();
-    app.innerHTML = '<section class="paso"><p class="k">Paso 2 de 3</p><h1>Añade si quieres</h1><p class="lede">' + (st.plan === "content" ? "Con Content puedes añadir tu web. Los anuncios y el panel van con Growth y Scale." : "Todo es opcional: marca lo que te interese y lo vemos juntos en la reunión gratuita. Hoy no pagas nada.") + '</p>'
-      + '<div class="xs' + (v.length === 3 ? " tres" : "") + '">' + v.map(function (k) { var x = X[k], alta = k === "panel" ? (st.plan === "scale" ? "alta incluida" : "+ 290 € de alta") : "";
-        return '<label class="x"><input type="checkbox" data-x="' + k + '"' + (st.x[k] ? " checked" : "") + '>' + (k === "panel" && st.plan === "scale" ? '<span class="tag">Alta incluida</span>' : "")
+    app.innerHTML = '<section class="paso"><p class="k">Paso 2 de 3</p><h1>Añade si quieres</h1><p class="lede">' + (st.plan === "content" ? "Con Content puedes añadir tu web. Los anuncios y el panel van con Growth y Scale." : st.plan === "scale" ? "Google Ads ya va incluido en Scale. Lo demás es opcional: marca lo que te interese y lo vemos juntos en la reunión gratuita. Hoy no pagas nada." : "Todo es opcional: marca lo que te interese y lo vemos juntos en la reunión gratuita. Hoy no pagas nada.") + '</p>'
+      + '<div class="xs' + (v.length === 3 ? " tres" : "") + '">' + v.map(function (k) { var x = X[k], alta = k === "panel" ? "+ 290 € de alta" : "";
+        return '<label class="x"><input type="checkbox" data-x="' + k + '"' + (st.x[k] ? " checked" : "") + '>' + ""
           + '<span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + x.ico + '</svg></span><b>' + x.n + '</b><p>' + x.txt + (k === "panel" ? ' <a href="/#live" target="_blank" rel="noopener" style="color:var(--green-ink);font-weight:600">Verlo en directo</a>' : "") + '</p>'
-          + '<span class="pie"><span class="pre">' + (x.mes ? "+" + eur(x.mes) + " <small>/mes" + (alta && st.plan !== "scale" ? " · " + alta : "") + "</small>" : eur(x.uno) + " <small>pago único</small>") + '</span><span class="sw" aria-hidden="true"></span></span></label>'; }).join("") + '</div>'
+          + '<span class="pie"><span class="pre">' + (x.mes ? "+" + eur(x.mes) + " <small>/mes" + (alta ? " · " + alta : "") + "</small>" : eur(x.uno) + " <small>pago único</small>") + '</span><span class="sw" aria-hidden="true"></span></span></label>'; }).join("") + '</div>'
       + '<p class="nota">¿Necesitas algo más, como una tienda online o un sistema a medida? <a href="' + WA + encodeURIComponent("Hola, quiero algo a medida para mi negocio.") + '" target="_blank" rel="noopener" style="color:var(--black);font-weight:600">Cuéntanoslo</a> y te preparamos una propuesta.</p>'
       + '<div class="nav"><button class="atras" type="button" data-ant>' + ICON.atras + 'Atrás</button><button class="btn" type="button" data-sig>Continuar' + ICON.flecha + '</button></div></section>';
     app.querySelectorAll("input[data-x]").forEach(function (i) { i.addEventListener("change", function () { st.x[i.dataset.x] = i.checked; pintarResumen(); urlEstado(); }); });
