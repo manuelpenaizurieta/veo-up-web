@@ -131,7 +131,7 @@
       <span><h2>Growth</h2><p>3 vídeos + 4 shorts · Meta Ads · informe mensual</p></span>
       <span class="pr"><b>490 €</b><small>/mes + IVA</small></span></label>
     <label class="op"><input type="radio" name="plan" value="scale"><span class="radio"></span>
-      <span><h2>Scale <span class="badge">Más vendido</span></h2><p>4 vídeos + 6 shorts · 2 Content Days · captación y automatización de leads</p></span>
+      <span><h2>Scale <span class="badge">Más vendido</span></h2><p>4 vídeos + 6 shorts · 2 Content Days · captación + remarketing</p></span>
       <span class="pr"><b>990 €</b><small>/mes + IVA</small></span></label>
   </fieldset>
 
@@ -140,7 +140,7 @@
     <span><b>Google Ads</b><small>Que te encuentre quien ya busca lo que ofreces.</small></span>
     <span class="pr"><b>+250 €</b><small>/mes + IVA</small></span></label>
   <label class="extra" data-x="panel"><input type="checkbox" id="x-panel"><span class="caja" aria-hidden="true"></span>
-    <span><b>Panel en tiempo real</b><small id="x-panel-txt">Anuncios, leads y ventas en directo. Alta de 290 € la primera vez.</small></span>
+    <span><b>VEO UP Live</b><small id="x-panel-txt">Anuncios, clientes y redes en una pantalla, al momento. Alta de 290 € la primera vez.</small></span>
     <span class="pr"><b>+49 €</b><small>/mes + IVA</small></span></label>
   <label class="extra" data-x="web"><input type="checkbox" id="x-web"><span class="caja" aria-hidden="true"></span>
     <span><b>Tu web</b><small>Como veoup.es: rápida, con tus vídeos y lista para medir.</small></span>
@@ -175,7 +175,7 @@
   var pre = (q.get("plan") || "").toLowerCase();
   if (PRECIOS[pre]) document.querySelector('input[value="' + pre + '"]').checked = true;
   /* Extras (Manu, 2026-11-26): Google Ads y panel con Growth y Scale; la web con cualquier plan. En Scale la alta del panel va incluida. */
-  var X = { ads: [250, 0, "Google Ads"], panel: [49, 290, "Panel en tiempo real"], web: [0, 490, "Tu web"] };
+  var X = { ads: [250, 0, "Google Ads"], panel: [49, 290, "VEO UP Live"], web: [0, 490, "Tu web"] };
   ["ads", "panel", "web"].forEach(function (k) { if (q.get(k) === "1") document.getElementById("x-" + k).checked = true; });
   if (q.get("cancelado")) document.getElementById("cancelado").style.display = "block";
   function plan() { return document.querySelector('input[name="plan"]:checked').value; }
@@ -184,7 +184,7 @@
   function pintar() {
     var p = plan(), mes = PRECIOS[p], uno = 0, rm = [["Plan " + NOMBRES[p], eur(PRECIOS[p])]], ru = [];
     ["ads", "panel"].forEach(function (k) { document.getElementById("x-" + k).closest(".extra").hidden = p === "content"; });
-    document.getElementById("x-panel-txt").textContent = p === "scale" ? "Anuncios, leads y ventas en directo. Alta incluida en Scale." : "Anuncios, leads y ventas en directo. Alta de 290 € la primera vez.";
+    document.getElementById("x-panel-txt").textContent = p === "scale" ? "Anuncios, clientes y redes en una pantalla, al momento. Alta incluida en Scale." : "Anuncios, clientes y redes en una pantalla, al momento. Alta de 290 € la primera vez.";
     ["ads", "panel", "web"].forEach(function (k) {
       if (!marcado(k)) return;
       var x = X[k], alta = (k === "panel" && p === "scale") ? 0 : x[1];
