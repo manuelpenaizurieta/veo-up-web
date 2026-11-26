@@ -61,9 +61,9 @@
  "areaServed":{"@type":"City","name":"Valencia"},"address":{"@type":"PostalAddress","addressLocality":"Valencia","addressCountry":"ES"},
  "priceRange":"230 € – 890 € al mes + IVA",
  "makesOffer":[
-  {"@type":"Offer","name":"Content","price":"230","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"230","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"3 vídeos + 3 shorts al mes, 1 Content Day"},
-  {"@type":"Offer","name":"Growth","price":"490","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"490","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"4 vídeos + 8 shorts + 1 vídeo premium, Meta Ads e informe mensual"},
-  {"@type":"Offer","name":"Scale","price":"890","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"890","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"6 vídeos + 12 shorts + 2 premium, Meta Ads, landing, automatización de leads y panel"}]}
+  {"@type":"Offer","name":"Content","price":"230","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"230","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"2 vídeos + 3 shorts al mes, 1 Content Day"},
+  {"@type":"Offer","name":"Growth","price":"490","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"490","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"3 vídeos + 4 shorts al mes, Meta Ads e informe mensual"},
+  {"@type":"Offer","name":"Scale","price":"890","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"890","priceCurrency":"EUR","valueAddedTaxIncluded":false},"description":"4 vídeos + 6 shorts al mes, 2 Content Days, Meta Ads y automatización de leads"}]}
 </script>
 <meta property="og:url" content="https://www.veoup.es/">
 <meta property="og:type" content="website">
@@ -1039,6 +1039,256 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
   }
+
+  /* -- Planes 2026-11-26: configurador de extras y línea a medida -- */
+  .step.s3 { position: relative; }
+  .step.s3 .badge { background: var(--green); color: var(--black); box-shadow: 0 8px 20px -8px rgba(56,214,107,.6); }
+  .cfg { margin-top: 56px; display: grid; gap: 18px; align-items: start; }
+  @media (min-width: 980px) { .cfg { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 24px; } }
+  .cfg-main { display: grid; gap: 16px; min-width: 0; }
+  .cfg-main h3 { font: 700 clamp(24px, 2.6vw, 34px)/1.1 var(--font-head); letter-spacing: -0.035em; }
+  .cfg-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 6px; border-radius: 18px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+  .cfg-plans button { all: unset; box-sizing: border-box; cursor: pointer; display: grid; gap: 3px; justify-items: center; text-align: center; padding: 12px 6px; border-radius: 13px; transition: background .2s, color .2s; }
+  .cfg-plans button b { font: 700 16px/1 var(--font-head); letter-spacing: -0.02em; }
+  .cfg-plans button span { font-size: 12.5px; color: var(--ink-2); }
+  .cfg-plans button:hover { background: var(--grey); }
+  .cfg-plans button[aria-checked="true"] { background: var(--black); color: var(--white); }
+  .cfg-plans button[aria-checked="true"] span { color: var(--ink-2-on-dark); }
+  .cfg-plans button[data-plan="growth"][aria-checked="true"] { background: var(--green); color: var(--black); }
+  .cfg-plans button[data-plan="growth"][aria-checked="true"] span { color: rgba(16,16,16,.7); }
+  .cfg-plans button:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .cfg-x { display: grid; gap: 10px; }
+  .cx { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto 44px; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: var(--white); box-shadow: 0 0 0 1px var(--line); cursor: pointer; transition: box-shadow .2s, transform .2s; }
+  .cx:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px #c9ccc5, 0 10px 24px -18px rgba(16,16,16,.35); }
+  .cx input { position: absolute; opacity: 0; pointer-events: none; }
+  .cx-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--grey); transition: background .2s; }
+  .cx-ico svg { width: 20px; height: 20px; fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .cx-txt { display: grid; gap: 3px; min-width: 0; }
+  .cx-txt b { font: 700 16px/1.15 var(--font-head); letter-spacing: -0.02em; }
+  .cx-txt small { font-size: 13px; line-height: 1.35; color: var(--ink-2); }
+  .cx-txt small a { color: var(--green-ink); font-weight: 600; text-decoration: none; }
+  .cx-pr { display: grid; justify-items: end; gap: 3px; white-space: nowrap; }
+  .cx-pr b { font: 700 17px/1 var(--font-head); letter-spacing: -0.02em; }
+  .cx-pr small { font-size: 11.5px; color: var(--ink-2); }
+  .sw { width: 44px; height: 26px; border-radius: 999px; background: #d7d9d3; position: relative; transition: background .2s; }
+  .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18); transition: transform .25s var(--ease); }
+  .cx:has(input:checked) { box-shadow: 0 0 0 2px var(--black); }
+  .cx:has(input:checked) .sw { background: var(--green); }
+  .cx:has(input:checked) .sw::after { transform: translateX(18px); }
+  .cx:has(input:checked) .cx-ico { background: var(--green); }
+  .cx:has(input:focus-visible) { outline: 3px solid var(--green); outline-offset: 3px; }
+  .cx.off { cursor: not-allowed; opacity: .5; transform: none; box-shadow: 0 0 0 1px var(--line); }
+  .cx.off .sw { background: #e6e7e3; }
+  .cfg-sum { position: sticky; top: 96px; display: grid; gap: 14px; padding: 24px; border-radius: 24px; background: var(--black); color: var(--ink-on-dark); box-shadow: 0 40px 80px -46px rgba(16,16,16,.7); }
+  .cfg-sum-t { font: 600 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+  .cfg-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; }
+  .cfg-lines li { display: flex; justify-content: space-between; gap: 12px; animation: cfgIn .3s var(--ease) both; }
+  .cfg-lines li span { color: #d8dad3; }
+  .cfg-lines li em { font-style: normal; color: var(--ink-2-on-dark); font-size: 12.5px; margin-left: 6px; }
+  .cfg-lines li b { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @keyframes cfgIn { from { opacity: 0; transform: translateY(-4px); } }
+  .cfg-tot, .cfg-uno { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line-dark); }
+  .cfg-tot span, .cfg-uno span { font-size: 14px; color: var(--ink-2-on-dark); }
+  .cfg-tot b { font: 800 40px/1 var(--font-head); letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
+  .cfg-uno { padding-top: 0; border-top: 0; }
+  .cfg-uno[hidden] { display: none; }
+  .cfg-uno b { font: 700 20px/1 var(--font-head); letter-spacing: -0.02em; }
+  .cfg-iva { font-size: 12px; line-height: 1.45; color: var(--ink-2-on-dark); margin: 0; }
+  .cfg-cta { width: 100%; }
+  .cfg-pay { justify-self: center; font-size: 13px; color: var(--ink-2-on-dark); text-decoration: none; }
+  .cfg-pay:hover { color: var(--white); }
+  .custom { margin-top: 18px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px 16px; align-items: center; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+  .custom p { margin: 0; font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+  .custom p b { color: var(--ink); }
+  .custom .btn { grid-column: 1 / -1; justify-self: start; }
+  @media (min-width: 760px) { .custom { grid-template-columns: 44px minmax(0, 1fr) auto; } .custom .btn { grid-column: auto; } }
+  .custom-ico { width: 44px; height: 44px; border-radius: 14px; background: var(--black); display: grid; place-items: center; }
+  .custom-ico svg { width: 20px; height: 20px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; }
+  @media (max-width: 560px) {
+    .cx { grid-template-columns: 36px minmax(0, 1fr) 44px; gap: 6px 12px; padding: 14px; }
+    .cx-ico { width: 36px; height: 36px; }
+    .cx-pr { grid-column: 2; grid-row: 2; justify-items: start; display: flex; gap: 6px; align-items: baseline; }
+    .sw { grid-column: 3; grid-row: 1 / span 2; }
+    .cfg-plans button { padding: 10px 4px; }
+    .cfg-sum { position: static; padding: 20px; }
+  }
+
+  /* -- Panel en tiempo real interactivo (maqueta) -- */
+  .live { margin-top: 88px; display: grid; gap: 28px; }
+  .live-text { display: grid; gap: 14px; max-width: 760px; }
+  .live-text h3 { font: 700 clamp(32px, 4vw, 52px)/1.02 var(--font-head); letter-spacing: -0.045em; }
+  .live-text .lede { max-width: 38em; }
+  .live-hint { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0; }
+  .lv-pulse { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .lv-pulse::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--green); opacity: 0; animation: lvPulse 1.8s ease-out infinite; }
+  @keyframes lvPulse { 0% { transform: scale(.4); opacity: .9; } 100% { transform: scale(1.4); opacity: 0; } }
+  .lv { position: relative; background: var(--black); color: var(--ink-on-dark); border-radius: 24px; overflow: hidden; box-shadow: 0 60px 100px -60px rgba(16,16,16,.75); font-size: 13px; isolation: isolate; }
+  .lv button { all: unset; box-sizing: border-box; cursor: pointer; }
+  .lv button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .lv-top { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line-dark); color: var(--ink-2-on-dark); font-size: 12px; }
+  .lv-dots { display: flex; gap: 6px; } .lv-dots i { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+  .lv-name { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lv-live { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font: 700 10px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: rgba(56,214,107,.1); padding: 6px 10px 6px 9px; border-radius: 999px; white-space: nowrap; }
+  .lv-live .lv-pulse { width: 7px; height: 7px; }
+  .lv-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; padding: 10px 12px; border-bottom: 1px solid var(--line-dark); }
+  .lv-tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; max-width: 100%; }
+  .lv-tabs::-webkit-scrollbar { display: none; }
+  .lv-tabs button { flex-shrink: 0; padding: 8px 12px; border-radius: 9px; font-size: 13px; font-weight: 500; color: var(--ink-2-on-dark); transition: background .2s, color .2s; }
+  .lv-tabs button:hover { color: var(--white); background: #181818; }
+  .lv-tabs button[aria-selected="true"] { background: var(--black-2); color: var(--white); box-shadow: inset 0 -2px 0 var(--green); }
+  .lv-period { display: flex; gap: 2px; background: var(--black-2); padding: 3px; border-radius: 10px; }
+  .lv-period button { font-size: 12px; padding: 6px 11px; border-radius: 8px; color: var(--ink-2-on-dark); transition: background .2s, color .2s; }
+  .lv-period button[aria-pressed="true"] { background: #2c2c2c; color: var(--white); }
+  .lv-body { padding: 14px; display: grid; gap: 10px; min-height: 420px; animation: lvFade .35s var(--ease); }
+  @keyframes lvFade { from { opacity: 0; transform: translateY(6px); } }
+  .lv-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 10px 16px; border-top: 1px solid var(--line-dark); font-size: 11px; color: var(--ink-2-on-dark); }
+  .lv-card { background: var(--black-2); border-radius: 14px; padding: 14px; min-width: 0; transition: box-shadow .4s; }
+  .lv-card.flash { box-shadow: inset 0 0 0 1px rgba(56,214,107,.7), 0 0 0 4px rgba(56,214,107,.12); }
+  .lv-t { display: block; font-size: 12px; font-weight: 600; color: #e4e6df; }
+  .lv-d { display: block; font-size: 11px; color: var(--ink-2-on-dark); margin: 2px 0 12px; }
+  .lv-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (min-width: 720px) { .lv-kpis { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .lv-kpis.k6 { grid-template-columns: repeat(6, 1fr); } }
+  .lv-k { display: grid; gap: 8px; }
+  .lv-k small { font-size: 11px; color: var(--ink-2-on-dark); }
+  .lv-k .n { font: 700 24px/1 var(--font-head); letter-spacing: -0.03em; color: var(--white); font-variant-numeric: tabular-nums; }
+  .lv-k .v { font-size: 10.5px; color: var(--ink-2-on-dark); } .lv-k .v em { font-style: normal; font-weight: 600; color: var(--green); }
+  .lv-k.hl { background: color-mix(in srgb, var(--green) 14%, var(--black-2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 40%, transparent); }
+  .lv-k.hl .n { color: var(--green); }
+  .lv-row { display: grid; gap: 10px; }
+  @media (min-width: 900px) { .lv-row.r21 { grid-template-columns: 1.7fr 1fr; } .lv-row.r11 { grid-template-columns: 1fr 1fr; } }
+  .lv-chart { position: relative; }
+  .lv-chart svg { width: 100%; height: 170px; display: block; overflow: visible; }
+  .lv-chart .bar { fill: #2e2e2e; transition: fill .15s; } .lv-chart .bar.on { fill: #4a4a4a; }
+  .lv-chart .ln { fill: none; stroke: var(--green); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .lv-chart .area { fill: url(#lvGrad); }
+  .lv-chart .grid { stroke: #262626; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .lv-chart .pt { fill: var(--green); stroke: var(--black-2); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .lv-chart .hit { fill: transparent; cursor: crosshair; }
+  .lv-chart .guide { stroke: #555; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; }
+  .lv-axis { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-2-on-dark); margin-top: 6px; }
+  .lv-legend { display: flex; gap: 14px; font-size: 11px; color: var(--ink-2-on-dark); margin-top: 10px; }
+  .lv-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #3a3a3a; margin-right: 6px; vertical-align: -1px; }
+  .lv-legend i.g { background: var(--green); height: 3px; vertical-align: 2px; }
+  .lv-tip { position: absolute; pointer-events: none; transform: translate(-50%, -110%); background: #f7f7f2; color: #101010; border-radius: 10px; padding: 8px 10px; font-size: 11.5px; line-height: 1.35; white-space: nowrap; box-shadow: 0 10px 24px -8px rgba(0,0,0,.6); opacity: 0; transition: opacity .12s; z-index: 2; }
+  .lv-tip b { display: block; font-weight: 700; }
+  .lv-tip.on { opacity: 1; }
+  .lv-feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .lv-feed li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 6px; border-radius: 10px; }
+  .lv-feed li.nuevo { animation: lvNew 1.6s var(--ease); }
+  @keyframes lvNew { 0% { background: rgba(56,214,107,.22); transform: translateY(-6px); opacity: 0; } 25% { opacity: 1; transform: none; } 100% { background: transparent; } }
+  .lv-feed .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 18%, transparent); }
+  .lv-feed .ic i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  .lv-feed .tx { min-width: 0; font-size: 12px; color: #e4e6df; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lv-feed .tx small { display: block; font-size: 10.5px; color: var(--ink-2-on-dark); }
+  .lv-feed .tm { font-size: 10.5px; color: var(--ink-2-on-dark); white-space: nowrap; }
+  .lv-funnel { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .lv-funnel li { position: relative; display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; font-size: 12px; color: #d8dad3; isolation: isolate; }
+  .lv-funnel li::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: 8px; z-index: -1; background: #262626; transition: width .8s var(--ease); }
+  .lv-funnel li:last-child::before { background: linear-gradient(90deg, var(--green), #2fb95b); }
+  .lv-funnel li:last-child span, .lv-funnel li:last-child b { color: var(--black); }
+  .lv-funnel b { font-weight: 700; color: var(--white); font-variant-numeric: tabular-nums; }
+  .lv-funnel em { margin-left: auto; font-style: normal; font-size: 11px; color: var(--ink-2-on-dark); }
+  .lv-src-l { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .lv-src-l li { display: grid; grid-template-columns: 96px minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 12px; color: #d8dad3; }
+  .lv-src-l .tr { height: 8px; border-radius: 99px; background: #262626; overflow: hidden; }
+  .lv-src-l .tr i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--c); transition: width .8s var(--ease); }
+  .lv-src-l b { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+  .lv-plat { display: grid; gap: 12px; }
+  .lv-plat .ph { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .lv-plat .lg { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font: 700 13px var(--font-head); color: #101010; background: var(--c); }
+  .lv-plat .ph b { font: 700 15px var(--font-head); color: var(--white); }
+  .lv-plat .ph .chip { margin-left: auto; font-size: 10px; font-weight: 700; color: var(--green); background: rgba(56,214,107,.12); padding: 4px 8px; border-radius: 99px; }
+  .lv-m4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (min-width: 560px) { .lv-m4 { grid-template-columns: repeat(4, 1fr); } }
+  .lv-m4 div { background: #202020; border-radius: 10px; padding: 10px; display: grid; gap: 6px; }
+  .lv-m4 small { font-size: 10.5px; color: var(--ink-2-on-dark); }
+  .lv-m4 .n { font: 700 18px/1 var(--font-head); color: var(--white); font-variant-numeric: tabular-nums; }
+  .lv-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .lv-tbl th { text-align: left; font-weight: 500; font-size: 10.5px; color: var(--ink-2-on-dark); padding: 0 8px 8px; border-bottom: 1px solid var(--line-dark); white-space: nowrap; }
+  .lv-tbl td { padding: 10px 8px; border-bottom: 1px solid #222; color: #e4e6df; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .lv-tbl tr:last-child td { border-bottom: 0; }
+  .lv-tbl td:first-child { white-space: normal; }
+  .lv-tbl .num { text-align: right; } .lv-tbl th.num { text-align: right; }
+  .lv-scroll { overflow-x: auto; scrollbar-width: thin; }
+  .lv-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 3px 8px; border-radius: 99px; background: color-mix(in srgb, var(--c) 16%, transparent); color: var(--c); font-weight: 600; }
+  .lv-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+  .lv-leads tr.nuevo td { animation: lvNewRow 1.8s var(--ease); }
+  @keyframes lvNewRow { 0% { background: rgba(56,214,107,.2); } 100% { background: transparent; } }
+  .lv-av { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #2a2a2a; font-size: 10px; font-weight: 700; color: #e4e6df; margin-right: 8px; vertical-align: middle; }
+  .lv-pieces { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .lv-pieces li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+  .lv-pieces .th { width: 44px; height: 56px; border-radius: 8px; background: linear-gradient(160deg, #2b2b2b, #161616); display: grid; place-items: center; position: relative; overflow: hidden; }
+  .lv-pieces .th::after { content: ""; border-left: 9px solid var(--green); border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+  .lv-pieces .tx b { display: block; font-size: 12.5px; color: #e4e6df; font-weight: 600; }
+  .lv-pieces .tx small { font-size: 11px; color: var(--ink-2-on-dark); }
+  .lv-pieces .tr { height: 6px; border-radius: 99px; background: #262626; margin-top: 8px; overflow: hidden; }
+  .lv-pieces .tr i { display: block; height: 100%; width: var(--w); background: var(--green); border-radius: 99px; transition: width .8s var(--ease); }
+  .lv-pieces .n { font: 700 16px var(--font-head); color: var(--white); text-align: right; font-variant-numeric: tabular-nums; }
+  .lv-pieces .n small { display: block; font: 400 10.5px var(--font-body); color: var(--ink-2-on-dark); }
+  .lv-health { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .lv-health li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px; border-radius: 10px; background: #202020; font-size: 12.5px; color: #e4e6df; }
+  .lv-health .ok { width: 26px; height: 26px; border-radius: 50%; background: rgba(56,214,107,.15); display: grid; place-items: center; }
+  .lv-health .ok svg { width: 14px; height: 14px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .lv-health small { display: block; font-size: 10.5px; color: var(--ink-2-on-dark); }
+  .lv-health .st { font-size: 11px; font-weight: 600; color: var(--green); white-space: nowrap; }
+  .lv-toast { position: absolute; top: 58px; right: 14px; z-index: 3; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 28px); background: #f7f7f2; color: #101010; border-radius: 12px; padding: 10px 14px; font-size: 12.5px; font-weight: 600; box-shadow: 0 16px 36px -12px rgba(0,0,0,.6); transform: translateY(-12px); opacity: 0; pointer-events: none; transition: transform .35s var(--ease), opacity .35s; }
+  .lv-toast.on { transform: none; opacity: 1; }
+  .lv-toast i { width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--green)); flex-shrink: 0; }
+  .lv-toast small { font-weight: 500; color: #5a5c55; }
+  @media (max-width: 640px) {
+    .live { margin-top: 64px; }
+    .lv { border-radius: 18px; margin: 0 calc(var(--gutter) * -0.5); }
+    .lv-bar { padding: 8px; }
+    .lv-period { width: 100%; } .lv-period button { flex: 1; text-align: center; }
+    .lv-body { padding: 10px; min-height: 0; }
+    .lv-k .n { font-size: 20px; }
+    .lv-src-l li { grid-template-columns: 84px minmax(0, 1fr) 30px; }
+    .lv-toast { top: auto; bottom: 46px; right: 10px; left: 10px; max-width: none; }
+    .lv-name { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lv-pulse::after, .lv-feed li.nuevo, .lv-leads tr.nuevo td, .lv-body { animation: none; }
+  }
+
+  .lv-period .lv-calbtn { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .lv-period .lv-calbtn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  .lv-period .lv-calbtn[aria-pressed="true"], .lv-period .lv-calbtn[aria-expanded="true"] { background: #2c2c2c; color: var(--white); }
+  .lv-period .lv-calbtn[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgba(56,214,107,.6); }
+  .lv-pop { position: absolute; z-index: 5; top: 104px; right: 12px; display: grid; grid-template-columns: 170px 280px; background: #1b1b1b; border: 1px solid #2f2f2f; border-radius: 16px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); overflow: hidden; animation: lvFade .2s var(--ease); }
+  .lv-pop[hidden] { display: none; }
+  .lv-pre { display: grid; align-content: start; gap: 2px; padding: 10px; border-right: 1px solid #2a2a2a; }
+  .lv-pre button { padding: 9px 10px; border-radius: 9px; font-size: 12.5px; color: #d8dad3; }
+  .lv-pre button:hover { background: #262626; color: var(--white); }
+  .lv-calw { padding: 14px; display: grid; gap: 8px; }
+  .lv-calh { display: flex; align-items: center; justify-content: space-between; }
+  .lv-calh b { font: 600 13px var(--font-head); color: var(--white); text-transform: capitalize; }
+  .lv-calh button { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 18px; color: #d8dad3; }
+  .lv-calh button:hover { background: #262626; }
+  .lv-calh button:disabled { opacity: .25; cursor: default; background: none; }
+  .lv-dow, .lv-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px 0; text-align: center; }
+  .lv-dow span { font-size: 10px; color: var(--ink-2-on-dark); padding: 4px 0; }
+  .lv-days button { height: 34px; display: grid; place-items: center; font-size: 12.5px; color: #e4e6df; border-radius: 9px; font-variant-numeric: tabular-nums; }
+  .lv-days button:hover:not(:disabled) { background: #2c2c2c; }
+  .lv-days button:disabled { color: #4a4a4a; cursor: default; }
+  .lv-days button.hoy { box-shadow: inset 0 0 0 1px #4a4a4a; }
+  .lv-days button.en { background: rgba(56,214,107,.14); border-radius: 0; color: var(--white); }
+  .lv-days button.ini, .lv-days button.fin { background: var(--green); color: var(--black); font-weight: 700; }
+  .lv-days button.ini:not(.fin) { border-radius: 9px 0 0 9px; } .lv-days button.fin:not(.ini) { border-radius: 0 9px 9px 0; }
+  .lv-sel { margin: 2px 0 0; font-size: 11.5px; color: var(--ink-2-on-dark); min-height: 1.4em; }
+  .lv-act { display: flex; justify-content: flex-end; gap: 8px; }
+  .lv-act button { padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: #d8dad3; }
+  .lv-act button:hover { background: #262626; }
+  .lv-act button.pri { background: var(--green); color: var(--black); }
+  .lv-act button.pri:disabled { opacity: .35; cursor: default; }
+  @media (max-width: 640px) {
+    .lv-pop { left: 8px; right: 8px; top: 150px; grid-template-columns: 1fr; }
+    .lv-pre { display: flex; overflow-x: auto; scrollbar-width: none; border-right: 0; border-bottom: 1px solid #2a2a2a; padding: 8px; gap: 6px; }
+    .lv-pre button { flex-shrink: 0; background: #242424; border-radius: 999px; padding: 7px 12px; white-space: nowrap; }
+    .lv-period .lv-calbtn span { max-width: 9em; overflow: hidden; text-overflow: ellipsis; }
+  }
+
+  .lv-k .v em.neg { color: #ff8a7a; }
 </style>
 </head>
 <body>
@@ -1260,7 +1510,7 @@
           <div class="stage done" style="--i:0"><span class="dot"></span><div><h3>Plan del mes</h3><p>Te proponemos temas, hooks y CTAs. Tú lo apruebas.</p></div><span class="st">Aprobado</span></div>
           <div class="stage done" style="--i:1"><span class="dot"></span><div><h3>Content Day</h3><p>Una sesión de 90–120 min y grabamos todo el mes.</p></div><span class="st">Grabado</span></div>
           <div class="stage now" style="--i:2"><span class="dot"></span><div><h3>Edición</h3><p>Montamos cada pieza. Tienes una ronda de cambios.</p></div><span class="st">En curso</span></div>
-          <div class="stage" style="--i:3"><span class="dot"></span><div><h3>Content Drop</h3><p>3 vídeos + 3 shorts listos para publicar.</p></div><span class="st">Próximo</span></div>
+          <div class="stage" style="--i:3"><span class="dot"></span><div><h3>Content Drop</h3><p>2 vídeos + 3 shorts listos para publicar.</p></div><span class="st">Próximo</span></div>
         </div>
         <p class="app-foot">Al mes siguiente, vuelta a empezar.</p>
       </div>
@@ -1297,164 +1547,127 @@
         <p class="price">230 € <small>/mes + IVA</small></p>
         <p class="for">Contenido profesional para tu negocio, cada mes.</p>
         <ul>
-          <li>3 vídeos + 3 shorts</li>
+          <li>2 vídeos + 3 shorts</li>
           <li>1 Content Day al mes</li>
           <li>Ideas, grabación y edición</li>
           <li>Sin permanencia</li>
         </ul>
-        <a class="btn btn-outline" data-wa="content" href="#">Empezar con Content</a>
+        <a class="btn btn-outline" data-pick="content" href="#arma">Elegir Content</a>
       </li>
       <li class="step s2">
-        <span class="badge">Más vendido</span>
         <span class="verb">Conseguir clientes</span>
         <h3>Growth</h3>
         <p class="price">490 € <small>/mes + IVA</small></p>
         <p class="for">Tu contenido, convertido en anuncios que traen clientes.</p>
         <ul>
-          <li>4 vídeos + 8 shorts + 1 vídeo premium</li>
+          <li>3 vídeos + 4 shorts</li>
+          <li>1 Content Day al mes</li>
           <li>Estrategia mensual de contenido</li>
           <li>Campañas en Meta Ads, gestionadas y optimizadas</li>
           <li>Informe mensual</li>
         </ul>
-        <a class="btn btn-dark" data-wa="growth" href="#">Quiero Growth</a>
+        <a class="btn btn-dark" data-pick="growth" href="#arma">Elegir Growth</a>
       </li>
       <li class="step s3">
+        <span class="badge">Más vendido</span>
         <span class="verb">Construir el sistema</span>
         <h3>Scale</h3>
         <p class="price">890 € <small>/mes + IVA</small></p>
         <p class="for">Un sistema completo que capta, sigue y cierra cada cliente.</p>
         <span class="plus">Todo lo de Growth, ampliado, más:</span>
         <ul>
-          <li>6 vídeos + 12 shorts + 2 vídeos premium</li>
+          <li>4 vídeos + 6 shorts</li>
+          <li>2 Content Days al mes</li>
           <li>Campañas en Meta Ads con estrategia de captación y creatividades</li>
-          <li>Landing y automatización de leads</li>
+          <li>Automatización de leads: respuesta al momento por WhatsApp y email</li>
           <li>Seguimiento de cada lead, del anuncio a la venta</li>
           <li>Conexión con tu CRM, si ya usas uno</li>
-          <li>Panel de resultados</li>
           <li>Growth Review mensual y soporte prioritario</li>
+          <li>Panel en tiempo real con alta incluida</li>
         </ul>
-        <div class="addon">
-          <span class="addon-top"><span class="addon-tag">Opcional</span><b>Google Ads</b><span class="addon-price">+300 €<small>/mes + IVA</small></span></span>
-          <span class="addon-txt">Para que te encuentren quienes ya te buscan en Google. <span class="pendiente rev-only">Pendiente</span></span>
-        </div>
-        <a class="btn btn-light" data-wa="scale" href="#">Quiero Scale</a>
+        <a class="btn btn-light" data-pick="scale" href="#arma">Elegir Scale</a>
       </li>
     </ol>
     <p class="ladder-hint">Desliza para ver Growth y Scale →</p>
-    <div class="extras reveal">
-      <span><b>Extras, cuando los necesites:</b> Content Day adicional · producciones especiales. Se presupuestan aparte.</span>
-      <a class="text-link" data-wa="extras" href="#">Consultar</a>
+
+    <div class="cfg reveal" id="arma">
+      <div class="cfg-main">
+        <span class="label">Arma tu plan</span>
+        <h3>Elige tu plan y añade solo lo que necesites.</h3>
+        <div class="cfg-plans" role="radiogroup" aria-label="Plan">
+          <button type="button" role="radio" data-plan="content"><b>Content</b><span>230 €/mes</span></button>
+          <button type="button" role="radio" data-plan="growth"><b>Growth</b><span>490 €/mes</span></button>
+          <button type="button" role="radio" data-plan="scale"><b>Scale</b><span>890 €/mes</span></button>
+        </div>
+        <div class="cfg-x">
+          <label class="cx" data-x="ads">
+            <input type="checkbox">
+            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span>
+            <span class="cx-txt"><b>Google Ads</b><small>Que te encuentre quien ya busca lo que ofreces.</small></span>
+            <span class="cx-pr"><b>+250 €</b><small>al mes</small></span>
+            <span class="sw" aria-hidden="true"></span>
+          </label>
+          <label class="cx" data-x="panel">
+            <input type="checkbox">
+            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg></span>
+            <span class="cx-txt"><b>Panel en tiempo real</b><small class="cx-note">Anuncios, leads y ventas en directo. <a href="#live">Pruébalo abajo</a></small></span>
+            <span class="cx-pr"><b>+49 €</b><small class="cx-alta">al mes · alta 290 €</small></span>
+            <span class="sw" aria-hidden="true"></span>
+          </label>
+          <label class="cx" data-x="web">
+            <input type="checkbox">
+            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+            <span class="cx-txt"><b>Tu web</b><small>Como esta: rápida, con tus vídeos y lista para medir.</small></span>
+            <span class="cx-pr"><b>490 €</b><small>pago único</small></span>
+            <span class="sw" aria-hidden="true"></span>
+          </label>
+        </div>
+      </div>
+      <aside class="cfg-sum" aria-live="polite">
+        <span class="cfg-sum-t">Tu selección</span>
+        <ul class="cfg-lines" id="cfg-lines"></ul>
+        <div class="cfg-tot"><span>Cada mes</span><b id="cfg-mes">490 €</b></div>
+        <div class="cfg-uno" id="cfg-uno-row" hidden><span>Pago único</span><b id="cfg-uno">0 €</b></div>
+        <p class="cfg-iva">Precios + IVA. Sin permanencia. La inversión en anuncios la pagas tú directamente a Meta o a Google.</p>
+        <a class="btn btn-primary cfg-cta" id="cfg-cta" href="#" target="_blank" rel="noopener">Empezar con esta selección <svg class="wa-ico" aria-hidden="true"><use href="#wa"/></svg></a>
+      </aside>
     </div>
 
-    <div class="scale-block">
-      <div class="scale-text reveal">
-        <span class="label">Incluido en Scale</span>
-        <h3>Tu negocio, en un solo panel.</h3>
-        <p class="lede">Anuncios, leads, citas y ventas en el mismo sitio. Cada persona que llega desde tus anuncios entra en tu panel y la seguimos hasta que se convierte en cliente.</p>
-        <ul class="scale-feats">
-          <li>Campañas en Meta Ads con creatividades y landing, todo conectado.</li>
-          <li>Seguimiento de cada lead, del anuncio a la venta.</li>
-          <li>Conexión con tu CRM, si ya usas uno.</li>
-          <li>Growth Review mensual con tus resultados.</li>
-        </ul>
+    <div class="custom reveal">
+      <span class="custom-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg></span>
+      <p><b>¿Tu negocio necesita algo más?</b> Un Content Day extra, una tienda online o un sistema a medida: cuéntanoslo y te preparamos una propuesta.</p>
+      <a class="btn btn-outline" data-wa="extras" href="#">Hablemos</a>
+    </div>
+
+    <div class="live" id="live">
+      <div class="live-text reveal">
+        <span class="label">Extra · Growth y Scale</span>
+        <h3>Tu negocio, en directo.</h3>
+        <p class="lede">Anuncios, leads, citas y ventas en un solo panel que se actualiza solo. Sin esperar al informe del mes: lo abres cuando quieras y ves qué te trae clientes y qué no.</p>
+        <p class="live-hint"><span class="lv-pulse" aria-hidden="true"></span>Pruébalo: cambia de pestaña o de periodo y mira cómo entran los datos.</p>
       </div>
-      <figure class="panel reveal">
-        <div class="win" role="img" aria-label="Maqueta del panel de Scale: indicadores, evolución de leads y seguimiento por etapas, sin datos reales">
-          <div class="win-top"><span class="dots"><i></i><i></i><i></i></span><span>Panel VEO UP · Tu negocio</span><span class="chip">Scale</span></div>
-          <div class="ph">
-            <div><b>Así va tu negocio</b><small style="display:block;margin-top:6px;font-size:11px;color:var(--ink-2-on-dark)">Últimos 28 días</small></div>
-            <div class="period"><span>Hoy</span><span>7 días</span><span class="on">28 días</span><span>Este mes</span></div>
+      <div class="lv reveal" id="lv" role="region" aria-label="Ejemplo interactivo del panel en tiempo real">
+        <div class="lv-top"><span class="lv-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="lv-name">Panel VEO UP · Tu negocio</span><span class="lv-live"><span class="lv-pulse" aria-hidden="true"></span>En directo</span></div>
+        <div class="lv-bar">
+          <div class="lv-tabs" role="tablist" aria-label="Secciones del panel">
+            <button type="button" role="tab" data-tab="resumen">Resumen</button>
+            <button type="button" role="tab" data-tab="anuncios">Anuncios</button>
+            <button type="button" role="tab" data-tab="leads">Leads</button>
+            <button type="button" role="tab" data-tab="contenido">Contenido</button>
+            <button type="button" role="tab" data-tab="web">Web</button>
           </div>
-          <div class="win-tabs">
-            <span class="on"><svg><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Resumen</span>
-            <span><svg><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram</span>
-            <span><svg><path d="M4 18 10 12l4 4 6-7"/></svg>Meta Ads</span>
-            <span><svg><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>Google Ads</span>
-            <span><svg><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 4.5a3.5 3.5 0 0 1 0 7M21 20c0-2.6-1.6-4.8-4-5.6"/></svg>Leads</span>
-            <span><svg><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg>Ventas</span>
-            <span><svg><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Web</span>
-            <span><svg><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></svg>Contenido</span>
-          </div>
-          <div class="win-main">
-            <div class="glance">
-              <span class="t">De un vistazo</span>
-              <span class="pill"><b>Ritmo del presupuesto</b><small>En línea</small></span>
-              <span class="pill"><b>Coste por lead</b><small>Bajando</small></span>
-              <span class="pill"><b>Anuncios → seguimiento</b><small>Funcionando</small></span>
-            </div>
-            <div class="kpis">
-              <span class="grp">Instagram</span>
-              <div class="card"><span class="head"><span class="ico" style="--c:#e1306c"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><small>Seguidores</small></span><b class="num">3.482</b><span class="vs"><em>+214</em> este mes</span></div>
-              <div class="card"><span class="head"><span class="ico" style="--c:#6aa8ff"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></span><small>Alcance</small></span><b class="num">28.400</b><span class="vs"><em>+38 %</em> vs. mes anterior</span></div>
-              <div class="card"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></svg></span><small>Reproducciones</small></span><b class="num">41.900</b><span class="vs"><em>+52 %</em> vs. mes anterior</span></div>
-              <span class="grp">Captación</span>
-              <div class="card"><span class="head"><span class="ico" style="--c:#6aa8ff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><small>Leads</small></span><b class="num">46</b><span class="vs"><em>+12</em> vs. mes anterior</span></div>
-              <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3 5 1.2 5 3.2-2.2 3.3-5 3.3-5-1.2-5-3"/></svg></span><small>Coste por lead</small></span><b class="num">6,52 €</b><span class="vs"><em>−18 %</em> vs. mes anterior</span></div>
-              <div class="card"><span class="head"><span class="ico" style="--c:#c48bff"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><small>Citas</small></span><b class="num">12</b><span class="vs"><em>+5</em> vs. mes anterior</span></div>
-              <span class="grp">Ventas</span>
-              <div class="card"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><small>Clientes nuevos</small></span><b class="num">5</b><span class="vs"><em>42 %</em> de las citas</span></div>
-              <div class="card"><span class="head"><span class="ico" style="--c:#e0b84a"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg></span><small>Ingresos atribuidos</small></span><b class="num">2.150 €</b><span class="vs"><em>+31 %</em> vs. mes anterior</span></div>
-              <div class="card hl"><span class="head"><span class="ico" style="--c:#38D66B"><svg viewBox="0 0 24 24"><path d="M4 18 10 12l4 4 6-7M15 7h5v5"/></svg></span><small>Retorno de anuncios</small></span><b class="num">7,2×</b><span class="vs">por cada € invertido</span></div>
-            </div>
-            <div class="row2 r-brief">
-              <div class="card">
-                <span class="t">En pocas palabras</span><span class="d">Lo esencial del mes</span>
-                <ul class="brief">
-                  <li><span>El reel del Content Day fue <b>el más visto del mes</b>: 12.300 reproducciones.</span></li>
-                  <li><span><b>46 personas</b> pidieron información y <b>12 ya tienen cita</b>.</span></li>
-                  <li><span>Con 300 € en anuncios, el coste por lead <b>bajó un 18 %</b>.</span></li>
-                </ul>
-              </div>
-            <div class="card combo">
-              <span class="t">Inversión y leads por día</span><span class="d">Barras: inversión en Meta y Google. Línea: leads que entran.</span>
-              <svg viewBox="0 0 280 96" preserveAspectRatio="none" aria-hidden="true">
-                <line class="grid" x1="0" y1="32" x2="280" y2="32"/><line class="grid" x1="0" y1="64" x2="280" y2="64"/>
-                <rect class="bar" x="4" y="52" width="12" height="44" rx="2"/><rect class="bar" x="24" y="46" width="12" height="50" rx="2"/>
-                <rect class="bar" x="44" y="56" width="12" height="40" rx="2"/><rect class="bar" x="64" y="44" width="12" height="52" rx="2"/>
-                <rect class="bar" x="84" y="48" width="12" height="48" rx="2"/><rect class="bar" x="104" y="40" width="12" height="56" rx="2"/>
-                <rect class="bar" x="124" y="50" width="12" height="46" rx="2"/><rect class="bar" x="144" y="42" width="12" height="54" rx="2"/>
-                <rect class="bar" x="164" y="38" width="12" height="58" rx="2"/><rect class="bar" x="184" y="46" width="12" height="50" rx="2"/>
-                <rect class="bar" x="204" y="40" width="12" height="56" rx="2"/><rect class="bar" x="224" y="36" width="12" height="60" rx="2"/>
-                <rect class="bar" x="244" y="42" width="12" height="54" rx="2"/><rect class="bar" x="264" y="38" width="12" height="58" rx="2"/>
-                <path class="ln" d="M10 70 L30 62 L50 66 L70 54 L90 58 L110 46 L130 52 L150 42 L170 36 L190 44 L210 34 L230 28 L250 32 L270 24"/>
-              </svg>
-              <div class="legend"><span><i></i>Inversión</span><span><i class="g"></i>Leads</span></div>
-            </div>
-            </div>
-            <div class="row2">
-              <div class="card funnel">
-                <span class="t">Del anuncio al cliente</span><span class="d">Embudo de los últimos 28 días</span>
-                <ol>
-                  <li style="--w:100%"><span>Alcance</span><b>28.400</b></li>
-                  <li style="--w:84%"><span>Visitas al perfil y web</span><b>1.920</b><em>6,8 %</em></li>
-                  <li style="--w:68%"><span>Leads</span><b>46</b><em>2,4 %</em></li>
-                  <li style="--w:54%"><span>Citas</span><b>12</b><em>26 %</em></li>
-                  <li style="--w:42%" class="win-row"><span>Clientes</span><b>5</b><em>42 %</em></li>
-                </ol>
-              </div>
-              <div class="card donut">
-                <span class="t">De dónde vienen tus leads</span><span class="d">46 leads este mes</span>
-                <div class="dn">
-                  <svg viewBox="0 0 42 42" aria-hidden="true">
-                    <circle cx="21" cy="21" r="15.915" class="ring"/>
-                    <circle cx="21" cy="21" r="15.915" class="seg s1" stroke-dasharray="47.8 52.2" stroke-dashoffset="25"/>
-                    <circle cx="21" cy="21" r="15.915" class="seg s4" stroke-dasharray="23.9 76.1" stroke-dashoffset="-22.8"/>
-                    <circle cx="21" cy="21" r="15.915" class="seg s2" stroke-dasharray="19.6 80.4" stroke-dashoffset="-46.7"/>
-                    <circle cx="21" cy="21" r="15.915" class="seg s3" stroke-dasharray="8.7 91.3" stroke-dashoffset="-66.3"/>
-                    <text x="21" y="21.5" class="big">46</text><text x="21" y="27" class="sm">leads</text>
-                  </svg>
-                  <ul>
-                    <li><i class="s1"></i>Meta Ads<b>22</b></li>
-                    <li><i class="s4"></i>Google Ads<b>11</b></li>
-                    <li><i class="s2"></i>Instagram<b>9</b></li>
-                    <li><i class="s3"></i>Web y QR<b>4</b></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <div class="lv-period" role="group" aria-label="Periodo">
+            <button type="button" data-p="hoy">Hoy</button>
+            <button type="button" data-p="d7">7 días</button>
+            <button type="button" data-p="d28">28 días</button>
+            <button type="button" class="lv-calbtn" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Fechas</span></button>
           </div>
         </div>
-      </figure>
+        <div class="lv-pop" id="lv-pop" role="dialog" aria-label="Elegir fechas" hidden></div>
+        <div class="lv-body" id="lv-body"></div>
+        <div class="lv-foot"><span id="lv-upd">Actualizado ahora</span><span class="lv-src">Meta Ads · Google Ads · Instagram · Analytics · CRM</span></div>
+        <div class="lv-toast" id="lv-toast" role="status"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1509,7 +1722,7 @@
     <div class="faq reveal">
       <details>
         <summary>¿Qué incluye el plan de 230 €?</summary>
-        <div class="a"><p>Cada mes: 3 vídeos de 45–60 segundos, 3 shorts de unos 15 segundos y un Content Day de 90–120 minutos. Nos encargamos de las ideas, la grabación y la edición, y te lo damos listo para publicar, con una ronda de cambios por pieza.</p></div>
+        <div class="a"><p>Cada mes: 2 vídeos de 45–60 segundos, 3 shorts de unos 15 segundos y un Content Day de 90–120 minutos. Nos encargamos de las ideas, la grabación y la edición, y te lo damos listo para publicar, con una ronda de cambios por pieza.</p></div>
       </details>
       <details>
         <summary>¿Hay permanencia?</summary>
@@ -1930,6 +2143,392 @@
     else scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: "smooth" });
     try { history.replaceState(null, "", location.pathname + location.search + (location.hash === "#revision" ? "#revision" : "")); } catch (x) {}
   });
+</script>
+
+<script>
+(function () {
+  var WA = "34611216083";
+  var PLAN = { content: ["Content", 230], growth: ["Growth", 490], scale: ["Scale", 890] };
+  var X = { ads: ["Google Ads", 250, 0], panel: ["Panel en tiempo real", 49, 290], web: ["Tu web", 0, 490] };
+  var st = { plan: "growth" };
+  var eur = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €"; };
+  var box = function (k) { return document.querySelector('.cx[data-x="' + k + '"] input'); };
+  function pintar() {
+    var p = st.plan, mes = PLAN[p][1], uno = 0, lines = [], partes = [PLAN[p][0]];
+    document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.plan === p ? "true" : "false"); });
+    var pan = document.querySelector('.cx[data-x="panel"]'), pin = box("panel");
+    var sinPanel = p === "content"; pan.classList.toggle("off", sinPanel); pin.disabled = sinPanel; if (sinPanel) pin.checked = false;
+    pan.querySelector(".cx-alta").textContent = sinPanel ? "con Growth y Scale" : (p === "scale" ? "al mes · alta incluida" : "al mes · alta 290 €");
+    lines.push(["Plan " + PLAN[p][0], "", eur(PLAN[p][1]) + "/mes"]);
+    ["ads", "panel", "web"].forEach(function (k) {
+      if (!box(k).checked) return;
+      var x = X[k], alta = k === "panel" && p === "scale" ? 0 : x[2];
+      mes += x[1]; uno += alta; partes.push(x[0]);
+      if (x[1]) lines.push([x[0], "", "+" + eur(x[1]) + "/mes"]);
+      if (alta) lines.push([x[0], k === "panel" ? "alta" : "pago único", eur(alta)]);
+      if (k === "panel" && p === "scale") lines.push([x[0], "alta", "incluida"]);
+    });
+    document.getElementById("cfg-lines").innerHTML = lines.map(function (l) { return "<li><span>" + l[0] + (l[1] ? "<em>" + l[1] + "</em>" : "") + "</span><b>" + l[2] + "</b></li>"; }).join("");
+    document.getElementById("cfg-mes").textContent = eur(mes);
+    document.getElementById("cfg-uno-row").hidden = !uno; document.getElementById("cfg-uno").textContent = eur(uno);
+    var txt = "Hola, vengo de la web de VEO UP y quiero empezar con " + (partes.length > 1 ? "el plan " + partes[0] + " + " + partes.slice(1).join(" + ") : "el plan " + partes[0]) + ".";
+    document.getElementById("cfg-cta").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt);
+    var q = new URLSearchParams({ plan: p }); ["ads", "panel", "web"].forEach(function (k) { if (box(k).checked) q.set(k, "1"); });
+    var cp = document.getElementById("cfg-pay"); if (cp) cp.href = "pago/_propuesta.html?" + q.toString();
+  }
+  document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.addEventListener("click", function () { st.plan = b.dataset.plan; pintar(); }); });
+  document.querySelectorAll(".cx input").forEach(function (i) { i.addEventListener("change", pintar); });
+  document.getElementById("cfg-cta").addEventListener("click", function () { if (window.track) track("wa_click", { wa_plan: st.plan, wa_zone: "configurador" }); });
+  document.querySelectorAll("[data-pick]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); st.plan = a.dataset.pick; pintar(); document.getElementById("arma").scrollIntoView({ behavior: "smooth", block: "start" }); }); });
+  pintar();
+})();
+</script>
+<script>
+/* Panel en tiempo real · maqueta interactiva. Cifras de ejemplo de un negocio ficticio (excepción de Manu, 2026-11-11). */
+(function () {
+  var root = document.getElementById("lv"); if (!root) return;
+  var body = document.getElementById("lv-body"), toastEl = document.getElementById("lv-toast"), updEl = document.getElementById("lv-upd");
+  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- utilidades ---------- */
+  var seed = 7; function r() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  function reparte(total, n) {
+    var w = [], s = 0, i; for (i = 0; i < n; i++) { w.push(.55 + r()); s += w[i]; }
+    var raw = w.map(function (x) { return total * x / s; }), fl = raw.map(Math.floor), rest = total - fl.reduce(function (a, b) { return a + b; }, 0);
+    raw.map(function (x, i) { return [x - fl[i], i]; }).sort(function (a, b) { return b[0] - a[0]; }).slice(0, rest).forEach(function (p) { fl[p[1]]++; });
+    return fl;
+  }
+  function es(n, d) { var t = (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d).split("."); return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".") + (d ? "," + t[1] : ""); }
+  var nf0 = { format: function (n) { return es(n, 0); } }, nf1 = { format: function (n) { return es(n, 1); } }, nf2 = { format: function (n) { return es(n, 2); } };
+  function fmt(v, f) {
+    if (v == null || !isFinite(v)) return "—";
+    if (f === "eur2") return nf2.format(v) + " €";
+    if (f === "eur0") return nf0.format(v) + " €";
+    if (f === "x") return nf1.format(v) + "×";
+    if (f === "pct") return nf1.format(v) + " %";
+    return nf0.format(v);
+  }
+  function hace(t) { var s = Math.max(1, Math.round((Date.now() - t) / 1000)); if (s < 60) return "hace " + s + " s"; var m = Math.round(s / 60); if (m < 60) return "hace " + m + " min"; var h = Math.round(m / 60); return h < 24 ? "hace " + h + " h" : "hace " + Math.round(h / 24) + " d"; }
+  var DIAS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"], MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  var C = { meta: "#38D66B", google: "#f4b400", ig: "#e1306c", web: "#6aa8ff", cita: "#c48bff", venta: "#38D66B", visita: "#9d9f98" };
+  var FUENTE = { meta: "Meta Ads", google: "Google Ads", ig: "Instagram", web: "Web y QR" };
+
+  /* ---------- datos de partida (coherentes entre sí) ---------- */
+  var S = {}, VS = {};
+  var PIEZAS = [["Reel · Tu Content Day de noviembre", "Reel", 12300, 412], ["Short · El antes y el después", "Short", 8900, 268], ["Reel · Conoce al equipo", "Reel", 6400, 190], ["Short · La oferta del mes", "Short", 3100, 77]];
+  var FACT = { hoy: 1 / 28, d7: 7 / 28, d28: 1 };
+
+  /* Serie diaria (28 días) y por horas (hoy), cuadradas con los totales */
+  var hoyD = new Date(); hoyD.setHours(0, 0, 0, 0);
+  var N = 90, ULT = N - 1, dias = [], i;
+  var a34l = reparte(38, 34), a34i = reparte(300, 34), b28l = reparte(34, 28), b28i = reparte(270, 28);
+  var lead21 = reparte(34, 21), inv21 = reparte(225, 21), lead6 = reparte(10, 6), inv6 = reparte(64, 6);
+  for (i = 0; i < N; i++) {
+    var d = new Date(hoyD.getTime() - (ULT - i) * 864e5), L, I, k = i - 62;
+    if (i < 34) { L = a34l[i]; I = a34i[i]; } else if (i < 62) { L = b28l[i - 34]; I = b28i[i - 34]; }
+    else { L = k < 21 ? lead21[k] : (k < 27 ? lead6[k - 21] : 2); I = k < 21 ? inv21[k] : (k < 27 ? inv6[k - 21] : 11); }
+    dias.push({ d: d, inv: I, leads: L });
+  }
+  function reparteFijo(total, w) {
+    var s = w.reduce(function (a, b) { return a + b; }, 0), raw = w.map(function (x) { return total * x / s; }), fl = raw.map(Math.floor), rest = total - fl.reduce(function (a, b) { return a + b; }, 0);
+    raw.map(function (x, i) { return [x - fl[i], i]; }).sort(function (a, b) { return b[0] - a[0]; }).slice(0, rest).forEach(function (p) { fl[p[1]]++; });
+    return fl;
+  }
+  /* Periodo a medida: se suma desde la serie diaria y el resto sale con las mismas proporciones del negocio */
+  function rango(ia, ib) {
+    var inv = 0, ld = 0, j; for (j = ia; j <= ib; j++) { inv += dias[j].inv; ld += dias[j].leads; }
+    var citas = Math.round(ld * 12 / 46), cli = Math.round(citas * 5 / 12), sr = reparteFijo(ld, [22, 11, 9, 4]), mi = Math.round(inv * 190 / 300);
+    return { inv: inv, leads: ld, citas: citas, clientes: cli, ingresos: cli * 430, alcance: Math.round(ld * 28400 / 46), visitas: Math.round(ld * 1920 / 46), src: { meta: sr[0], google: sr[1], ig: sr[2], web: sr[3] },
+      ads: { meta: [mi, sr[0], Math.round(mi * 1140 / 190)], google: [inv - mi, sr[1], Math.round((inv - mi) * 380 / 110)] }, ia: ia, ib: ib };
+  }
+  function deltas(c) {
+    var ia = c.ia, ib = c.ib, n = ib - ia + 1, pa = ia - n;
+    var txt = ib === ULT ? (n === 1 ? "vs. ayer" : n === 7 ? "vs. semana anterior" : n === 28 ? "vs. 28 días anteriores" : "vs. periodo anterior") : (n === 1 ? "vs. día anterior" : "vs. periodo anterior");
+    if (pa < 0) return { leads: "sin datos del periodo anterior", roas: "por cada € invertido" };
+    var p = rango(pa, ia - 1);
+    function em(x, menosEsMejor, suf) { var malo = menosEsMejor ? x > 0 : x < 0; return "<em" + (malo ? ' class="neg"' : "") + ">" + (x > 0 ? "+" : "−") + Math.abs(x) + (suf || "") + "</em> " + txt; }
+    function dif(a, b) { var x = a - b; return x ? em(x) : "sin cambios " + txt; }
+    function pct(a, b, menosEsMejor) { if (!a && !b) return "sin ventas en el periodo"; if (!b || !isFinite(a) || !isFinite(b)) return "—"; var x = Math.round((a - b) / b * 100); return x ? em(x, menosEsMejor, " %") : "sin cambios " + txt; }
+    return { leads: dif(c.leads, p.leads), cpl: pct(c.inv / c.leads, p.inv / p.leads, true), citas: dif(c.citas, p.citas), clientes: c.citas ? "<em>" + Math.round(c.clientes / c.citas * 100) + " %</em> de las citas" : "sin citas en el periodo", ingresos: pct(c.ingresos, p.ingresos), roas: "por cada € invertido" };
+  }
+  S.hoy = rango(ULT, ULT); S.d7 = rango(ULT - 6, ULT); S.d28 = rango(ULT - 27, ULT);
+  VS.hoy = deltas(S.hoy); VS.d7 = deltas(S.d7); VS.d28 = deltas(S.d28);
+  var hNow = new Date().getHours(), idx = Math.max(0, Math.min(12, hNow - 8)), horas = [], hl = reparte(2, idx + 1), hi = reparte(11, idx + 1);
+  for (i = 0; i <= 12; i++) horas.push({ h: 8 + i, inv: i <= idx ? hi[i] : null, leads: i <= idx ? hl[i] : null });
+
+  var NOMBRES = ["L. M.", "J. R.", "A. G.", "M. P.", "C. S.", "D. F.", "S. N.", "P. V.", "R. T.", "E. B.", "N. C.", "I. L."];
+  var ETAPA = { nuevo: ["Nuevo", "#6aa8ff"], contactado: ["Contactado", "#f4b400"], cita: ["Cita", "#c48bff"], cliente: ["Cliente", "#38D66B"] };
+  var t0 = Date.now(), leads = [], nextId = 47;
+  [["meta", "nuevo", 4], ["google", "contactado", 38], ["meta", "cita", 95], ["ig", "contactado", 160], ["meta", "cliente", 260], ["web", "cita", 400], ["google", "contactado", 520], ["meta", "cliente", 760]].forEach(function (x, k) {
+    leads.push({ id: 46 - k, n: NOMBRES[k], src: x[0], et: x[1], t: t0 - x[2] * 60000 });
+  });
+  var feed = [
+    { c: C.meta, tx: "Nuevo lead", sub: "Meta Ads · L. M.", t: t0 - 4 * 60000 },
+    { c: C.cita, tx: "Cita agendada", sub: "Content Day · J. R.", t: t0 - 22 * 60000 },
+    { c: C.google, tx: "Nuevo lead", sub: "Google Ads · J. R.", t: t0 - 38 * 60000 },
+    { c: C.venta, tx: "Cliente nuevo · 430 €", sub: "Del anuncio a la venta en 6 días", t: t0 - 95 * 60000 },
+    { c: C.ig, tx: "Nuevo lead", sub: "Instagram · M. P.", t: t0 - 160 * 60000 }
+  ];
+  var st = { tab: "resumen", p: "d28", upd: Date.now(), visible: false };
+
+  /* ---------- valores ---------- */
+  function val(k) {
+    var p = S[st.p];
+    switch (k) {
+      case "cpl": return p.inv / p.leads;
+      case "cpl_ads": return p.inv / (p.ads.meta[1] + p.ads.google[1]);
+      case "roas": return p.ingresos ? p.ingresos / p.inv : null;
+      case "conv": return p.leads / p.visitas * 100;
+      case "meta_inv": return p.ads.meta[0]; case "meta_leads": return p.ads.meta[1]; case "meta_clics": return p.ads.meta[2]; case "meta_cpl": return p.ads.meta[0] / p.ads.meta[1];
+      case "google_inv": return p.ads.google[0]; case "google_leads": return p.ads.google[1]; case "google_clics": return p.ads.google[2]; case "google_cpl": return p.ads.google[0] / p.ads.google[1];
+      default: return p[k];
+    }
+  }
+  function num(k, f) { var v = val(k); return '<b class="n" data-k="' + k + '" data-f="' + (f || "") + '" data-v="' + (v == null ? "" : v) + '">' + fmt(v, f) + "</b>"; }
+  function refrescar() {
+    body.querySelectorAll("[data-k]").forEach(function (el) {
+      var to = val(el.dataset.k), from = parseFloat(el.dataset.v), f = el.dataset.f;
+      el.dataset.v = to == null ? "" : to;
+      if (to == null || !isFinite(from) || RM || from === to) { el.textContent = fmt(to, f); return; }
+      var t = performance.now(), dur = 650;
+      var fin = setTimeout(function () { el.textContent = fmt(to, f); }, dur + 60);
+      (function paso(now) { var k = Math.min(1, (now - t) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(from + (to - from) * e, f); if (k < 1) requestAnimationFrame(paso); else clearTimeout(fin); })(t);
+    });
+  }
+
+  /* ---------- piezas de las vistas ---------- */
+  function kpi(k, t, f, extra) { return '<div class="lv-card lv-k' + (extra || "") + '" data-c="' + k + '"><small>' + t + "</small>" + num(k, f) + '<span class="v">' + (VS[st.p][k] || "") + "</span></div>"; }
+  function serie() {
+    if (st.p === "hoy") return horas; if (st.p === "d7") return dias.slice(-7); if (st.p === "d28") return dias.slice(-28);
+    var c = S.custom; return (c.ia === c.ib && c.ib === ULT) ? horas : dias.slice(c.ia, c.ib + 1);
+  }
+  function grafico() {
+    var s = serie(), n = s.length, W = 600, H = 150, pad = 6, bw = W / n, maxI = 1, maxL = 1;
+    s.forEach(function (x) { if (x.inv != null) { maxI = Math.max(maxI, x.inv); maxL = Math.max(maxL, x.leads); } });
+    maxI *= 1.15; maxL *= 1.25;
+    var bars = "", pts = [], hits = "", dots = "";
+    s.forEach(function (x, j) {
+      var cx = j * bw + bw / 2;
+      if (x.inv != null) {
+        var bh = (x.inv / maxI) * (H - pad); bars += '<rect class="bar" data-j="' + j + '" x="' + (j * bw + bw * .2).toFixed(1) + '" y="' + (H - bh).toFixed(1) + '" width="' + (bw * .6).toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="3"/>';
+        var lv = x.leads; if (st.p !== "hoy") { var a0 = s[j - 1], a2 = s[j + 1]; lv = (x.leads * 2 + (a0 ? a0.leads : x.leads) + (a2 && a2.inv != null ? a2.leads : x.leads)) / 4; }
+        var y = H - (lv / maxL) * (H - pad) - 4; pts.push([cx, y]);
+        if (j === n - 1 || (s === horas && j === idx)) dots += '<circle class="pt" cx="' + cx.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4"/>';
+      }
+      hits += '<rect class="hit" data-j="' + j + '" x="' + (j * bw).toFixed(1) + '" y="0" width="' + bw.toFixed(1) + '" height="' + H + '"/>';
+    });
+    var line = pts.map(function (p, j) {
+      if (!j) return "M" + p[0].toFixed(1) + " " + p[1].toFixed(1);
+      var a = pts[j - 2] || pts[j - 1], b = pts[j - 1], c = p, d = pts[j + 1] || p, k = .18;
+      return "C" + (b[0] + (c[0] - a[0]) * k).toFixed(1) + " " + (b[1] + (c[1] - a[1]) * k).toFixed(1) + " " + (c[0] - (d[0] - b[0]) * k).toFixed(1) + " " + (c[1] - (d[1] - b[1]) * k).toFixed(1) + " " + c[0].toFixed(1) + " " + c[1].toFixed(1);
+    }).join(" ");
+    var area = pts.length ? line + " L" + pts[pts.length - 1][0].toFixed(1) + " " + H + " L" + pts[0][0].toFixed(1) + " " + H + " Z" : "";
+    var ax = s === horas ? ["8:00", "12:00", "16:00", "20:00"] : (n <= 7 ? s.filter(function (x, j) { return n < 5 || j % 2 === 0; }).map(function (x) { return DIAS[x.d.getDay()] + " " + x.d.getDate(); })
+      : [0, 1 / 3, 2 / 3, 1].map(function (f) { var x = s[Math.round(f * (n - 1))]; return x.d.getDate() + " " + MESES[x.d.getMonth()]; }));
+    return '<div class="lv-chart"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lvGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#38D66B" stop-opacity=".28"/><stop offset="1" stop-color="#38D66B" stop-opacity="0"/></linearGradient></defs>' +
+      '<line class="grid" x1="0" y1="50" x2="600" y2="50"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/>' + bars + '<path class="area" d="' + area + '"/><path class="ln" d="' + line + '"/>' + dots + '<line class="guide" x1="0" x2="0" y1="0" y2="' + H + '" style="display:none"/>' + hits + '</svg><div class="lv-tip"></div></div><div class="lv-axis">' + ax.map(function (a) { return "<span>" + a + "</span>"; }).join("") + '</div><div class="lv-legend"><span><i></i>Inversión en anuncios</span><span><i class="g"></i>Leads</span></div>';
+  }
+  function engancharGrafico() {
+    var ch = body.querySelector(".lv-chart"); if (!ch) return;
+    var svg = ch.querySelector("svg"), tip = ch.querySelector(".lv-tip"), guide = svg.querySelector(".guide"), s = serie();
+    function on(j) {
+      var x = s[j], bw = 600 / s.length, cx = j * bw + bw / 2, rect = svg.getBoundingClientRect();
+      svg.querySelectorAll(".bar").forEach(function (b) { b.classList.toggle("on", +b.dataset.j === j); });
+      guide.setAttribute("x1", cx); guide.setAttribute("x2", cx); guide.style.display = "";
+      var tit = s === horas ? x.h + ":00 – " + (x.h + 1) + ":00" : DIAS[x.d.getDay()] + " " + x.d.getDate() + " " + MESES[x.d.getMonth()];
+      tip.innerHTML = "<b>" + tit + "</b>" + (x.inv == null ? "Todavía no ha llegado" : fmt(x.inv, "eur0") + " en anuncios · " + x.leads + (x.leads === 1 ? " lead" : " leads"));
+      var px = (cx / 600) * rect.width; tip.style.left = Math.max(70, Math.min(rect.width - 70, px)) + "px"; tip.style.top = "30px"; tip.classList.add("on");
+    }
+    function off() { tip.classList.remove("on"); guide.style.display = "none"; svg.querySelectorAll(".bar.on").forEach(function (b) { b.classList.remove("on"); }); }
+    svg.querySelectorAll(".hit").forEach(function (h) { h.addEventListener("mouseenter", function () { on(+h.dataset.j); }); h.addEventListener("click", function () { on(+h.dataset.j); }); });
+    svg.addEventListener("mouseleave", off);
+  }
+  function feedHTML() { return feed.slice(0, 5).map(function (e, k) { return '<li' + (e.nuevo && k === 0 ? ' class="nuevo"' : "") + '><span class="ic" style="--c:' + e.c + '"><i></i></span><span class="tx">' + e.tx + "<small>" + e.sub + '</small></span><span class="tm" data-t="' + e.t + '">' + hace(e.t) + "</span></li>"; }).join(""); }
+  function embudo() {
+    var p = S[st.p], filas = [["Alcance", p.alcance, null, 100], ["Visitas a perfil y web", p.visitas, p.visitas / p.alcance, 82], ["Leads", p.leads, p.leads / p.visitas, 64], ["Citas", p.citas, p.citas / p.leads, 48], ["Clientes", p.clientes, p.leads ? p.clientes / Math.max(1, p.citas) : 0, 34]];
+    var keys = ["alcance", "visitas", "leads", "citas", "clientes"];
+    return '<ol class="lv-funnel">' + filas.map(function (f, k) { return '<li style="--w:' + f[3] + '%"><span>' + f[0] + "</span>" + num(keys[k]) + (f[2] != null ? "<em>" + fmt(f[2] * 100, "pct") + "</em>" : "") + "</li>"; }).join("") + "</ol>";
+  }
+  function origen() {
+    var p = S[st.p], mx = Math.max(1, p.src.meta, p.src.google, p.src.ig, p.src.web);
+    return '<ul class="lv-src-l">' + ["meta", "google", "ig", "web"].map(function (k) { return '<li><span>' + FUENTE[k] + '</span><span class="tr"><i style="--w:' + (p.src[k] / mx * 100).toFixed(0) + "%;--c:" + C[k] + '"></i></span><b>' + p.src[k] + "</b></li>"; }).join("") + "</ul>";
+  }
+  function plataforma(k, nombre, letra, color) {
+    return '<div class="lv-card lv-plat" data-c="' + k + '"><div class="ph"><span class="lg" style="--c:' + color + '">' + letra + "</span><b>" + nombre + '</b><span class="chip">Activa</span></div><div class="lv-m4"><div><small>Inversión</small>' + num(k + "_inv", "eur0") + "</div><div><small>Clics</small>" + num(k + "_clics") + "</div><div><small>Leads</small>" + num(k + "_leads") + "</div><div><small>Coste por lead</small>" + num(k + "_cpl", "eur2") + "</div></div></div>";
+  }
+  function campanas() {
+    var p = S[st.p], m = p.ads.meta, g = p.ads.google, m1 = Math.round(m[1] * .6), m2 = m[1] - m1;
+    var rows = [["Reel del Content Day", "meta", Math.round(m[0] * .55), m1], ["Oferta primera visita", "meta", m[0] - Math.round(m[0] * .55), m2], ["Búsqueda · tu servicio + zona", "google", g[0], g[1]]];
+    return '<div class="lv-card"><span class="lv-t">Campañas activas</span><span class="lv-d">Lo que está funcionando ahora</span><div class="lv-scroll"><table class="lv-tbl"><thead><tr><th>Campaña</th><th>Canal</th><th class="num">Inversión</th><th class="num">Leads</th><th class="num">Coste/lead</th></tr></thead><tbody>' +
+      rows.map(function (x) { return "<tr><td>" + x[0] + '</td><td><span class="lv-tag" style="--c:' + C[x[1]] + '">' + FUENTE[x[1]] + '</span></td><td class="num">' + fmt(x[2], "eur0") + '</td><td class="num">' + x[3] + '</td><td class="num">' + (x[3] ? fmt(x[2] / x[3], "eur2") : "—") + "</td></tr>"; }).join("") + "</tbody></table></div></div>";
+  }
+  function tablaLeads() {
+    return '<div class="lv-card"><span class="lv-t">Últimos leads</span><span class="lv-d">Cada contacto, con su origen y en qué punto está</span><div class="lv-scroll"><table class="lv-tbl lv-leads"><thead><tr><th>Contacto</th><th>Origen</th><th>Etapa</th><th class="num">Entró</th></tr></thead><tbody>' +
+      leads.slice(0, 8).map(function (l, k) { return "<tr" + (l.nuevo && k === 0 ? ' class="nuevo"' : "") + '><td><span class="lv-av">' + l.n.replace(/[ .]/g, "") + "</span>Lead #" + l.id + '</td><td><span class="lv-tag" style="--c:' + C[l.src] + '">' + FUENTE[l.src] + '</span></td><td><span class="lv-tag" style="--c:' + ETAPA[l.et][1] + '">' + ETAPA[l.et][0] + '</span></td><td class="num" data-t="' + l.t + '">' + hace(l.t) + "</td></tr>"; }).join("") + "</tbody></table></div></div>";
+  }
+  function piezas() {
+    var f = FACT[st.p], mx = PIEZAS[0][2] * f;
+    return '<div class="lv-card"><span class="lv-t">Tu contenido que más funciona</span><span class="lv-d">Reproducciones y guardados en Instagram</span><ul class="lv-pieces">' +
+      PIEZAS.map(function (x) { var v = Math.round(x[2] * f), g = Math.round(x[3] * f); return '<li><span class="th" aria-hidden="true"></span><span class="tx"><b>' + x[0] + "</b><small>" + nf0.format(g) + ' guardados</small><span class="tr"><i style="--w:' + (v / mx * 100).toFixed(0) + '%"></i></span></span><span class="n">' + nf0.format(v) + "<small>reproducciones</small></span></li>"; }).join("") + "</ul></div>";
+  }
+  var OK = '<span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
+  function salud() {
+    var filas = [["Google Analytics 4", "Recibiendo datos", '<span data-t="' + st.upd + '">' + hace(st.upd) + "</span>"], ["Google Tag Manager", "Publicado y cargando", "OK"], ["Píxel de Meta", "Eventos llegando", "OK"], ["Formulario y WhatsApp → CRM", "Cada contacto entra solo", "OK"], ["Velocidad de la web", "Carga en menos de 2 s", "Buena"]];
+    return '<ul class="lv-health">' + filas.map(function (f) { return "<li>" + OK + "<span>" + f[0] + "<small>" + f[1] + '</small></span><span class="st">' + f[2] + "</span></li>"; }).join("") + "</ul>";
+  }
+
+  var VISTAS = {
+    resumen: function () {
+      return '<div class="lv-kpis k6">' + kpi("leads", "Leads") + kpi("cpl", "Coste medio por lead", "eur2") + kpi("citas", "Citas") + kpi("clientes", "Clientes nuevos") + kpi("ingresos", "Ingresos atribuidos", "eur0") + kpi("roas", "Retorno de anuncios", "x", " hl") + "</div>" +
+        '<div class="lv-row r21"><div class="lv-card"><span class="lv-t">Inversión y leads</span><span class="lv-d">' + (serie() === horas ? "Hora a hora, hoy" : "Día a día") + " · toca el gráfico para ver cada día</span>" + grafico() + '</div><div class="lv-card"><span class="lv-t">Ahora mismo</span><span class="lv-d">Lo último que ha pasado en tu negocio</span><ul class="lv-feed" id="lv-feed">' + feedHTML() + "</ul></div></div>" +
+        '<div class="lv-row r11"><div class="lv-card" data-c="leads"><span class="lv-t">Del anuncio al cliente</span><span class="lv-d">Embudo del periodo</span>' + embudo() + '</div><div class="lv-card" data-c="src"><span class="lv-t">De dónde vienen tus leads</span><span class="lv-d">' + S[st.p].leads + " leads en el periodo</span>" + origen() + "</div></div>";
+    },
+    anuncios: function () {
+      return '<div class="lv-kpis">' + kpi("inv", "Inversión en anuncios", "eur0") + kpi("leads", "Leads totales") + kpi("cpl_ads", "Coste por lead de anuncios", "eur2") + "</div>" +
+        '<div class="lv-row r11">' + plataforma("meta", "Meta Ads", "M", "#38D66B") + plataforma("google", "Google Ads", "G", "#f4b400") + "</div>" + campanas();
+    },
+    leads: function () {
+      return '<div class="lv-kpis">' + kpi("leads", "Leads") + kpi("citas", "Citas") + kpi("clientes", "Clientes nuevos") + "</div>" +
+        '<div class="lv-row r21">' + tablaLeads() + '<div class="lv-card" data-c="src"><span class="lv-t">De dónde vienen</span><span class="lv-d">' + S[st.p].leads + " leads en el periodo</span>" + origen() + "</div></div>";
+    },
+    contenido: function () {
+      return '<div class="lv-kpis">' + kpi("alcance", "Alcance") + kpi("visitas", "Visitas a perfil y web") + kpi("leads", "Leads") + "</div>" + piezas();
+    },
+    web: function () {
+      return '<div class="lv-kpis">' + kpi("visitas", "Visitas a perfil y web") + kpi("conv", "Visitas que se convierten en lead", "pct") + kpi("leads", "Leads") + "</div>" +
+        '<div class="lv-card"><span class="lv-t">Salud de tu medición</span><span class="lv-d">Si algo deja de medir, te avisamos antes de que pierdas datos</span>' + salud() + "</div>";
+    }
+  };
+
+  function pintar() {
+    body.innerHTML = VISTAS[st.tab]();
+    body.style.animation = "none"; void body.offsetWidth; body.style.animation = "";
+    root.querySelectorAll(".lv-tabs button").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === st.tab ? "true" : "false"); });
+    root.querySelectorAll(".lv-period [data-p]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.p === st.p ? "true" : "false"); });
+    var cb = root.querySelector(".lv-calbtn"); if (cb) cb.setAttribute("aria-pressed", st.p === "custom" ? "true" : "false");
+    engancharGrafico();
+  }
+
+  /* ---------- tiempo real simulado ---------- */
+  function toast(c, tx, sub) {
+    toastEl.style.setProperty("--c", c); toastEl.innerHTML = "<i></i><span>" + tx + (sub ? " <small>· " + sub + "</small>" : "") + "</span>";
+    toastEl.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(function () { toastEl.classList.remove("on"); }, 2600);
+  }
+  function flash(sel) { body.querySelectorAll(sel).forEach(function (c) { c.classList.add("flash"); setTimeout(function () { c.classList.remove("flash"); }, 900); }); }
+  function todos(fn) { ["hoy", "d7", "d28"].concat(S.custom && S.custom.ib === ULT ? ["custom"] : []).forEach(function (k) { fn(S[k]); }); }
+  function ultimo(fn) { fn(dias[ULT]); fn(horas[idx]); }
+  function evento() {
+    var x = r(), ahora = Date.now();
+    var gasto = Math.round((.4 + r() * .8) * 100) / 100;
+    todos(function (p) { p.inv = Math.round((p.inv + gasto) * 100) / 100; var m = r() < .63 ? "meta" : "google"; p.ads[m][0] = Math.round((p.ads[m][0] + gasto) * 100) / 100; p.ads[m][2] += 1 + Math.round(r() * 3); p.alcance += 30 + Math.round(r() * 70); p.visitas += 1 + Math.round(r() * 3); });
+    ultimo(function (d) { d.inv = Math.round((d.inv + gasto) * 100) / 100; });
+    if (x < .58) {
+      var u = r(), src = u < .45 ? "meta" : (u < .7 ? "google" : (u < .9 ? "ig" : "web")), n = NOMBRES[Math.floor(r() * NOMBRES.length)];
+      todos(function (p) { p.leads++; p.src[src]++; if (src === "meta" || src === "google") p.ads[src][1]++; });
+      ultimo(function (d) { d.leads++; });
+      leads.forEach(function (l) { l.nuevo = false; }); leads.unshift({ id: nextId++, n: n, src: src, et: "nuevo", t: ahora, nuevo: true });
+      feed.forEach(function (e) { e.nuevo = false; }); feed.unshift({ c: C[src], tx: "Nuevo lead", sub: FUENTE[src] + " · " + n, t: ahora, nuevo: true });
+      toast(C[src], "Nuevo lead", FUENTE[src]);
+    } else if (x < .8) {
+      var l = leads.filter(function (z) { return z.et === "nuevo" || z.et === "contactado"; })[0];
+      todos(function (p) { p.citas++; }); if (l) l.et = "cita";
+      feed.forEach(function (e) { e.nuevo = false; }); feed.unshift({ c: C.cita, tx: "Cita agendada", sub: l ? "Lead #" + l.id + " · " + l.n : "Desde WhatsApp", t: ahora, nuevo: true });
+      toast(C.cita, "Cita agendada", l ? "Lead #" + l.id : "");
+    } else if (x < .9) {
+      var imp = 360 + Math.round(r() * 14) * 10, c = leads.filter(function (z) { return z.et === "cita"; })[0];
+      todos(function (p) { p.clientes++; p.ingresos += imp; }); if (c) c.et = "cliente";
+      feed.forEach(function (e) { e.nuevo = false; }); feed.unshift({ c: C.venta, tx: "Cliente nuevo · " + imp + " €", sub: c ? "Lead #" + c.id + " · del anuncio a la venta" : "Venta atribuida", t: ahora, nuevo: true });
+      toast(C.venta, "Cliente nuevo", "+" + imp + " €");
+    }
+    st.upd = ahora;
+    if (st.tab === "resumen") { var f = document.getElementById("lv-feed"); if (f) f.innerHTML = feedHTML(); var ch = body.querySelector(".lv-chart"); if (ch) { ch.parentNode.innerHTML = '<span class="lv-t">Inversión y leads</span><span class="lv-d">' + (serie() === horas ? "Hora a hora, hoy" : "Día a día") + " · toca el gráfico para ver cada día</span>" + grafico(); engancharGrafico(); } var o = body.querySelector('[data-c="src"] .lv-src-l'); if (o) o.outerHTML = origen(); }
+    if (st.tab === "leads") { var tl = body.querySelector(".lv-leads"); if (tl) tl.closest(".lv-card").outerHTML = tablaLeads(); var o2 = body.querySelector('[data-c="src"] .lv-src-l'); if (o2) o2.outerHTML = origen(); }
+    if (st.tab === "anuncios") { var cp = body.querySelector(".lv-tbl"); if (cp) cp.closest(".lv-card").outerHTML = campanas(); }
+    refrescar(); flash(x < .58 ? '[data-c="leads"]' : (x < .8 ? '[data-c="citas"]' : (x < .9 ? '[data-c="clientes"],[data-c="ingresos"]' : "")) || "x");
+  }
+  function bucle() {
+    clearTimeout(bucle.t);
+    bucle.t = setTimeout(function () { if (st.visible && !document.hidden) evento(); bucle(); }, 4200 + r() * 3000);
+  }
+  setInterval(function () {
+    updEl.textContent = "Actualizado " + hace(st.upd);
+    root.querySelectorAll("[data-t]").forEach(function (e) { e.textContent = hace(+e.dataset.t); });
+  }, 1000);
+
+  root.querySelectorAll(".lv-tabs button").forEach(function (b) { b.addEventListener("click", function () { st.tab = b.dataset.tab; pintar(); }); });
+  var calTxt = root.querySelector(".lv-calbtn span");
+  function cambiarPeriodo(p) {
+    var antes = {}; body.querySelectorAll("[data-k]").forEach(function (e) { antes[e.dataset.k] = e.dataset.v; });
+    st.p = p; if (p !== "custom") calTxt.textContent = "Fechas"; pintar();
+    body.querySelectorAll("[data-k]").forEach(function (e) { if (antes[e.dataset.k] != null && antes[e.dataset.k] !== "") e.dataset.v = antes[e.dataset.k]; });
+    refrescar();
+  }
+  root.querySelectorAll(".lv-period [data-p]").forEach(function (b) { b.addEventListener("click", function () { if (st.p !== b.dataset.p) cambiarPeriodo(b.dataset.p); }); });
+
+  /* ---------- selector de fechas ---------- */
+  var pop = document.getElementById("lv-pop"), calBtn = root.querySelector(".lv-calbtn");
+  var MESL = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  var pk = { a: null, b: null, vista: new Date(hoyD.getFullYear(), hoyD.getMonth(), 1) };
+  function iDe(d) { return Math.round((d - dias[0].d) / 864e5); }
+  function etiqueta(ia, ib) {
+    var a = dias[ia].d, b = dias[ib].d;
+    if (ia === ib) return a.getDate() + " " + MESES[a.getMonth()];
+    return a.getDate() + (a.getMonth() === b.getMonth() ? "" : " " + MESES[a.getMonth()]) + " – " + b.getDate() + " " + MESES[b.getMonth()];
+  }
+  function aplicarRango(ia, ib) {
+    ia = Math.max(0, ia); ib = Math.min(ULT, ib);
+    S.custom = rango(ia, ib); VS.custom = deltas(S.custom); FACT.custom = (ib - ia + 1) / 28;
+    calTxt.textContent = etiqueta(ia, ib); cerrar(); cambiarPeriodo("custom");
+  }
+  var ATAJOS = [["hoy", "Hoy"], ["ayer", "Ayer"], ["d7", "Últimos 7 días"], ["d28", "Últimos 28 días"], ["mes", "Este mes"], ["mesant", "Mes anterior"], ["d90", "Últimos 90 días"]];
+  function atajo(k) {
+    if (k === "hoy" || k === "d7" || k === "d28") { cerrar(); calTxt.textContent = "Fechas"; if (st.p !== k) cambiarPeriodo(k); return; }
+    if (k === "ayer") return aplicarRango(ULT - 1, ULT - 1);
+    if (k === "d90") return aplicarRango(0, ULT);
+    if (k === "mes") return aplicarRango(iDe(new Date(hoyD.getFullYear(), hoyD.getMonth(), 1)), ULT);
+    var ini = new Date(hoyD.getFullYear(), hoyD.getMonth() - 1, 1), fin = new Date(hoyD.getFullYear(), hoyD.getMonth(), 0);
+    aplicarRango(iDe(ini), iDe(fin));
+  }
+  function pintarCal() {
+    var v = pk.vista, y = v.getFullYear(), m = v.getMonth(), primero = (new Date(y, m, 1).getDay() + 6) % 7, nd = new Date(y, m + 1, 0).getDate(), celdas = "", j;
+    for (j = 0; j < primero; j++) celdas += "<span></span>";
+    for (j = 1; j <= nd; j++) {
+      var dd = new Date(y, m, j), ix = iDe(dd), fuera = ix < 0 || ix > ULT, cls = [];
+      if (pk.a != null && ix === pk.a) cls.push("ini"); if (pk.b != null && ix === pk.b) cls.push("fin");
+      if (pk.a != null && pk.b != null && ix > pk.a && ix < pk.b) cls.push("en");
+      if (ix === ULT) cls.push("hoy");
+      celdas += '<button type="button" data-ix="' + ix + '"' + (fuera ? " disabled" : "") + ' class="' + cls.join(" ") + '">' + j + "</button>";
+    }
+    var puedeAtras = iDe(new Date(y, m, 1)) > 0, puedeAdel = new Date(y, m + 1, 1) <= hoyD;
+    var sel = pk.a == null ? "Elige el día de inicio" : (pk.b == null ? "Desde el " + etiqueta(pk.a, pk.a) + " · elige el día final" : etiqueta(pk.a, pk.b) + " · " + (pk.b - pk.a + 1) + " días");
+    pop.innerHTML = '<div class="lv-pre">' + ATAJOS.map(function (a) { return '<button type="button" data-pre="' + a[0] + '">' + a[1] + "</button>"; }).join("") + "</div>" +
+      '<div class="lv-calw"><div class="lv-calh"><button type="button" data-nav="-1" aria-label="Mes anterior"' + (puedeAtras ? "" : " disabled") + '>‹</button><b>' + MESL[m] + " " + y + '</b><button type="button" data-nav="1" aria-label="Mes siguiente"' + (puedeAdel ? "" : " disabled") + ">›</button></div>" +
+      '<div class="lv-dow"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="lv-days">' + celdas + "</div>" +
+      '<p class="lv-sel">' + sel + '</p><div class="lv-act"><button type="button" data-act="cancel">Cancelar</button><button type="button" data-act="ok" class="pri"' + (pk.a == null ? " disabled" : "") + ">Aplicar</button></div></div>";
+  }
+  function abrir() { pk.a = st.p === "custom" ? S.custom.ia : null; pk.b = st.p === "custom" ? S.custom.ib : null; pk.vista = new Date(hoyD.getFullYear(), hoyD.getMonth(), 1); pintarCal(); pop.hidden = false; calBtn.setAttribute("aria-expanded", "true"); }
+  function cerrar() { pop.hidden = true; calBtn.setAttribute("aria-expanded", "false"); }
+  calBtn.addEventListener("click", function (e) { e.stopPropagation(); pop.hidden ? abrir() : cerrar(); });
+  pop.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var b = e.target.closest("button"); if (!b || b.disabled) return;
+    if (b.dataset.pre) return atajo(b.dataset.pre);
+    if (b.dataset.nav) { pk.vista = new Date(pk.vista.getFullYear(), pk.vista.getMonth() + +b.dataset.nav, 1); return pintarCal(); }
+    if (b.dataset.act === "cancel") return cerrar();
+    if (b.dataset.act === "ok") return aplicarRango(pk.a, pk.b == null ? pk.a : pk.b);
+    if (b.dataset.ix != null) {
+      var ix = +b.dataset.ix;
+      if (pk.a == null || pk.b != null || ix < pk.a) { pk.a = ix; pk.b = null; } else pk.b = ix;
+      pintarCal();
+    }
+  });
+  document.addEventListener("click", function () { if (!pop.hidden) cerrar(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) cerrar(); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { st.visible = es[0].isIntersecting; }, { threshold: .25 }).observe(root);
+  else st.visible = true;
+  pintar(); bucle();
+})();
+
 </script>
 </body>
 </html>
