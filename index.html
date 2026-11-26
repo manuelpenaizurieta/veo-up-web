@@ -1106,6 +1106,14 @@
   .cfg-pay:hover { color: var(--white); }
   .cfg-pay[hidden], .cfg-reu[hidden] { display: none; }
   .cfg-reu { margin: 0; font-size: 13px; line-height: 1.45; color: #d8dad3; padding: 10px 12px; border-radius: 12px; background: rgba(56,214,107,.1); }
+  .xstrip { margin-top: 26px; display: grid; gap: 12px; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+  @media (min-width: 900px) { .xstrip { grid-template-columns: auto 1fr; align-items: center; gap: 24px; } }
+  .xstrip .xs-t { font: 600 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--green-ink); }
+  .xstrip ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
+  .xstrip li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: 15px; }
+  .xstrip li b { font: 700 15px var(--font-head); letter-spacing: -0.01em; }
+  .xstrip li span { color: var(--ink-2); }
+  .xstrip li em { font-style: normal; color: var(--green-ink); }
   .custom { margin-top: 18px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px 16px; align-items: center; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
   .custom p { margin: 0; font-size: 15px; color: var(--ink-2); line-height: 1.45; }
   .custom p b { color: var(--ink); }
@@ -1570,7 +1578,7 @@
           <li>Ideas, grabación y edición</li>
           <li>Sin permanencia</li>
         </ul>
-        <a class="btn btn-outline" data-pick="content" href="#arma">Elegir Content</a>
+        <a class="btn btn-outline" href="/empezar/?plan=content" data-empezar="content">Empezar con Content</a>
       </li>
       <li class="step s2">
         <span class="verb">Conseguir clientes</span>
@@ -1584,7 +1592,7 @@
           <li>Campañas en Meta Ads, gestionadas y optimizadas</li>
           <li>Informe mensual</li>
         </ul>
-        <a class="btn btn-dark" data-pick="growth" href="#arma">Elegir Growth</a>
+        <a class="btn btn-dark" href="/empezar/?plan=growth" data-empezar="growth">Empezar con Growth</a>
       </li>
       <li class="step s3">
         <span class="badge">Más vendido</span>
@@ -1603,55 +1611,18 @@
           <li>Growth Review mensual y soporte prioritario</li>
           <li>Panel en tiempo real con alta incluida</li>
         </ul>
-        <a class="btn btn-light" data-pick="scale" href="#arma">Elegir Scale</a>
+        <a class="btn btn-light" href="/empezar/?plan=scale" data-empezar="scale">Empezar con Scale</a>
       </li>
     </ol>
     <p class="ladder-hint">Desliza para ver Growth y Scale →</p>
 
-    <div class="cfg reveal" id="arma">
-      <div class="cfg-main">
-        <span class="label">Arma tu plan</span>
-        <h3>Elige tu plan y añade solo lo que necesites.</h3>
-        <div class="cfg-plans" role="radiogroup" aria-label="Plan">
-          <button type="button" role="radio" data-plan="content"><b>Content</b><span>230 €/mes</span></button>
-          <button type="button" role="radio" data-plan="growth"><b>Growth</b><span>490 €/mes</span></button>
-          <button type="button" role="radio" data-plan="scale"><b>Scale</b><span>990 €/mes</span></button>
-        </div>
-        <div class="cfg-x">
-          <label class="cx" data-x="ads">
-            <input type="checkbox">
-            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span>
-            <span class="cx-txt"><b>Google Ads</b><small>Que te encuentre quien ya busca lo que ofreces.</small></span>
-            <span class="cx-pr"><b>+250 €</b><small>al mes</small></span>
-            <span class="sw" aria-hidden="true"></span>
-          </label>
-          <label class="cx" data-x="panel">
-            <input type="checkbox">
-            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg></span>
-            <span class="cx-txt"><b>Panel en tiempo real</b><small class="cx-note">Anuncios, leads y ventas en directo. <a href="#live">Pruébalo abajo</a></small></span>
-            <span class="cx-pr"><b>+49 €</b><small class="cx-alta">al mes · alta 290 €</small></span>
-            <span class="sw" aria-hidden="true"></span>
-          </label>
-          <label class="cx" data-x="web">
-            <input type="checkbox">
-            <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
-            <span class="cx-txt"><b>Tu web</b><small>Como esta: rápida, con tus vídeos y lista para medir.</small></span>
-            <span class="cx-pr"><b>490 €</b><small>pago único</small></span>
-            <span class="sw" aria-hidden="true"></span>
-          </label>
-        </div>
-      </div>
-      <aside class="cfg-sum" aria-live="polite">
-        <span class="cfg-sum-t">Tu selección</span>
-        <ul class="cfg-lines" id="cfg-lines"></ul>
-        <div class="cfg-tot"><span id="cfg-tot-t">Cada mes</span><b id="cfg-mes">490 €</b></div>
-        <p class="cfg-luego" id="cfg-luego" hidden></p>
-        <p class="cfg-iva">Precios + IVA. Sin permanencia. La inversión en anuncios la pagas tú directamente a Meta o a Google.</p>
-        <p class="cfg-reu" id="cfg-reu" hidden>Growth y Scale empiezan con una videollamada de 30 minutos para conocer tu negocio. Sin compromiso.</p>
-        <a class="btn btn-primary cfg-cta" id="cfg-cta" href="/pago/"><span id="cfg-cta-t">Contratar ahora</span> <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="cfg-pay" id="cfg-ya" href="/pago/" hidden>¿Ya hemos hablado? Contrata aquí →</a>
-        <a class="cfg-pay" id="cfg-wa" href="#" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
-      </aside>
+    <div class="xstrip reveal">
+      <span class="xs-t">Añade al contratar</span>
+      <ul>
+        <li><b>Google Ads</b><span>+250 €/mes</span></li>
+        <li><b>Panel en tiempo real</b><span>+49 €/mes · alta 290 € <em>(incluida en Scale)</em></span></li>
+        <li><b>Tu web</b><span>490 € pago único</span></li>
+      </ul>
     </div>
 
     <div class="custom reveal">
@@ -2167,54 +2138,7 @@
 </script>
 
 <script>
-(function () {
-  var WA = "34611216083";
-  var PLAN = { content: ["Content", 230], growth: ["Growth", 490], scale: ["Scale", 990] };
-  var X = { ads: ["Google Ads", 250, 0], panel: ["Panel en tiempo real", 49, 290], web: ["Tu web", 0, 490] };
-  var st = { plan: "growth" };
-  var eur = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €"; };
-  var box = function (k) { return document.querySelector('.cx[data-x="' + k + '"] input'); };
-  function pintar() {
-    var p = st.plan, mes = PLAN[p][1], uno = 0, lm = [], lu = [], partes = [PLAN[p][0]];
-    document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.plan === p ? "true" : "false"); });
-    /* Content solo puede añadir la web (Manu, 2026-11-26): Google Ads y panel, con Growth y Scale */
-    ["ads", "panel"].forEach(function (k) { var row = document.querySelector('.cx[data-x="' + k + '"]'); row.hidden = p === "content"; if (p === "content") box(k).checked = false; });
-    document.querySelector('.cx[data-x="panel"] .cx-alta').textContent = p === "scale" ? "al mes · alta incluida" : "al mes · alta 290 €";
-    lm.push(["Plan " + PLAN[p][0], "", eur(PLAN[p][1])]);
-    ["ads", "panel", "web"].forEach(function (k) {
-      if (!box(k).checked) return;
-      var x = X[k], alta = k === "panel" && p === "scale" ? 0 : x[2];
-      mes += x[1]; uno += alta; partes.push(x[0]);
-      if (x[1]) lm.push([x[0], k === "panel" && p === "scale" ? "alta incluida" : "", "+" + eur(x[1])]);
-      if (alta) lu.push([x[0], k === "panel" ? "alta" : "", eur(alta)]);
-    });
-    var li = function (l) { return "<li><span>" + l[0] + (l[1] ? "<em>" + l[1] + "</em>" : "") + "</span><b>" + l[2] + "</b></li>"; };
-    document.getElementById("cfg-lines").innerHTML = !uno ? lm.map(li).join("")
-      : '<li class="g"><span>Cada mes</span></li>' + lm.map(li).join("") + '<li class="sub"><span>Total al mes</span><b>' + eur(mes) + "</b></li>"
-        + '<li class="g"><span>Solo el primer mes</span></li>' + lu.map(li).join("") + '<li class="sub"><span>Total pago único</span><b>' + eur(uno) + "</b></li>";
-    document.getElementById("cfg-tot-t").textContent = uno ? "Primer mes" : "Cada mes";
-    document.getElementById("cfg-mes").textContent = eur(mes + uno);
-    var luego = document.getElementById("cfg-luego"); luego.hidden = !uno; luego.innerHTML = "Después, <b>" + eur(mes) + "</b> al mes";
-    var txt = "Hola, vengo de la web de VEO UP y quiero empezar con " + (partes.length > 1 ? "el plan " + partes[0] + " + " + partes.slice(1).join(" + ") : "el plan " + partes[0]) + ".";
-    /* El botón va directo al pago (Stripe) con el plan y los extras elegidos (Manu, 2026-11-26); WhatsApp queda para dudas */
-    var q = new URLSearchParams({ plan: p }); ["ads", "panel", "web"].forEach(function (k) { if (box(k).checked) q.set(k, "1"); });
-    /* Growth y Scale: primero la reunión (veoup.es/reunion); quien ya habló con nosotros contrata con el enlace de abajo.
-       Content: directo al pago (Manu, 2026-11-26). */
-    var conReu = p !== "content", pago = "/pago/?" + q.toString();
-    document.getElementById("cfg-cta").href = conReu ? "/reunion/?plan=" + p : pago;
-    document.getElementById("cfg-cta-t").textContent = conReu ? "Agendar reunión" : "Contratar ahora";
-    document.getElementById("cfg-reu").hidden = !conReu;
-    var ya = document.getElementById("cfg-ya"); ya.hidden = !conReu; ya.href = pago;
-    document.getElementById("cfg-wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt.replace("quiero empezar con", "tengo dudas sobre"));
-  }
-  document.querySelectorAll(".cfg-plans button").forEach(function (b) { b.addEventListener("click", function () { st.plan = b.dataset.plan; pintar(); }); });
-  document.querySelectorAll(".cx input").forEach(function (i) { i.addEventListener("change", pintar); });
-  document.getElementById("cfg-cta").addEventListener("click", function () { if (window.track) track(st.plan === "content" ? "pay_start" : "reunion_start", { plan: st.plan, zona: "configurador" }); });
-  document.getElementById("cfg-ya").addEventListener("click", function () { if (window.track) track("pay_start", { plan: st.plan, zona: "configurador_ya_hablamos" }); });
-  document.getElementById("cfg-wa").addEventListener("click", function () { if (window.track) track("wa_click", { wa_plan: st.plan, wa_zone: "configurador" }); });
-  document.querySelectorAll("[data-pick]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); st.plan = a.dataset.pick; pintar(); document.getElementById("arma").scrollIntoView({ behavior: "smooth", block: "start" }); }); });
-  pintar();
-})();
+  document.querySelectorAll("[data-empezar]").forEach(function (a) { a.addEventListener("click", function () { if (window.track) track("empezar_click", { plan: a.dataset.empezar, zona: "planes" }); }); });
 </script>
 <script>
 /* Panel en tiempo real · maqueta interactiva. Cifras de ejemplo de un negocio ficticio (excepción de Manu, 2026-11-11). */
